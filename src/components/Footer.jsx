@@ -1,6 +1,6 @@
 const Footer = () => {
   return (
-    <footer className="footer flex items-center justify-center bg-neutral p-4 text-neutral-content sm:footer-horizontal">
+    <footer className="fixed bottom-0 footer flex max-h-screen items-center justify-center bg-neutral p-4 text-neutral-content sm:footer-horizontal">
       <aside className="grid-flow-col items-center">
         {/* {for logo} */}
         <p>Worksmith Copyright © {new Date().getFullYear()} - All right reserved</p>
