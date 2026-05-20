@@ -8,7 +8,9 @@ export default function App() {
   return (
     <Router>
       <Login />
-      <Register />
+      <Routes>
+        <Route path="/register" element={<Register />} />
+      </Routes>
       <Footer />
     </Router>
   );
