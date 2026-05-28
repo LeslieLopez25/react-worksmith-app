@@ -2,7 +2,7 @@ const Header = () => {
   return (
     <div className="navbar bg-base-100 shadow-sm">
       <div className="flex-1">
-        {/* <div>{logo goes here}</div> */}
+        <img src="/assets/logo.png" alt="Worksmith Logo" className="mr-2 h-8 w-8" />
         <a className="btn text-xl btn-ghost">Worksmith</a>
       </div>
       <div className="flex-none">
