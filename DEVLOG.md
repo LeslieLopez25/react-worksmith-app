@@ -21,7 +21,7 @@ Initialized the frontend with the following stack:
 
 ---
 
-### Layout Created
+### Layouts Created
 
 #### **Layout.jsx**
 
@@ -47,4 +47,57 @@ Key decisions:
 #### **App.jsx**
 
 - Removed App.css file and kept only the index.css file for Tailwind CSS setup.
-- Used React Router for 
+- Installed daisyUI for Tailwind CSS.
+- Used React Router for page(s) navigation.
+- Using useState for login state temporary until Auth Context is created.
+- Used a ternary operator to set up condition of whether user is logged in or not.
+- Used Navigation from react router dom to have the login page be the default page.
+- Added the layout and auth layout components with the current pages that will correspond to the pages using them.
+
+---
+
+### Pages Created
+
+#### **Login.jsx**
+
+Fields: email, password
+
+- Used login page component from daisyUI with a basic form for entering your email and password.
+- A link is located at the bottom that will direct you to the registration page if you don't have an account.
+- No logic has been added to it yet.
+
+#### **Register.jsx**
+
+Fields: name, email, password
+
+- Used register page component from daisyUI with a basic form for entering your name, email, password.
+- Link located at the bottom for those who already have an account and need to login.
+- No logic has been added yet.
+
+---
+
+### Components Created
+
+#### **Footer.jsx**
+
+- Used a footer component from daisyUI that has the logo of the website.
+- Has the year automated with the basic copyright info which I added.
+
+#### **Header.jsx**
+
+- Used a header component from daisyUI that has the logo and name of the app on the far left while on the far right is the name of the user and a drop down menu with the options of portfolio and logout.
+- Currently does not have the logic yet.
+
+#### **Hero.jsx**
+
+- Used a hero component from daisyUI that has a short summary of the project on the left side along with a button at the bottom that will either say "Create Project" or "Edit" depending if a project exists or not.
+- An image will be on the right side representing the project.
+- No logic added yet.
+
+#### **ThemeController.jsx**
+
+- Used a toggle component from daisyUI that allows you to toggle from light theme to dark theme.
+- This will be added with the header component.
+- No logic added yet.
+
+---
