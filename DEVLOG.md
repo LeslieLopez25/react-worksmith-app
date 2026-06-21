@@ -101,3 +101,16 @@ Fields: name, email, password
 - No logic added yet.
 
 ---
+
+## June 20, 2026
+
+## Component Created
+
+#### **FABSpeedDial.jsx**
+
+- Used a FAB Speed Dial component from daisyUI that shows additional buttons once clicked and it stays at the bottom right of the screen.
+- This will be added to the user's dashboard so that they can create, edit, or delete a project.
+- The CSS will be updated for this and all other components once the logic for the frontend has been completed.
+- No logic added yet.
+
+---
