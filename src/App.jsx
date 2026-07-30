@@ -17,12 +17,12 @@ const App = () => {
         {isLoggedIn ? (
           <Route element={<Layout />}>
             <Route path="/hero" element={<Hero />} />
+            <Route path="/home" element={<HomePage />} />
           </Route>
         ) : (
           <Route element={<AuthLayout />}>
             <Route element={<Navigate to="/login" />} path="/" />
             <Route path="/login" element={<Login />} />
-            <Route path="/home" element={<HomePage />} />
             <Route path="/register" element={<Register />} />
           </Route>
         )}

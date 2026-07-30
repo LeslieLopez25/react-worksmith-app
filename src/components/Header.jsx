@@ -2,7 +2,7 @@ import logo from "../../assets/logo.png";
 
 const Header = () => {
   return (
-    <div className="navbar bg-base-100 shadow-sm">
+    <div className="navbar fixed top-0 z-50 bg-base-100 shadow-sm">
       <img src={logo} alt="Worksmith Logo" className="flex h-13" />
       <a className="btn text-xl btn-ghost">Worksmith</a>
       <div className="flex-1"></div>
