@@ -114,3 +114,12 @@ Fields: name, email, password
 - No logic added yet.
 
 ---
+
+## July 30, 2026
+
+#### **Homepage.jsx**
+
+- Used the Hero component from daisyUI as the foundation of the Homepage component but modified it to look the way I wanted it to.
+- This component will be blank if you haven't created your first project yet.
+- If a project already exists, then you'll be able to edit it to continue working on it.
+- No logic added yet.
