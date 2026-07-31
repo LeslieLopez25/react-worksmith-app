@@ -33,7 +33,7 @@ const HomePage = () => {
             <div className="flex flex-1 flex-col gap-4">
               <h1 className="text-5xl font-bold">{section.title}</h1>
               <p className="text-lg text-gray-500">{section.description}</p>
-              <button className="btn btn-primary">Create Project</button>
+              <button className="btn btn-primary">Edit Project</button>
             </div>
           </div>
         ))}

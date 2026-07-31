@@ -9,7 +9,7 @@ import { Navigate } from "react-router-dom";
 import HomePage from "./components/HomePage.jsx";
 
 const App = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
 
   return (
     <Router>
