@@ -119,7 +119,7 @@ Fields: name, email, password
 
 #### **Homepage.jsx**
 
-- Used the Hero component from daisyUI as the foundation of the Homepage component but modified it to look the way I wanted it to.
-- This component will be blank if you haven't created your first project yet.
+- Used the Hero component from daisyUI as the foundation of the Homepage page but modified it to look the way I wanted it to.
+- This page will be blank if you haven't created your first project yet.
 - If a project already exists, then you'll be able to edit it to continue working on it.
 - No logic added yet.
