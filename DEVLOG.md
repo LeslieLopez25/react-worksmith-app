@@ -123,3 +123,10 @@ Fields: name, email, password
 - This page will be blank if you haven't created your first project yet.
 - If a project already exists, then you'll be able to edit it to continue working on it.
 - No logic added yet.
+
+## August 07, 2026
+
+#### **Loading.jsx**
+
+- Used the Loading component from daisyUI to create the loader.
+- No logic added yet.
