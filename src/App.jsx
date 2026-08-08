@@ -7,9 +7,10 @@ import Layout from "./layouts/Layout.jsx";
 import Hero from "./components/Hero.jsx";
 import { Navigate } from "react-router-dom";
 import HomePage from "../pages/HomePage.jsx";
+import Loading from "./components/Loading.jsx";
 
 const App = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
 
   return (
     <Router>
@@ -18,6 +19,7 @@ const App = () => {
           <Route element={<Layout />}>
             <Route path="/hero" element={<Hero />} />
             <Route path="/home" element={<HomePage />} />
+            <Route path="/loading" element={<Loading />} />
           </Route>
         ) : (
           <Route element={<AuthLayout />}>
