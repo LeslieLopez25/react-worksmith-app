@@ -1,30 +1,47 @@
 import React from "react";
+import ImageCard from "../src/components/ImageCard.jsx";
 
 const Project = () => {
   return (
-    <>
-      <div>
-        <textarea placeholder="Bio" className="textarea textarea-xl"></textarea>
-      </div>
-      <div className="card w-96 bg-base-100 shadow-sm">
-        <figure>
-          <img
-            src="https://images.pexels.com/photos/1102797/pexels-photo-1102797.png"
-            alt="Coding"
-          />
-        </figure>
-        <div className="card-body">
-          <h2 className="card-title">Card Title</h2>
-          <p>
-            A card component has a figure, a body part, and inside body there are title and actions
-            parts
-          </p>
-          <div className="card-actions justify-end">
-            <button className="btn btn-primary">Edit</button>
-          </div>
+    <div className="flex max-h-screen">
+      <div className="flex flex-1 flex-col items-center gap-6 overflow-y-auto p-8 pt-18">
+        <h1 className="text-2xl font-bold">Name of Project</h1>
+        <textarea
+          placeholder="Notes"
+          className="textarea w-full max-w-2xl text-lg textarea-xl textarea-info"
+        ></textarea>
+        <button className="btn btn-outline btn-sm btn-info">Save</button>
+        <div className="grid w-full max-w-2xl grid-cols-2 gap-4">
+          <ImageCard />
         </div>
       </div>
-    </>
+
+      <div className="sticky top-0 flex h-full w-50 flex-col justify-between border-l border-base-300 pt-17 pr-5">
+        <div className="flex flex-col gap-2 pl-10">
+          <h2 className="pl-3 text-lg font-bold">Task Board</h2>
+          <div className="rounded-lg bg-base-200 p-4">
+            <p className="text-sm text-gray-500">To Do (1)</p>
+          </div>
+          <div className="rounded-lg bg-base-200 p-4">
+            <p className="text-sm text-gray-500">In Progress (2)</p>
+          </div>
+          <div className="rounded-lg bg-base-200 p-4">
+            <p className="text-sm text-gray-500">Completed (3)</p>
+          </div>
+          <div className="rounded-lg bg-base-200 p-4">
+            <p className="text-sm text-gray-500">Revised (4)</p>
+          </div>
+          <div className="rounded-lg bg-base-200 p-4">
+            <p className="text-sm text-gray-500">Strategizing (5)</p>
+          </div>
+        </div>
+
+        <div className="flex flex-col justify-between gap-3 pt-2 pl-10">
+          <button className="btn w-full btn-dash btn-xs btn-info">Add Image</button>
+          <button className="btn w-full btn-dash btn-xs btn-success">Edit</button>
+        </div>
+      </div>
+    </div>
   );
 };
 
