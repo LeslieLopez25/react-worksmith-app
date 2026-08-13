@@ -3,19 +3,27 @@ import ImageCard from "../src/components/ImageCard.jsx";
 
 const Project = () => {
   return (
-    <div className="flex max-h-screen">
-      <div className="flex flex-1 flex-col items-center gap-6 overflow-y-auto p-8 pt-18">
+    <div className="flex h-full">
+      <div className="flex flex-1 flex-col items-center gap-6 overflow-y-auto p-8 pt-18 pb-24">
         <h1 className="text-2xl font-bold">Name of Project</h1>
-        <textarea
-          placeholder="Notes"
-          className="textarea w-full max-w-2xl text-lg textarea-xl textarea-info"
-        ></textarea>
-        <button className="btn btn-outline btn-sm btn-info">Save</button>
-        <div className="grid w-full max-w-2xl grid-cols-2 gap-4">
-          <ImageCard />
+        <div className="flex w-full items-start gap-4">
+          <div className="flex flex-col gap-4 overflow-visible">
+            <ImageCard />
+            <ImageCard />
+          </div>
+          <div className="flex flex-1 flex-col gap-4">
+            <textarea
+              placeholder="Notes"
+              className="textarea min-h-64 w-full text-lg textarea-xl textarea-info"
+            ></textarea>
+            <button className="btn btn-outline btn-sm btn-info">Save</button>
+          </div>
+          <div className="flex flex-col gap-4 overflow-visible">
+            <ImageCard />
+            <ImageCard />
+          </div>
         </div>
       </div>
-
       <div className="sticky top-0 flex h-full w-50 flex-col justify-between border-l border-base-300 pt-17 pr-5">
         <div className="flex flex-col gap-2 pl-10">
           <h2 className="pl-3 text-lg font-bold">Task Board</h2>
@@ -36,7 +44,7 @@ const Project = () => {
           </div>
         </div>
 
-        <div className="flex flex-col justify-between gap-3 pt-2 pl-10">
+        <div className="flex flex-col justify-between gap-3 pt-3 pl-10">
           <button className="btn w-full btn-dash btn-xs btn-info">Add Image</button>
           <button className="btn w-full btn-dash btn-xs btn-success">Edit</button>
         </div>
