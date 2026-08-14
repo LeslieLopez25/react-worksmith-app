@@ -14,7 +14,7 @@ const Project = () => {
           <div className="flex flex-1 flex-col gap-4">
             <textarea
               placeholder="Notes"
-              className="textarea min-h-64 w-full text-lg textarea-xl textarea-info"
+              className="textarea min-h-80 w-full text-lg textarea-xl textarea-info"
             ></textarea>
             <button className="btn btn-outline btn-sm btn-info">Save</button>
           </div>
