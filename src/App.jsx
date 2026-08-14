@@ -7,10 +7,9 @@ import Layout from "./layouts/Layout.jsx";
 import Hero from "./components/Hero.jsx";
 import { Navigate } from "react-router-dom";
 import HomePage from "../pages/HomePage.jsx";
-import Project from "../pages/Project.jsx";
 
 const App = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // Replace with your actual login state logic
 
   return (
     <Router>
@@ -19,7 +18,6 @@ const App = () => {
           <Route element={<Layout />}>
             <Route path="/hero" element={<Hero />} />
             <Route path="/home" element={<HomePage />} />
-            <Route path="/project" element={<Project />} />
           </Route>
         ) : (
           <Route element={<AuthLayout />}>
