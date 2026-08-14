@@ -104,7 +104,7 @@ Fields: name, email, password
 
 ## June 20, 2026
 
-## Component Created
+## Components Created
 
 #### **FABSpeedDial.jsx**
 
@@ -129,4 +129,20 @@ Fields: name, email, password
 #### **Loading.jsx**
 
 - Used the Loading component from daisyUI to create the loader.
+- No logic added yet.
+
+## August 14, 2026
+
+#### **Project.jsx**
+
+- Used the Textarea component from daisyUI which is the main part of where the notes will be created in the middle of the main page.
+- The Textarea component has the ImageCard component on both the right side and left side of it.
+- There is a save button at the bottom of the textarea component which you can save your notes.
+- The notes and image card section is the left column while the right column is the task board which lets you keep track of how much progress you've made on your project.
+- The task board will be styled similar to a kanban board but there will be some differences and the task board will have more functions once the logic is created.
+- No logic added yet.
+
+#### **ImageCard.jsx**
+
+- Used the Card component from daisyUI to create the image card component where an image can be added to show how much you've progressed on your project, of something you want to add to your project, etc., and a title for the image as well as a short description for the image.
 - No logic added yet.
