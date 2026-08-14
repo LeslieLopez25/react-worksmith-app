@@ -4,7 +4,7 @@ import Login from "../pages/Login.jsx";
 import Register from "../pages/Register.jsx";
 import AuthLayout from "./layouts/AuthLayout.jsx";
 import Layout from "./layouts/Layout.jsx";
-import Hero from "./components/Hero.jsx";
+import Hero from "../pages/Hero.jsx";
 import { Navigate } from "react-router-dom";
 import HomePage from "../pages/HomePage.jsx";
 
