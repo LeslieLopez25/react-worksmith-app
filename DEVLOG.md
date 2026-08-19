@@ -76,6 +76,26 @@ Fields: name, email, password
 
 ---
 
+## July 30, 2026
+
+#### **Homepage.jsx**
+
+- Used the Hero component from daisyUI as the foundation of the Homepage page but modified it to look the way I wanted it to.
+- This page will be blank if you haven't created your first project yet.
+- If a project already exists, then you'll be able to edit it to continue working on it.
+- No logic added yet.
+
+#### **Project.jsx**
+
+- Used the Textarea component from daisyUI which is the main part of where the notes will be created in the middle of the main page.
+- The Textarea component has the ImageCard component on both the right side and left side of it.
+- There is a save button at the bottom of the textarea component which you can save your notes.
+- The notes and image card section is the left column while the right column is the task board which lets you keep track of how much progress you've made on your project.
+- The task board will be styled similar to a kanban board but there will be some differences and the task board will have more functions once the logic is created.
+- No logic added yet.
+
+---
+
 ### Components Created
 
 #### **Footer.jsx**
@@ -115,15 +135,6 @@ Fields: name, email, password
 
 ---
 
-## July 30, 2026
-
-#### **Homepage.jsx**
-
-- Used the Hero component from daisyUI as the foundation of the Homepage page but modified it to look the way I wanted it to.
-- This page will be blank if you haven't created your first project yet.
-- If a project already exists, then you'll be able to edit it to continue working on it.
-- No logic added yet.
-
 ## August 07, 2026
 
 #### **Loading.jsx**
@@ -133,16 +144,14 @@ Fields: name, email, password
 
 ## August 14, 2026
 
-#### **Project.jsx**
-
-- Used the Textarea component from daisyUI which is the main part of where the notes will be created in the middle of the main page.
-- The Textarea component has the ImageCard component on both the right side and left side of it.
-- There is a save button at the bottom of the textarea component which you can save your notes.
-- The notes and image card section is the left column while the right column is the task board which lets you keep track of how much progress you've made on your project.
-- The task board will be styled similar to a kanban board but there will be some differences and the task board will have more functions once the logic is created.
-- No logic added yet.
-
 #### **ImageCard.jsx**
 
 - Used the Card component from daisyUI to create the image card component where an image can be added to show how much you've progressed on your project, of something you want to add to your project, etc., and a title for the image as well as a short description for the image.
+- This will be connected to the project page itself.
 - No logic added yet.
+
+## Updated August 15, 2026
+
+- Made the Task Board heading into a link to give access to the actually full page of the task board.
+
+---

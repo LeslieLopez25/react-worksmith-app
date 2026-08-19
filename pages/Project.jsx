@@ -1,6 +1,6 @@
 import React from "react";
 import ImageCard from "../src/components/ImageCard.jsx";
-
+import { Link } from "react-router-dom";
 const Project = () => {
   return (
     <div className="flex h-full">
@@ -26,7 +26,12 @@ const Project = () => {
       </div>
       <div className="sticky top-0 flex h-full w-50 flex-col justify-between border-l border-base-300 pt-17 pr-5">
         <div className="flex flex-col gap-2 pl-10">
-          <h2 className="pl-3 text-lg font-bold">Task Board</h2>
+          <Link
+            to="/taskboard"
+            className="pl-3 text-lg font-bold transition-colors hover:text-info"
+          >
+            Task Board →
+          </Link>
           <div className="rounded-lg bg-base-200 p-4">
             <p className="text-sm text-gray-500">To Do (1)</p>
           </div>
