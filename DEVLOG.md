@@ -155,3 +155,11 @@ Fields: name, email, password
 - Made the Task Board heading into a link to give access to the actually full page of the task board.
 
 ---
+
+## August 23, 2026
+
+#### **TaskBoard.jsx**
+
+- Created a task board that is meant to be similar to a kanban board.
+- Each card will have a title, a description, and 2 tags; 1 for level of urgency and the other for the type of card that it is (frontend, backend, etc.,).
+- No logic added yet.
