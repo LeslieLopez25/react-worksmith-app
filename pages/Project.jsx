@@ -52,7 +52,7 @@ const Project = () => {
           </div>
 
           <div className="flex flex-col justify-between gap-3 pt-3 pl-10">
-            <button className="btn w-full btn-dash btn-xs btn-info">Add Image</button>
+            <button className="btn w-full btn-dash btn-xs btn-info">Upload Image</button>
             <button className="btn w-full btn-dash btn-xs btn-success">Edit</button>
           </div>
         </div>
