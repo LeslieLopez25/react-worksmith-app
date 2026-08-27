@@ -163,3 +163,11 @@ Fields: name, email, password
 - Created a task board that is meant to be similar to a kanban board.
 - Each card will have a title, a description, and 2 tags; 1 for level of urgency and the other for the type of card that it is (frontend, backend, etc.,).
 - No logic added yet.
+
+## August 27, 2026
+
+#### **CreateProject.jsx**
+
+- Created a page for creating your projects similar to the design of when your creating articles for blogs.
+- The page will only appear when your creating your project for the first time and from there you can update and edit your project from the project page.
+- No logic added yet.
