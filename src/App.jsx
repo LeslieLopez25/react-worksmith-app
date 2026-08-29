@@ -9,9 +9,10 @@ import { Navigate } from "react-router-dom";
 import HomePage from "../pages/HomePage.jsx";
 import Project from "../pages/Project.jsx";
 import CreateProject from "../pages/CreateProject.jsx";
+import Profile from "../pages/Profile.jsx";
 
 const App = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
 
   return (
     <Router>
@@ -22,6 +23,7 @@ const App = () => {
             <Route path="/home" element={<HomePage />} />
             <Route path="/project" element={<Project />} />
             <Route path="/create-project" element={<CreateProject />} />
+            <Route path="/profile" element={<Profile />} />
           </Route>
         ) : (
           <Route element={<AuthLayout />}>
