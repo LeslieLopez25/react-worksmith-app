@@ -96,6 +96,35 @@ Fields: name, email, password
 
 ---
 
+## August 23, 2026
+
+#### **TaskBoard.jsx**
+
+- Created a task board that is meant to be similar to a kanban board.
+- Each card will have a title, a description, and 2 tags; 1 for level of urgency and the other for the type of card that it is (frontend, backend, etc.,).
+- No logic added yet.
+
+## August 27, 2026
+
+#### **CreateProject.jsx**
+
+- Created a page for creating your projects similar to the design of when your creating articles for blogs.
+- The page will only appear when your creating your project for the first time and from there you can update and edit your project from the project page.
+- No logic added yet.
+
+---
+
+## September 03, 2026
+
+#### **Profile.jsx**
+
+- Created a profile page for the user with basic functions.
+- There is a section for the user to update their name and email address.
+- There is a section for the user to change their password.
+- There is a danger zone for when you want to delete your account.
+- There will be a modal that will appear if you choose to delete your account asking you to type something out if you are certain that you want to delete your account.
+- No logic added at the moment.
+
 ### Components Created
 
 #### **Footer.jsx**
@@ -155,19 +184,3 @@ Fields: name, email, password
 - Made the Task Board heading into a link to give access to the actually full page of the task board.
 
 ---
-
-## August 23, 2026
-
-#### **TaskBoard.jsx**
-
-- Created a task board that is meant to be similar to a kanban board.
-- Each card will have a title, a description, and 2 tags; 1 for level of urgency and the other for the type of card that it is (frontend, backend, etc.,).
-- No logic added yet.
-
-## August 27, 2026
-
-#### **CreateProject.jsx**
-
-- Created a page for creating your projects similar to the design of when your creating articles for blogs.
-- The page will only appear when your creating your project for the first time and from there you can update and edit your project from the project page.
-- No logic added yet.
