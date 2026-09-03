@@ -10,6 +10,7 @@ import HomePage from "../pages/HomePage.jsx";
 import Project from "../pages/Project.jsx";
 import CreateProject from "../pages/CreateProject.jsx";
 import Profile from "../pages/Profile.jsx";
+import ImageCardForm from "../pages/ImageCardForm.jsx";
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
@@ -24,6 +25,7 @@ const App = () => {
             <Route path="/project" element={<Project />} />
             <Route path="/create-project" element={<CreateProject />} />
             <Route path="/profile" element={<Profile />} />
+            <Route path="/add-image" element={<ImageCardForm />} />
           </Route>
         ) : (
           <Route element={<AuthLayout />}>
