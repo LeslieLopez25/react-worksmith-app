@@ -125,6 +125,16 @@ Fields: name, email, password
 - There will be a modal that will appear if you choose to delete your account asking you to type something out if you are certain that you want to delete your account.
 - No logic added at the moment.
 
+---
+
+## September 04, 2026
+
+#### **ImageCardForm.jsx**
+
+- Created image card form page that lets you add an image that shows your current progress, a title, and a short description for the image.
+- There is also a save button at the header as well as a preview button that opens a modal that lets see what the image card will look like before you save it.
+- No logic added at the moment.
+
 ### Components Created
 
 #### **Footer.jsx**
