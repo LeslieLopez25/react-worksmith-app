@@ -104,6 +104,11 @@ Fields: name, email, password
 - Each card will have a title, a description, and 2 tags; 1 for level of urgency and the other for the type of card that it is (frontend, backend, etc.,).
 - No logic added yet.
 
+## Updated September 11, 2026
+
+- Added another column called "Blocked" for tasks that can't be completed at the moment.
+- Created a "Create Task" modal for creating tasks, giving level of urgency, and the type of task it is.
+
 ## August 27, 2026
 
 #### **CreateProject.jsx**
