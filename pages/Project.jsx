@@ -30,7 +30,7 @@ const Project = () => {
           <div className="flex flex-col gap-2 pt-1 pl-10">
             <button
               onClick={() => document.getElementById("taskboard_modal").showModal()}
-              className="btn pl-3 text-left text-lg transition-colors btn-soft btn-sm btn-info"
+              className="btn pl-3 text-left text-base transition-colors btn-soft btn-sm btn-info"
             >
               Task Board →
             </button>

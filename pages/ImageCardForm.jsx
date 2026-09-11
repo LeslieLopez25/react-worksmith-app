@@ -13,7 +13,7 @@ const ImageCardForm = () => {
               Preview
             </button>
           </div>
-          <button className="bt-info btn btn-sm">Save Image</button>
+          <button className="btn btn-sm btn-info">Save Image</button>
         </div>
         {/* Image upload */}
         <div className="card bg-base-100 shadow-sm">
