@@ -85,6 +85,11 @@ Fields: name, email, password
 - If a project already exists, then you'll be able to edit it to continue working on it.
 - No logic added yet.
 
+## Updated September 17, 2026
+
+- Created a layout to show projects on the home page.
+- A boolean has been created to show projects if there are projects and to show a message if there are no projects and a create projects button.
+
 #### **Project.jsx**
 
 - Used the Textarea component from daisyUI which is the main part of where the notes will be created in the middle of the main page.

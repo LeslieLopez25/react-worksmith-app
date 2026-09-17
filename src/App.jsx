@@ -11,6 +11,7 @@ import Project from "../pages/Project.jsx";
 import CreateProject from "../pages/CreateProject.jsx";
 import Profile from "../pages/Profile.jsx";
 import ImageCardForm from "../pages/ImageCardForm.jsx";
+import NotFound from "../pages/NotFound.jsx";
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
@@ -18,6 +19,7 @@ const App = () => {
   return (
     <Router>
       <Routes>
+        <Route path="*" element={<NotFound />} />
         {isLoggedIn ? (
           <Route element={<Layout />}>
             <Route path="/hero" element={<Hero />} />
