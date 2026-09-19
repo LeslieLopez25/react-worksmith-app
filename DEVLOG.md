@@ -137,6 +137,15 @@ Fields: name, email, password
 
 ---
 
+## September 17, 2026
+
+#### **NotFound.jsx**
+
+- Created a 404 page for pages that don't exist.
+- Custom made with a simple design and buttons that lead back to projects or to create a new project.
+- There is also an animated red tab that reads "Page not found" to make it clear that it is an error page.
+- Logic not yet added.
+
 ## September 04, 2026
 
 #### **ImageCardForm.jsx**
