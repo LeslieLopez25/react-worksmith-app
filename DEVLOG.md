@@ -99,6 +99,11 @@ Fields: name, email, password
 - The task board will be styled similar to a kanban board but there will be some differences and the task board will have more functions once the logic is created.
 - No logic added yet.
 
+## Updated September 23, 2026
+
+- Added another modal only this time it is for editing/deleting the image cards in the project file.
+- No logic added yet.
+
 ---
 
 ## August 23, 2026
