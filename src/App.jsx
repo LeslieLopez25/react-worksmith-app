@@ -19,7 +19,9 @@ const App = () => {
   return (
     <Router>
       <Routes>
-        <Route path="*" element={<NotFound />} />
+        <Route element={<Layout />}>
+          <Route path="*" element={<NotFound />} />
+        </Route>
         {isLoggedIn ? (
           <Route element={<Layout />}>
             <Route path="/hero" element={<Hero />} />

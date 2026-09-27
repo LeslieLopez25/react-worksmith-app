@@ -2,7 +2,7 @@ const TaskBoard = () => {
   return (
     <>
       <dialog id="taskboard_modal" className="modal">
-        <div className="modal-box h-4/5 w-11/12 max-w-7xl glass">
+        <div className="modal-box h-4/5 w-11/12 max-w-7xl rounded-lg">
           <div className="mb-6 flex items-center justify-between">
             <h2 className="text-2xl font-bold">Task Board</h2>
             <div className="flex items-center gap-8">
@@ -24,7 +24,7 @@ const TaskBoard = () => {
               <h3 className="text-sm font-semibold tracking-wide text-gray-500 uppercase">To Do</h3>
               <div className="flex max-h-96 min-h-64 flex-col gap-2 overflow-y-auto rounded-lg bg-base-200 p-3">
                 <div
-                  className="cursor-pointer rounded-lg border-l-10 border-sky-500 bg-base-100 p-3 shadow-sm"
+                  className="cursor-pointer rounded-lg border-l-10 border-blue-400 bg-base-100 p-3 shadow-sm"
                   onClick={() => document.getElementById("task_modal").showModal()}
                 >
                   <p className="text-sm font-medium">Task title</p>
@@ -39,14 +39,14 @@ const TaskBoard = () => {
               </h3>
               <div className="flex max-h-96 min-h-64 flex-col gap-2 overflow-y-auto rounded-lg bg-base-200 p-3">
                 <div
-                  className="cursor-pointer rounded-lg border-l-10 border-yellow-500 bg-base-100 p-3 shadow-sm"
+                  className="cursor-pointer rounded-lg border-l-10 border-amber-500 bg-base-100 p-3 shadow-sm"
                   onClick={() => document.getElementById("task_modal").showModal()}
                 >
                   <p className="text-sm font-medium">Task title</p>
                   <p className="mt-1 text-xs text-gray-500">Task description</p>
                   <div className="mt-1 flex flex-wrap gap-1">
-                    <span className="badge badge-xs badge-error">High</span>
-                    <span className="badge badge-xs badge-info">Frontend</span>
+                    <span className="badge bg-red-500 badge-xs">High</span>
+                    <span className="badge bg-violet-500 badge-xs">Frontend</span>
                   </div>
                 </div>
               </div>
@@ -88,7 +88,7 @@ const TaskBoard = () => {
               </h3>
               <div className="flex max-h-96 min-h-64 flex-col gap-2 overflow-y-auto rounded-lg bg-base-200 p-3">
                 <div
-                  className="cursor-pointer rounded-lg border-l-10 border-purple-500 bg-base-100 p-3 shadow-sm"
+                  className="cursor-pointer rounded-lg border-l-10 border-violet-500 bg-base-100 p-3 shadow-sm"
                   onClick={() => document.getElementById("task_modal").showModal()}
                 >
                   <p className="text-sm font-medium">Task tile</p>
@@ -119,7 +119,7 @@ const TaskBoard = () => {
         </form>
       </dialog>
       <dialog id="task_modal" className="modal">
-        <div className="modal-box w-11/12 max-w-2xl">
+        <div className="modal-box w-11/12 max-w-2xl rounded-lg">
           <div className="mb-6 flex items-center justify-between">
             <h2 className="text-xl font-bold">Create Task</h2>
             <form method="dialog">
@@ -132,20 +132,20 @@ const TaskBoard = () => {
               <input
                 type="text"
                 placeholder="e.g. Build login page"
-                className="input-bordered input w-full"
+                className="input-bordered input w-full rounded-lg border border-base-300"
               />
             </div>
             <div className="flex flex-col gap-1">
               <label className="text-sm font-semibold">Description</label>
               <textarea
                 placeholder="Describe what needs to be done..."
-                className="textarea-bordered textarea min-h-28 w-full"
+                className="textarea-bordered textarea min-h-28 w-full rounded-lg border border-base-300"
               ></textarea>
             </div>
             <div className="flex gap-4">
               <div className="flex flex-1 flex-col gap-1">
                 <label className="select-bordered w-full text-sm">Urgency</label>
-                <select className="select-bordered select w-full">
+                <select className="select-bordered select w-full rounded-lg border border-base-300">
                   <option disabled selected>
                     Select Urgency
                   </option>
@@ -156,7 +156,7 @@ const TaskBoard = () => {
               </div>
               <div className="flex flex-1 flex-col gap-1">
                 <label className="text-sm font-semibold">Status</label>
-                <select className="select-bordered select w-full">
+                <select className="select-bordered select w-full rounded-lg border border-base-300">
                   <option disabled selected>
                     Select Status
                   </option>
@@ -170,7 +170,7 @@ const TaskBoard = () => {
             </div>
             <div className="flex flex-col gap-1">
               <label className="text-sm font-semibold">Task Type</label>
-              <select className="select-bordered select w-full">
+              <select className="select-bordered select w-full rounded-lg border border-base-300">
                 <option disabled selected>
                   Select Task Type
                 </option>

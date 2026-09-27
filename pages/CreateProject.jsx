@@ -6,7 +6,7 @@ const CreateProject = () => {
         <input
           type="text"
           placeholder="Project Title"
-          className="input-bordered input w-full text-xl font-bold"
+          className="input-bordered input w-full rounded-t-lg border border-base-300 text-xl font-bold"
         />
         <div className="flex flex-col gap-0">
           <div className="flex gap-2 rounded-t-lg border border-base-300 bg-base-200 p-2">
@@ -19,7 +19,7 @@ const CreateProject = () => {
           </div>
           <textarea
             placeholder="Describe your project..."
-            className="textarea-bordered textarea min-h-96 w-full rounded-t-none text-base"
+            className="textarea-bordered textarea min-h-96 w-full rounded-lg rounded-t-none border border-base-300 text-base"
           ></textarea>
         </div>
       </div>
@@ -50,24 +50,24 @@ const CreateProject = () => {
           <div className="card-body gap-3">
             <h2 className="card-title text-lg">Status</h2>
             <div className="flex flex-col gap-2">
-              <label className="flex cursor-pointer items-center gap-2">
-                <input type="radio" name="status" className="radio radio-sm radio-info" />
+              <label className="p-3gap-2 flex cursor-pointer items-center rounded-lg border border-base-300">
+                <input type="radio" name="status" className="radio radio-sm radio-neutral" />
                 <span className="text-sm">Idea</span>
               </label>
-              <label className="flex cursor-pointer items-center gap-2">
-                <input type="radio" name="status" className="radio radio-sm radio-info" />
+              <label className="p-3gap-2 flex cursor-pointer items-center rounded-lg border border-base-300">
+                <input type="radio" name="status" className="radio radio-sm radio-neutral" />
                 <span className="text-sm">In Progress</span>
               </label>
-              <label className="flex cursor-pointer items-center gap-2">
-                <input type="radio" name="status" className="radio radio-sm radio-info" />
+              <label className="p-3gap-2 flex cursor-pointer items-center rounded-lg border border-base-300">
+                <input type="radio" name="status" className="radio radio-sm radio-neutral" />
                 <span className="text-sm">On Hold</span>
               </label>
-              <label className="flex cursor-pointer items-center gap-2">
-                <input type="radio" name="status" className="radio radio-sm radio-info" />
+              <label className="p-3gap-2 flex cursor-pointer items-center rounded-lg border border-base-300">
+                <input type="radio" name="status" className="radio radio-sm radio-neutral" />
                 <span className="text-sm">Completed</span>
               </label>
-              <label className="flex cursor-pointer items-center gap-2">
-                <input type="radio" name="status" className="radio radio-sm radio-info" />
+              <label className="p-3gap-2 flex cursor-pointer items-center rounded-lg border border-base-300">
+                <input type="radio" name="status" className="radio radio-sm radio-neutral" />
                 <span className="text-sm">Archived</span>
               </label>
             </div>
@@ -79,28 +79,28 @@ const CreateProject = () => {
           <div className="card-body gap-3">
             <h2 className="card-title text-lg">Project Type</h2>
             <div className="flex flex-col gap-2">
-              <label className="flex cursor-pointer items-center gap-2">
-                <input type="radio" name="projectType" className="radio radio-sm radio-info" />
+              <label className="flex cursor-pointer items-center gap-2 rounded-lg border border-base-300 p-3">
+                <input type="radio" name="projectType" className="radio radio-sm radio-neutral" />
                 <span className="text-sm">Frontend</span>
               </label>
-              <label className="flex cursor-pointer items-center gap-2">
-                <input type="radio" name="projectType" className="radio radio-sm radio-info" />
+              <label className="flex cursor-pointer items-center gap-2 rounded-lg border border-base-300 p-3">
+                <input type="radio" name="projectType" className="radio radio-sm radio-neutral" />
                 <span className="text-sm">Backend</span>
               </label>
-              <label className="flex cursor-pointer items-center gap-2">
-                <input type="radio" name="projectType" className="radio radio-sm radio-info" />
+              <label className="flex cursor-pointer items-center gap-2 rounded-lg border border-base-300 p-3">
+                <input type="radio" name="projectType" className="radio radio-sm radio-neutral" />
                 <span className="text-sm">Fullstack</span>
               </label>
-              <label className="flex cursor-pointer items-center gap-2">
-                <input type="radio" name="projectType" className="radio radio-sm radio-info" />
+              <label className="flex cursor-pointer items-center gap-2 rounded-lg border border-base-300 p-3">
+                <input type="radio" name="projectType" className="radio radio-sm radio-neutral" />
                 <span className="text-sm">Design</span>
               </label>
-              <label className="flex cursor-pointer items-center gap-2">
-                <input type="radio" name="projectType" className="radio radio-sm radio-info" />
+              <label className="flex cursor-pointer items-center gap-2 rounded-lg border border-base-300 p-3">
+                <input type="radio" name="projectType" className="radio radio-sm radio-neutral" />
                 <span className="text-sm">Research</span>
               </label>
-              <label className="flex cursor-pointer items-center gap-2">
-                <input type="radio" name="projectType" className="radio radio-sm radio-info" />
+              <label className="flex cursor-pointer items-center gap-2 rounded-lg border border-base-300 p-3">
+                <input type="radio" name="projectType" className="radio radio-sm radio-neutral" />
                 <span className="text-sm">Documentation</span>
               </label>
             </div>

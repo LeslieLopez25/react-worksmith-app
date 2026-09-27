@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const projects = [
   {
     title: "Project 1 Title",
@@ -31,7 +33,9 @@ const HomePage = () => {
           {/* Header */}
           <div className="mx-auto mb-12 flex w-full max-w-5xl items-center justify-between">
             <h1 className="text-3xl font-bold">My Projects</h1>
-            <button className="btn btn-sm btn-info">New Project</button>
+            <Link to="/create-project" className="btn btn-sm btn-info">
+              New Project
+            </Link>
           </div>
 
           {/* Projects grid */}
@@ -39,7 +43,7 @@ const HomePage = () => {
             {projects.map((project, index) => (
               <div
                 key={index}
-                className="card cursor-pointer bg-base-100 shadow-sm transition-shadow hover:shadow-md"
+                className="card cursor-pointer rounded-lg bg-base-100 shadow-sm transition-shadow hover:shadow-md"
               >
                 <figure>
                   <img
@@ -51,8 +55,12 @@ const HomePage = () => {
                 <div className="card-body gap-2">
                   <h2 className="card-title text-lg">{project.title}</h2>
                   <div className="flex items-center gap-2">
-                    <span className="badge badge-sm badge-info">{project.type}</span>
-                    <span className="badge badge-ghost badge-sm">{project.status}</span>
+                    <span className="badge rounded-full p-2 badge-sm badge-info">
+                      {project.type}
+                    </span>
+                    <span className="badge rounded-full badge-ghost p-2 badge-sm">
+                      {project.status}
+                    </span>
                   </div>
                 </div>
               </div>
@@ -82,7 +90,9 @@ const HomePage = () => {
           <p className="max-w-sm text-gray-500">
             Start documenting your work by creating your first project.
           </p>
-          <button className="btn mt-2 btn-info">Create your first project</button>
+          <Link to="/create-project" className="btn mt-2 btn-info">
+            Create your first project
+          </Link>
         </div>
       )}
     </div>

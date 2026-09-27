@@ -1,6 +1,6 @@
 const ImageCardForm = () => {
   return (
-    <div className="flex min-h-screen justify-center p-8 pt-18 pb-16">
+    <div className="flex min-h-screen justify-center p-8 pt-20 pb-20">
       <div className="flex w-full max-w-2xl flex-col gap-6">
         {/* Header */}
         <div className="flex items-center justify-between">
@@ -16,7 +16,7 @@ const ImageCardForm = () => {
           <button className="btn btn-sm btn-info">Save Image</button>
         </div>
         {/* Image upload */}
-        <div className="card bg-base-100 shadow-sm">
+        <div className="card rounded-lg border border-base-300 bg-base-100 shadow-md">
           <div className="card-body gap-4">
             <h2 className="card-title text-lg">Upload Image</h2>
             <div className="flex flex-col items-center justify-center gap-4 rounded-lg border-2 border-dashed border-sky-600 p-12">
@@ -44,7 +44,7 @@ const ImageCardForm = () => {
           </div>
         </div>
         {/* Image details */}
-        <div className="card bg-base-100 shadow-sm">
+        <div className="card rounded-lg border border-base-300 bg-base-100 shadow-md">
           <div className="card-body gap-4">
             <h2 className="card-title text-lg">Image Details</h2>
             <div className="flex flex-col gap-4">
@@ -53,14 +53,14 @@ const ImageCardForm = () => {
                 <input
                   type="text"
                   placeholder="e.g. Stage 1 — Initial wireframe"
-                  className="input-bordered input w-full"
+                  className="input-bordered input w-full rounded-lg border border-base-300"
                 />
               </div>
               <div className="flex flex-col gap-1">
                 <label className="text-sm font-semibold">Description</label>
                 <textarea
                   placeholder="Brief summary of what this image shows..."
-                  className="textarea-bordered textarea min-h-32 w-full"
+                  className="textarea-bordered textarea min-h-32 w-full rounded-lg border border-base-300"
                 ></textarea>
               </div>
             </div>
@@ -76,7 +76,7 @@ const ImageCardForm = () => {
               <button className="btn btn-circle btn-ghost btn-sm">X</button>
             </form>
           </div>
-          <div className="card w-full bg-base-200 shadow-sm">
+          <div className="card w-full rounded-lg bg-base-200 shadow-sm">
             <figure>
               <div className="flex h-48 w-full items-center justify-center bg-base-300">
                 <p className="text-sm text-gray-500">Image preview will appear here</p>

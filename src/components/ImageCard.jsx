@@ -1,6 +1,6 @@
 const ImageCard = ({ imageUrl, title, description }) => {
   return (
-    <div className="card w-70 bg-base-100 shadow-sm">
+    <div className="card w-70 rounded-lg border border-base-300 bg-base-100 p-4 shadow-md">
       <figure>
         <img src="https://images.pexels.com/photos/270404/pexels-photo-270404.jpeg" alt="Coding" />
       </figure>

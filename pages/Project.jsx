@@ -16,7 +16,7 @@ const Project = () => {
             <div className="flex flex-1 flex-col gap-4">
               <textarea
                 placeholder="Notes"
-                className="textarea min-h-80 w-full text-lg textarea-xl textarea-info"
+                className="textarea min-h-80 w-full rounded-lg border border-base-300 text-lg textarea-xl textarea-info"
               ></textarea>
               <button className="btn btn-outline btn-sm btn-info">Save</button>
             </div>
@@ -65,7 +65,7 @@ const Project = () => {
 
       {/* Edit/Delete modal */}
       <dialog id="edit_modal" className="modal">
-        <div className="modal-box w-11/12 max-w-2xl">
+        <div className="modal-box w-11/12 max-w-2xl rounded-lg">
           {/* Header */}
           <div className="mb-6 flex items-center justify-between">
             <h2 className="text-xl font-bold">Edit Project Content</h2>
@@ -87,14 +87,14 @@ const Project = () => {
               <input
                 type="text"
                 placeholder="e.g. Stage 1 — Initial wireframe"
-                className="input-bordered input w-full"
+                className="input-bordered input w-full rounded-lg border border-base-300"
               />
             </div>
             <div className="flex flex-col gap-1">
               <label className="text-sm font-semibold">Description</label>
               <textarea
                 placeholder="Brief summary of what this image shows..."
-                className="textarea-bordered textarea min-h-28 w-full"
+                className="textarea-bordered textarea min-h-28 w-full rounded-lg border border-base-300"
               ></textarea>
             </div>
             <div className="flex flex-col gap-1">

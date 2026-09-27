@@ -1,4 +1,5 @@
 import logo from "../../assets/logo.png";
+import ThemeController from "./ThemeController";
 
 const Header = () => {
   return (
@@ -6,7 +7,7 @@ const Header = () => {
       <img src={logo} alt="Worksmith Logo" className="flex h-13" />
       <a className="btn text-xl btn-ghost">Worksmith</a>
       <div className="flex-1"></div>
-      <div className="flex-none">
+      <div className="flex flex-none items-center gap-2 px-4">
         <ul className="menu menu-horizontal px-4">
           <li>
             <a>Create</a>
@@ -25,6 +26,7 @@ const Header = () => {
             </details>
           </li>
         </ul>
+        <ThemeController />
       </div>
     </div>
   );

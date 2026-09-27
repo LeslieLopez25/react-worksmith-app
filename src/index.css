@@ -1,2 +1,58 @@
 @import "tailwindcss";
-@plugin "daisyui";
+@plugin "daisyui" {
+  themes:
+    worksmithLight --default,
+    worksmithDark;
+}
+
+@theme {
+  --color-base-100: #dbeafe;
+  --color-base-200: #bfdbfe;
+  --color-base-300: #93c5fd;
+  --color-base-content: #000000;
+  --color-primary: #2563eb;
+  --color-primary-content: #000000;
+  --color-secondary: #1d4ed8;
+  --color-secondary-content: #000000;
+  --color-accent: #3b82f6;
+  --color-accent-content: #000000;
+  --color-neutral: #1e3a8a;
+  --color-neutral-content: #000000;
+  --color-info: #3b82f6;
+  --color-info-content: #000000;
+  --color-success: #16a34a;
+  --color-success-content: #000000;
+  --color-warning: #f59e0b;
+  --color-warning-content: #000000;
+  --color-error: #dc2626;
+  --color-error-content: #ffffff;
+}
+
+[data-theme="worksmithLight"] .btn {
+  border-color: transparent;
+}
+
+[data-theme="worksmithLight"] .btn:hover {
+  border-color: transparent;
+}
+
+[data-theme="worksmithLight"] .btn-outline {
+  border-color: currentColor;
+}
+
+[data-theme="worksmithLight"] .btn-outline:hover {
+  border-color: currentColor;
+}
+
+[data-theme="worksmithLight"] .btn-dash {
+  border-color: currentColor;
+}
+
+[data-theme="worksmithLight"] .btn:not(.btn-outline):not(.btn-dash):not(.btn-ghost) {
+  border-color: transparent;
+  border-width: 0;
+}
+
+.btn {
+  border-radius: 5px;
+}
