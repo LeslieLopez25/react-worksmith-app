@@ -181,7 +181,11 @@ Fields: name, email, password
 
 - Used a toggle component from daisyUI that allows you to toggle from light theme to dark theme.
 - This will be added with the header component.
-- No logic added yet.
+
+## Updated September 27, 2026
+
+- Finished setting up the light theme for the project.
+- Had to make a few adjustments for the light theme to go through the project such as adding borders for certain sections and such.
 
 ---
 
