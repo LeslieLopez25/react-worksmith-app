@@ -187,6 +187,11 @@ Fields: name, email, password
 - Finished setting up the light theme for the project.
 - Had to make a few adjustments for the light theme to go through the project such as adding borders for certain sections and such.
 
+## Updated September 29, 2026
+
+- Finished setting up the dark theme for the project.
+- Few adjustments had to be fixed for the dark theme on a few pages.
+
 ---
 
 ## June 20, 2026
