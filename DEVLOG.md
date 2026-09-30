@@ -192,6 +192,11 @@ Fields: name, email, password
 - Finished setting up the dark theme for the project.
 - Few adjustments had to be fixed for the dark theme on a few pages.
 
+## Updated September 30, 2026
+
+- Updated the theme controller so that when the user is changing pages and they have dark theme active, it stays on dark theme and not switch back to light theme.
+- Added to useEffect localStorage to save the user's preferred theme.
+
 ---
 
 ## June 20, 2026
