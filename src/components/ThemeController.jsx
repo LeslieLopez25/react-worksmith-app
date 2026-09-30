@@ -2,13 +2,14 @@ import { useState, useEffect } from "react";
 import { FaRegSun, FaRegMoon } from "react-icons/fa6";
 
 const ThemeController = () => {
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(() => {
+    return localStorage.getItem("theme") === "worksmithDark";
+  });
 
   useEffect(() => {
-    document.documentElement.setAttribute(
-      "data-theme",
-      isDarkMode ? "worksmithDark" : "worksmithLight"
-    );
+    const theme = isDarkMode ? "worksmithDark" : "worksmithLight";
+    document.documentElement.setAttribute("data-theme", theme);
+    localStorage.setItem("theme", theme);
   }, [isDarkMode]);
 
   return (
