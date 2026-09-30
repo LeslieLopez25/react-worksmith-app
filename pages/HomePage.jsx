@@ -21,12 +21,12 @@ const projects = [
   },
 ];
 
-const hasProjects = false;
+const hasProjects = true;
 
 const HomePage = () => {
   return (
     <div
-      className={`flex min-h-screen bg-base-200 ${hasProjects ? "flex-col items-start p-8 pt-18" : "items-center justify-center"}`}
+      className={`flex min-h-screen bg-base-100 ${hasProjects ? "flex-col items-start p-8 pt-18" : "items-center justify-center"}`}
     >
       {hasProjects ? (
         <>

@@ -35,19 +35,19 @@ const Project = () => {
               Task Board →
             </button>
             <div className="rounded-lg bg-base-200 p-3">
-              <p className="text-sm text-gray-500">To Do (1)</p>
+              <p className="text-sm text-base-content">To Do (1)</p>
             </div>
             <div className="rounded-lg bg-base-200 p-3">
-              <p className="text-sm text-gray-500">In Progress (2)</p>
+              <p className="text-sm text-base-content">In Progress (2)</p>
             </div>
             <div className="rounded-lg bg-base-200 p-3">
-              <p className="text-sm text-gray-500">Completed (3)</p>
+              <p className="text-sm text-base-content">Completed (3)</p>
             </div>
             <div className="rounded-lg bg-base-200 p-3">
-              <p className="text-sm text-gray-500">Revised (4)</p>
+              <p className="text-sm text-base-content">Revised (4)</p>
             </div>
             <div className="rounded-lg bg-base-200 p-3">
-              <p className="text-sm text-gray-500">Strategizing (5)</p>
+              <p className="text-sm text-base-content">Strategizing (5)</p>
             </div>
           </div>
 

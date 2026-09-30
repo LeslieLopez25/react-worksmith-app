@@ -45,8 +45,8 @@ const TaskBoard = () => {
                   <p className="text-sm font-medium">Task title</p>
                   <p className="mt-1 text-xs text-gray-500">Task description</p>
                   <div className="mt-1 flex flex-wrap gap-1">
-                    <span className="badge bg-red-500 badge-xs">High</span>
-                    <span className="badge bg-violet-500 badge-xs">Frontend</span>
+                    <span className="badge rounded-full bg-red-500 p-2 badge-xs">High</span>
+                    <span className="badge rounded-full bg-violet-500 p-2 badge-xs">Frontend</span>
                   </div>
                 </div>
               </div>

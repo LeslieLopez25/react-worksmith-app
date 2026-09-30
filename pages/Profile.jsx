@@ -6,7 +6,7 @@ const Profile = () => {
         <div className="card rounded-lg border border-base-300 bg-base-100 shadow-md">
           <div className="card-body flex flex-row items-center gap-6">
             <div className="placeholder avatar">
-              <div className="w-24 rounded-full bg-neutral text-neutral-content">
+              <div className="w-24 rounded-full bg-accent text-neutral-content">
                 <span className="absolute inset-0 flex items-center justify-center text-3xl">
                   RF
                 </span>

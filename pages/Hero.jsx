@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const Hero = () => {
   return (
     <div className="hero min-h-screen bg-base-200">
@@ -12,7 +14,9 @@ const Hero = () => {
             Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi
             exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.
           </p>
-          <button className="btn btn-info">Create Project</button>
+          <Link to="/create-project" className="btn btn-info">
+            Create Project
+          </Link>
         </div>
       </div>
     </div>

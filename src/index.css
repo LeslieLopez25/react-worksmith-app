@@ -56,3 +56,54 @@
 .btn {
   border-radius: 5px;
 }
+
+@plugin "daisyui/theme" {
+  name: "worksmithDark";
+  default: false;
+  color-scheme: dark;
+  --color-base-100: #172554;
+  --color-base-200: #1e3a8a;
+  --color-base-300: #1e40af;
+  --color-base-content: #ffffff;
+  --color-primary: #3b82f6;
+  --color-primary-content: #ffffff;
+  --color-secondary: #1d4ed8;
+  --color-secondary-content: #ffffff;
+  --color-accent: #60a5fa;
+  --color-accent-content: #ffffff;
+  --color-neutral: #172554;
+  --color-neutral-content: #ffffff;
+  --color-info: #60a5fa;
+  --color-info-content: #ffffff;
+  --color-success: #16a34a;
+  --color-success-content: #ffffff;
+  --color-warning: #f59e0b;
+  --color-warning-content: #000000;
+  --color-error: #dc2626;
+  --color-error-content: #ffffff;
+}
+
+[data-theme="worksmithDark"] .btn {
+  border-color: transparent;
+}
+
+[data-theme="worksmithDark"] .btn:hover {
+  border-color: transparent;
+}
+
+[data-theme="worksmithDark"] .btn-outline {
+  border-color: currentColor;
+}
+
+[data-theme="worksmithDark"] .btn-outline:hover {
+  border-color: currentColor;
+}
+
+[data-theme="worksmithDark"] .btn-dash {
+  border-color: currentColor;
+}
+
+[data-theme="worksmithDark"] .btn:not(.btn-outline):not(.btn-dash):not(.btn-ghost) {
+  border-color: transparent;
+  border-width: 0;
+}

@@ -20,7 +20,7 @@ const ThemeController = () => {
         onChange={() => setIsDarkMode(!isDarkMode)}
         className="theme-controller toggle"
       />
-      <FaRegMoon size={25} color={isDarkMode ? "#2563EB" : "#93C5FD"} />
+      <FaRegMoon size={25} color={isDarkMode ? "#DBEAFE" : "#93C5FD"} />
     </label>
   );
 };
