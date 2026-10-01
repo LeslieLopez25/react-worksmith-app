@@ -1,17 +1,17 @@
 const Login = () => {
   return (
-    <div className="flex min-h-screen items-center justify-center">
-      <fieldset className="fieldset w-xs rounded-box rounded-lg border border-base-300 bg-base-200 p-4">
+    <div className="flex min-h-screen items-center justify-center px-4">
+      <fieldset className="fieldset w-full rounded-box rounded-lg border border-base-300 bg-base-200 p-4 sm:w-xs">
         <legend className="fieldset-legend">Login</legend>
 
         <label className="label">Email</label>
-        <input type="email" class="input" placeholder="Email" required />
+        <input type="email" class="input w-full" placeholder="Email" required />
 
         <label className="label">Password</label>
-        <input type="password" class="input" placeholder="Password" required />
+        <input type="password" class="input w-full" placeholder="Password" required />
 
-        <button className="btn mt-4 text-black btn-info">Log In</button>
-        <p>
+        <button className="btn mt-4 w-full border-0 btn-info sm:w-auto">Log In</button>
+        <p className="mt-2 text-center text-sm text-base-content">
           Don't have an account?{" "}
           <a
             href="/register"
