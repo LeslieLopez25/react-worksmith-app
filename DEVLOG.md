@@ -174,10 +174,18 @@ Fields: name, email, password
 - Used a footer component from daisyUI that has the logo of the website.
 - Has the year automated with the basic copyright info which I added.
 
+## Updated October 1, 2026
+
+- Added mobile design to footer.
+
 #### **Header.jsx**
 
 - Used a header component from daisyUI that has the logo and name of the app on the far left while on the far right is the name of the user and a drop down menu with the options of portfolio and logout.
 - Currently does not have the logic yet.
+
+## Updated October 1, 2026
+
+- Added mobile design to header.
 
 #### **Hero.jsx**
 
@@ -205,6 +213,10 @@ Fields: name, email, password
 - Updated the theme controller so that when the user is changing pages and they have dark theme active, it stays on dark theme and not switch back to light theme.
 - Added to useEffect localStorage to save the user's preferred theme.
 
+## Updated October 1, 2026
+
+- Updated theme controller by adding a customized size for the icons and a statement whether the screen was compact or not.
+
 ---
 
 ## June 20, 2026
@@ -217,6 +229,10 @@ Fields: name, email, password
 - This will be added to the user's dashboard so that they can create, edit, or delete a project.
 - The CSS will be updated for this and all other components once the logic for the frontend has been completed.
 - No logic added yet.
+
+## Updated October 1, 2026
+
+- I went ahead a deleted this as I made new adjustments to the app.
 
 ---
 
