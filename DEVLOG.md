@@ -66,6 +66,10 @@ Fields: email, password
 - A link is located at the bottom that will direct you to the registration page if you don't have an account.
 - No logic has been added to it yet.
 
+## Updated September 30, 2026
+
+- Added mobile design to login screen.
+
 #### **Register.jsx**
 
 Fields: name, email, password
@@ -73,6 +77,10 @@ Fields: name, email, password
 - Used register page component from daisyUI with a basic form for entering your name, email, password.
 - Link located at the bottom for those who already have an account and need to login.
 - No logic has been added yet.
+
+## Updated September 30, 2026
+
+- Added mobile design to register screen.
 
 ---
 
