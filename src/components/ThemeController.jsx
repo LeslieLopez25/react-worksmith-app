@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { FaRegSun, FaRegMoon } from "react-icons/fa6";
 
-const ThemeController = () => {
+const ThemeController = ({ iconSize = 25, compact = false }) => {
   const [isDarkMode, setIsDarkMode] = useState(() => {
     return localStorage.getItem("theme") === "worksmithDark";
   });
@@ -13,15 +13,15 @@ const ThemeController = () => {
   }, [isDarkMode]);
 
   return (
-    <label className="flex cursor-pointer gap-2">
-      <FaRegSun size={25} color={isDarkMode ? "#93C5FD" : "#2563EB"} />
+    <label className={`flex cursor-pointer items-center ${compact ? "gap-1" : "gap-2"}`}>
+      <FaRegSun size={iconSize} color={isDarkMode ? "#93C5FD" : "#2563EB"} />
       <input
         type="checkbox"
         checked={isDarkMode}
         onChange={() => setIsDarkMode(!isDarkMode)}
-        className="theme-controller toggle"
+        className="theme-controller toggle toggle-sm"
       />
-      <FaRegMoon size={25} color={isDarkMode ? "#DBEAFE" : "#93C5FD"} />
+      <FaRegMoon size={iconSize} color={isDarkMode ? "#DBEAFE" : "#93C5FD"} />
     </label>
   );
 };
