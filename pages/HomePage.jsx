@@ -21,25 +21,25 @@ const projects = [
   },
 ];
 
-const hasProjects = true;
+const hasProjects = false;
 
 const HomePage = () => {
   return (
     <div
-      className={`flex min-h-screen bg-base-100 ${hasProjects ? "flex-col items-start p-8 pt-18" : "items-center justify-center"}`}
+      className={`flex min-h-screen bg-base-100 ${hasProjects ? "flex-col items-start p-4 pt-20 pb-20 sm:p-8 sm:pt-18" : "items-center justify-center px-4"}`}
     >
       {hasProjects ? (
         <>
           {/* Header */}
-          <div className="mx-auto mb-12 flex w-full max-w-5xl items-center justify-between">
-            <h1 className="text-3xl font-bold">My Projects</h1>
+          <div className="mx-auto mb-8 flex w-full max-w-5xl items-center justify-between sm:mb-12">
+            <h1 className="text-3xl font-bold sm:text-3xl">My Projects</h1>
             <Link to="/create-project" className="btn btn-sm btn-info">
               New Project
             </Link>
           </div>
 
           {/* Projects grid */}
-          <div className="mx-auto grid max-w-5xl grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <div className="mx-auto grid w-full max-w-5xl grid-cols-1 gap-4 sm:gap-6 md:grid-cols-2 lg:grid-cols-3">
             {projects.map((project, index) => (
               <div
                 key={index}
@@ -49,12 +49,12 @@ const HomePage = () => {
                   <img
                     src={project.image}
                     alt={project.title}
-                    className="h-48 w-full object-cover"
+                    className="h-40 w-full object-cover sm:h-48"
                   />
                 </figure>
-                <div className="card-body gap-2">
-                  <h2 className="card-title text-lg">{project.title}</h2>
-                  <div className="flex items-center gap-2">
+                <div className="card-body gap-2 p-4">
+                  <h2 className="card-title text-base sm:text-lg">{project.title}</h2>
+                  <div className="flex flex-wrap items-center gap-2">
                     <span className="badge rounded-full p-2 badge-sm badge-info">
                       {project.type}
                     </span>
@@ -69,7 +69,7 @@ const HomePage = () => {
         </>
       ) : (
         /* Empty state */
-        <div className="flex flex-col items-center gap-4 text-center">
+        <div className="flex flex-col items-center gap-4 px-4 text-center">
           <div className="flex h-24 w-24 items-center justify-center rounded-full bg-base-300">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -86,11 +86,11 @@ const HomePage = () => {
               />
             </svg>
           </div>
-          <h1 className="text-3xl font-bold">No projects yet</h1>
-          <p className="max-w-sm text-gray-500">
+          <h1 className="text-2xl font-bold sm:text-3xl">No projects yet</h1>
+          <p className="max-w-sm text-sm text-gray-500 sm:text-base">
             Start documenting your work by creating your first project.
           </p>
-          <Link to="/create-project" className="btn mt-2 btn-info">
+          <Link to="/create-project" className="btn mt-2 w-full btn-info sm:w-auto">
             Create your first project
           </Link>
         </div>
