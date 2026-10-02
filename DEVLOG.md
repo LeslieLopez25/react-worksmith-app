@@ -4,7 +4,7 @@ A personal devlog documenting the building process of Worksmith, an all-in-one p
 
 ---
 
-## June 6, 2026
+## June 06, 2026
 
 ### Project Kickoff
 
@@ -54,6 +54,14 @@ Key decisions:
 - Used Navigation from react router dom to have the login page be the default page.
 - Added the layout and auth layout components with the current pages that will correspond to the pages using them.
 
+## Updated October 02, 2026
+
+- Added Loading component to app.jsx.
+
+#### **main.jsx**
+
+- Added the function for Loading component to set the theme color to whatever the user has set.
+
 ---
 
 ### Pages Created
@@ -93,7 +101,7 @@ Fields: name, email, password
 - If a project already exists, then you'll be able to edit it to continue working on it.
 - No logic added yet.
 
-## Updated October 1, 2026
+## Updated October 01, 2026
 
 - Added mobile design to the home page.
 
@@ -163,6 +171,10 @@ Fields: name, email, password
 - There is also an animated red tab that reads "Page not found" to make it clear that it is an error page.
 - Logic not yet added.
 
+## October 01, 2026
+
+- Added mobile design to the 404 page.
+
 ## September 04, 2026
 
 #### **ImageCardForm.jsx**
@@ -178,16 +190,20 @@ Fields: name, email, password
 - Used a footer component from daisyUI that has the logo of the website.
 - Has the year automated with the basic copyright info which I added.
 
-## Updated October 1, 2026
+## Updated October 01, 2026
 
 - Added mobile design to footer.
+
+## October 02, 2026
+
+- Updated the CSS for the footer.
 
 #### **Header.jsx**
 
 - Used a header component from daisyUI that has the logo and name of the app on the far left while on the far right is the name of the user and a drop down menu with the options of portfolio and logout.
 - Currently does not have the logic yet.
 
-## Updated October 1, 2026
+## Updated October 01, 2026
 
 - Added mobile design to header.
 
@@ -217,7 +233,7 @@ Fields: name, email, password
 - Updated the theme controller so that when the user is changing pages and they have dark theme active, it stays on dark theme and not switch back to light theme.
 - Added to useEffect localStorage to save the user's preferred theme.
 
-## Updated October 1, 2026
+## Updated October 01, 2026
 
 - Updated theme controller by adding a customized size for the icons and a statement whether the screen was compact or not.
 
@@ -234,7 +250,7 @@ Fields: name, email, password
 - The CSS will be updated for this and all other components once the logic for the frontend has been completed.
 - No logic added yet.
 
-## Updated October 1, 2026
+## Updated October 01, 2026
 
 - I went ahead a deleted this as I made new adjustments to the app.
 
@@ -246,6 +262,11 @@ Fields: name, email, password
 
 - Used the Loading component from daisyUI to create the loader.
 - No logic added yet.
+
+## Updated October 02, 2026
+
+- Added mobile design to Loading component.
+- Added it to app.jsx.
 
 ## August 14, 2026
 
