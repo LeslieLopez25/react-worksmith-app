@@ -93,6 +93,10 @@ Fields: name, email, password
 - If a project already exists, then you'll be able to edit it to continue working on it.
 - No logic added yet.
 
+## Updated October 1, 2026
+
+- Added mobile design to the home page.
+
 ## Updated September 17, 2026
 
 - Created a layout to show projects on the home page.
