@@ -12,6 +12,7 @@ import CreateProject from "../pages/CreateProject.jsx";
 import Profile from "../pages/Profile.jsx";
 import ImageCardForm from "../pages/ImageCardForm.jsx";
 import NotFound from "../pages/NotFound.jsx";
+import Loading from "./components/Loading.jsx";
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
@@ -19,9 +20,12 @@ const App = () => {
   return (
     <Router>
       <Routes>
+        <Route path="/loading" element={<Loading />} />
+
         <Route element={<Layout />}>
           <Route path="*" element={<NotFound />} />
         </Route>
+
         {isLoggedIn ? (
           <Route element={<Layout />}>
             <Route path="/hero" element={<Hero />} />
