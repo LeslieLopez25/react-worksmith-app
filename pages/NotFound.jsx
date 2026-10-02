@@ -2,24 +2,24 @@ import { Link } from "react-router-dom";
 
 const NotFound = () => {
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center gap-4 bg-base-100 text-center">
+    <div className="flex min-h-screen flex-col items-center justify-center gap-4 bg-base-100 px-4 text-center">
       {/* 404 text */}
-      <div className="flex flex-col items-center gap-2">
-        <h1 className="text-7xl font-bold text-info">404</h1>
-        <div className="h-1 w-16 rounded-full bg-info"></div>
+      <div className="flex flex-col items-center gap-1">
+        <h1 className="text-5xl font-bold text-info sm:text-6xl">404</h1>
+        <div className="h-1 w-12 rounded-full bg-info sm:w-16"></div>
       </div>
 
       {/* Message */}
-      <div className="flex flex-col items-center gap-2">
-        <h2 className="text-2xl font-bold">This page is still being built</h2>
-        <p className="max-w-md text-sm text-gray-500">
+      <div className="flex flex-col items-center gap-1">
+        <h2 className="text-lg font-bold sm:text-xl">This page is still being built</h2>
+        <p className="max-w-xs text-xs text-gray-500 sm:max-w-md sm:text-sm">
           Looks like this page doesn't exist yet — kind of like a project that hasn't been started.
           Head back and keep building.
         </p>
       </div>
 
       {/* Icon */}
-      <div className="flex h-24 w-24 items-center justify-center rounded-full bg-base-300">
+      <div className="flex h-16 w-16 items-center justify-center rounded-full bg-base-300 sm:h-20 sm:w-20">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           className="h-12 w-12 text-gray-400"
@@ -43,17 +43,20 @@ const NotFound = () => {
       </div>
 
       {/* Animated badge */}
-      <div className="flex items-center gap-2 rounded-full bg-error px-4 py-1">
+      <div className="flex items-center gap-2 rounded-full bg-error px-3 py-1">
         <span className="h-2 w-2 animate-pulse rounded-full bg-red-200"></span>
         <span className="text-sm text-white">Page not found</span>
       </div>
 
       {/* Actions */}
-      <div className="flex gap-3">
-        <Link to="/" className="btn btn-sm btn-info">
+      <div className="flex w-full flex-col gap-2 sm:w-auto sm:flex-row">
+        <Link to="/" className="btn w-full btn-xs btn-info sm:w-auto sm:btn-sm">
           Back to Projects
         </Link>
-        <Link to="/create-project" className="btn btn-outline btn-sm btn-info">
+        <Link
+          to="/create-project"
+          className="btn w-full btn-outline btn-xs btn-info sm:w-auto sm:btn-sm"
+        >
           Start a New Project
         </Link>
       </div>
