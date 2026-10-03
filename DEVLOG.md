@@ -213,6 +213,10 @@ Fields: name, email, password
 - An image will be on the right side representing the project.
 - No logic added yet.
 
+## October 03, 2026
+
+- Added mobile design for hero page.
+
 #### **ThemeController.jsx**
 
 - Used a toggle component from daisyUI that allows you to toggle from light theme to dark theme.
