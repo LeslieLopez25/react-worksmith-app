@@ -147,6 +147,10 @@ Fields: name, email, password
 - The page will only appear when your creating your project for the first time and from there you can update and edit your project from the project page.
 - No logic added yet.
 
+## Updated October 04, 2026
+
+- Added mobile design for the create project page.
+
 ---
 
 ## September 03, 2026
