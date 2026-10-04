@@ -1,6 +1,6 @@
 const CreateProject = () => {
   return (
-    <div className="flex min-h-screen gap-6 p-8 pt-18">
+    <div className="flex min-h-screen flex-col gap-6 p-4 pt-20 sm:flex-row sm:p-8 sm:pt-18">
       {/* Left column */}
       <div className="flex flex-1 flex-col gap-4">
         <input
@@ -29,15 +29,15 @@ const CreateProject = () => {
           </div>
           <textarea
             placeholder="Describe your project..."
-            className="textarea-bordered textarea min-h-96 w-full rounded-lg rounded-t-none border border-base-300 text-base"
+            className="textarea-bordered textarea min-h-48 w-full rounded-lg rounded-t-none border border-base-300 text-base sm:min-h-96"
           ></textarea>
         </div>
       </div>
 
       {/* Right column */}
-      <div className="flex w-72 flex-col gap-4 overflow-y-auto pb-8">
+      <div className="flex w-full flex-col gap-4 pb-8 sm:w-72 sm:overflow-y-auto">
         {/* Publish card */}
-        <div className="card bg-base-100 shadow-sm">
+        <div className="card bg-base-100 shadow-md">
           <div className="card-body gap-4">
             <h2 className="card-title text-lg">Publish</h2>
             <div className="flex flex-col gap-2 text-sm">
@@ -56,27 +56,27 @@ const CreateProject = () => {
         </div>
 
         {/* Status card */}
-        <div className="card bg-base-100 shadow-sm">
+        <div className="card bg-base-100 shadow-md">
           <div className="card-body gap-3">
             <h2 className="card-title text-lg">Status</h2>
             <div className="flex flex-col gap-2">
-              <label className="p-3gap-2 flex cursor-pointer items-center rounded-lg border border-base-300">
+              <label className="flex cursor-pointer items-center gap-2 rounded-lg border border-base-300 p-3">
                 <input type="radio" name="status" className="radio radio-sm radio-accent" />
                 <span className="text-sm">Idea</span>
               </label>
-              <label className="p-3gap-2 flex cursor-pointer items-center rounded-lg border border-base-300">
+              <label className="flex cursor-pointer items-center gap-2 rounded-lg border border-base-300 p-3">
                 <input type="radio" name="status" className="radio radio-sm radio-accent" />
                 <span className="text-sm">In Progress</span>
               </label>
-              <label className="p-3gap-2 flex cursor-pointer items-center rounded-lg border border-base-300">
+              <label className="flex cursor-pointer items-center gap-2 rounded-lg border border-base-300 p-3">
                 <input type="radio" name="status" className="radio radio-sm radio-accent" />
                 <span className="text-sm">On Hold</span>
               </label>
-              <label className="p-3gap-2 flex cursor-pointer items-center rounded-lg border border-base-300">
+              <label className="flex cursor-pointer items-center gap-2 rounded-lg border border-base-300 p-3">
                 <input type="radio" name="status" className="radio radio-sm radio-accent" />
                 <span className="text-sm">Completed</span>
               </label>
-              <label className="p-3gap-2 flex cursor-pointer items-center rounded-lg border border-base-300">
+              <label className="flex cursor-pointer items-center gap-2 rounded-lg border border-base-300 p-3">
                 <input type="radio" name="status" className="radio radio-sm radio-accent" />
                 <span className="text-sm">Archived</span>
               </label>
