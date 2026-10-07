@@ -164,6 +164,10 @@ Fields: name, email, password
 - There will be a modal that will appear if you choose to delete your account asking you to type something out if you are certain that you want to delete your account.
 - No logic added at the moment.
 
+## Updated October 07, 2026
+
+- Added mobile design to profile page.
+
 ---
 
 ## September 17, 2026
