@@ -1,20 +1,20 @@
 const Profile = () => {
   return (
-    <div className="flex min-h-screen justify-center p-8 pt-20 pb-18">
+    <div className="flex min-h-screen justify-center p-4 pt-20 pb-20 sm:p-8 sm:pt-20 sm:pb-18">
       <div className="flex w-full max-w-3xl flex-col gap-6">
         {/* Profile header */}
         <div className="card rounded-lg border border-base-300 bg-base-100 shadow-md">
-          <div className="card-body flex flex-row items-center gap-6">
-            <div className="placeholder avatar">
-              <div className="w-24 rounded-full bg-accent text-neutral-content">
-                <span className="absolute inset-0 flex items-center justify-center text-3xl">
+          <div className="card-body flex flex-row items-center gap-4 sm:gap-6">
+            <div className="placeholder avatar shrink-0">
+              <div className="w-16 rounded-full bg-accent text-neutral-content sm:w-24">
+                <span className="absolute inset-0 flex items-center justify-center text-xl sm:text-3xl">
                   RF
                 </span>
               </div>
             </div>
             <div className="flex flex-col gap-1">
-              <h1 className="text-2xl font-bold">Roxanne Farron</h1>
-              <p className="text-sm text-gray-500">roxannefarron@worksmith.com</p>
+              <h1 className="text-xl font-bold sm:text-2xl">Roxanne Farron</h1>
+              <p className="text-xs text-gray-500 sm:text-sm">roxannefarron@worksmith.com</p>
               <span className="mt-1 badge rounded-full p-2 badge-sm badge-info">User</span>
             </div>
           </div>
@@ -42,7 +42,7 @@ const Profile = () => {
                 />
               </div>
               <div className="flex justify-end">
-                <button className="btn btn-sm btn-info">Save Changes</button>
+                <button className="btn w-full btn-sm btn-info sm:w-auto">Save Changes</button>
               </div>
             </div>
           </div>
@@ -78,7 +78,7 @@ const Profile = () => {
                 />
               </div>
               <div className="flex justify-end">
-                <button className="btn btn-sm btn-info">Update Password</button>
+                <button className="btn w-full btn-sm btn-info sm:w-auto">Update Password</button>
               </div>
             </div>
           </div>
@@ -93,7 +93,7 @@ const Profile = () => {
               permanently deleted and cannot be recovered.
             </p>
             <div className="flex justify-end">
-              <button className="btn btn-sm btn-error">Delete Account</button>
+              <button className="btn w-full btn-sm btn-error sm:w-auto">Delete Account</button>
             </div>
           </div>
         </div>
