@@ -134,6 +134,10 @@ Fields: name, email, password
 - Each card will have a title, a description, and 2 tags; 1 for level of urgency and the other for the type of card that it is (frontend, backend, etc.,).
 - No logic added yet.
 
+## Updated October 08, 2026
+
+- Added mobile design to the task creation modal.
+
 ## Updated August 15, 2026
 
 - Made the Task Board heading into a link to give access to the actually full page of the task board.
