@@ -195,6 +195,10 @@ Fields: name, email, password
 - There is also a save button at the header as well as a preview button that opens a modal that lets see what the image card will look like before you save it.
 - No logic added at the moment.
 
+## Updated October 08, 2026
+
+- Added mobile design to image card form.
+
 ### Components Created
 
 #### **Footer.jsx**
