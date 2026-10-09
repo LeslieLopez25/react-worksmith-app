@@ -67,21 +67,21 @@ const Project = () => {
       <dialog id="edit_modal" className="modal">
         <div className="modal-box w-11/12 max-w-2xl rounded-lg">
           {/* Header */}
-          <div className="mb-6 flex items-center justify-between">
-            <h2 className="text-xl font-bold">Edit Project Content</h2>
+          <div className="mb-4 flex items-center justify-between sm:mb-6">
+            <h2 className="text-lg font-bold sm:text-xl">Edit Project Content</h2>
             <form method="dialog">
               <button className="btn btn-circle btn-ghost btn-sm">X</button>
             </form>
           </div>
 
           {/* Tabs for image card or note */}
-          <div className="tabs-bordered mb-6 tabs">
-            <a className="tab-active tab">Image Card</a>
-            <a className="tab">Note</a>
+          <div className="tabs-bordered mb-4 tabs sm:mb-6">
+            <a className="tab-active tab text-sm sm:text-base">Image Card</a>
+            <a className="tab text-sm sm:text-base">Note</a>
           </div>
 
           {/* Image card edit form */}
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-3 sm:gap-4">
             <div className="flex flex-col gap-1">
               <label className="text-sm font-semibold">Image Title</label>
               <input
@@ -94,14 +94,14 @@ const Project = () => {
               <label className="text-sm font-semibold">Description</label>
               <textarea
                 placeholder="Brief summary of what this image shows..."
-                className="textarea-bordered textarea min-h-28 w-full rounded-lg border border-base-300"
+                className="textarea-bordered textarea min-h-20 w-full rounded-lg border border-base-300 sm:min-h-28"
               ></textarea>
             </div>
             <div className="flex flex-col gap-1">
               <label className="text-sm font-semibold">Replace Image</label>
               <input
                 type="file"
-                className="file-input-bordered file-input w-full file-input-sm"
+                className="file-input-bordered file-input w-full file-input-xs sm:file-input-sm"
                 accept="image/*"
               />
             </div>
@@ -109,12 +109,12 @@ const Project = () => {
 
           {/* Modal actions */}
           <div className="modal-action flex justify-between">
-            <button className="btn btn-outline btn-sm btn-error">Delete</button>
-            <div className="flex gap-2">
-              <form method="dialog">
-                <button className="btn btn-ghost btn-sm">Cancel</button>
+            <button className="btn btn-outline btn-xs btn-error sm:btn-sm">Delete</button>
+            <div className="flex items-center gap-2">
+              <form method="dialog" className="flex items-center">
+                <button className="btn btn-ghost btn-xs sm:btn-sm">Cancel</button>
               </form>
-              <button className="btn btn-sm btn-info">Save Changes</button>
+              <button className="btn btn-xs btn-info sm:btn-sm">Save Changes</button>
             </div>
           </div>
         </div>
