@@ -124,6 +124,10 @@ Fields: name, email, password
 - Added another modal only this time it is for editing/deleting the image cards in the project file.
 - No logic added yet.
 
+## Updated October 08, 2026
+
+- Added mobile design to edit/delete modal.
+
 ---
 
 ## August 23, 2026
@@ -134,10 +138,6 @@ Fields: name, email, password
 - Each card will have a title, a description, and 2 tags; 1 for level of urgency and the other for the type of card that it is (frontend, backend, etc.,).
 - No logic added yet.
 
-## Updated October 08, 2026
-
-- Added mobile design to the task creation modal.
-
 ## Updated August 15, 2026
 
 - Made the Task Board heading into a link to give access to the actually full page of the task board.
@@ -146,6 +146,12 @@ Fields: name, email, password
 
 - Added another column called "Blocked" for tasks that can't be completed at the moment.
 - Created a "Create Task" modal for creating tasks, giving level of urgency, and the type of task it is.
+
+## Updated October 08, 2026
+
+- Added mobile design to the task creation modal.
+
+---
 
 ## August 27, 2026
 
