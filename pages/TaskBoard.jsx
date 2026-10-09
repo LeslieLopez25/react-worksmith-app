@@ -120,13 +120,13 @@ const TaskBoard = () => {
       </dialog>
       <dialog id="task_modal" className="modal">
         <div className="modal-box w-11/12 max-w-2xl rounded-lg">
-          <div className="mb-6 flex items-center justify-between">
-            <h2 className="text-xl font-bold">Create Task</h2>
+          <div className="mb-4 flex items-center justify-between sm:mb-6">
+            <h2 className="text-lg font-bold sm:text-xl">Create Task</h2>
             <form method="dialog">
               <button className="btn btn-circle btn-ghost btn-sm">X</button>
             </form>
           </div>
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-3 sm:gap-4">
             <div className="flex flex-col gap-1">
               <label className="text-sm font-semibold">Task Title</label>
               <input
@@ -139,12 +139,12 @@ const TaskBoard = () => {
               <label className="text-sm font-semibold">Description</label>
               <textarea
                 placeholder="Describe what needs to be done..."
-                className="textarea-bordered textarea min-h-28 w-full rounded-lg border border-base-300"
+                className="textarea-bordered textarea min-h-20 w-full rounded-lg border border-base-300 sm:min-h-28"
               ></textarea>
             </div>
-            <div className="flex gap-4">
+            <div className="flex flex-col gap-3 sm:flex-row sm:gap-4">
               <div className="flex flex-1 flex-col gap-1">
-                <label className="select-bordered w-full text-sm">Urgency</label>
+                <label className="text-sm font-semibold">Urgency</label>
                 <select className="select-bordered select w-full rounded-lg border border-base-300">
                   <option disabled selected>
                     Select Urgency
@@ -195,12 +195,12 @@ const TaskBoard = () => {
             </div>
           </div>
           <div className="modal-action flex justify-between">
-            <button className="btn btn-outline btn-sm btn-error">Delete Task</button>
+            <button className="btn btn-outline btn-xs btn-error sm:btn-sm">Delete Task</button>
             <div className="flex gap-2">
               <form method="dialog">
-                <button className="btn btn-ghost btn-sm">Cancel</button>
+                <button className="btn btn-ghost btn-xs sm:btn-sm">Cancel</button>
               </form>
-              <button className="btn btn-sm btn-info">Create Task</button>
+              <button className="btn btn-xs btn-info sm:btn-sm">Create Task</button>
             </div>
           </div>
         </div>
