@@ -2,12 +2,12 @@ const TaskBoard = () => {
   return (
     <>
       <dialog id="taskboard_modal" className="modal">
-        <div className="modal-box h-4/5 w-11/12 max-w-7xl rounded-lg">
-          <div className="mb-6 flex items-center justify-between">
-            <h2 className="text-2xl font-bold">Task Board</h2>
-            <div className="flex items-center gap-8">
+        <div className="modal-box h-5/6 w-11/12 max-w-7xl rounded-lg p-4 sm:p-6">
+          <div className="mb-4 flex items-center justify-between sm:mb-6">
+            <h2 className="text-lg font-bold sm:text-2xl">Task Board</h2>
+            <div className="flex items-center gap-3 sm:gap-8">
               <button
-                className="btn btn-info"
+                className="btn btn-xs btn-info sm:btn-sm"
                 onClick={() => document.getElementById("task_modal").showModal()}
               >
                 Create Task
@@ -18,95 +18,102 @@ const TaskBoard = () => {
             </div>
           </div>
           {/* Kanban columns */}
-          <div className="flex gap-4 overflow-x-auto pb-6" style={{ height: "calc(100% - 80px)" }}>
+          <div
+            className="flex gap-3 overflow-x-auto pb-4 sm:gap-4 sm:pb-6"
+            style={{ height: "calc(100% - 80px)" }}
+          >
             {/* To Do */}
-            <div className="flex min-w-48 flex-1 flex-col gap-3">
-              <h3 className="text-sm font-semibold tracking-wide text-gray-500 uppercase">To Do</h3>
-              <div className="flex max-h-96 min-h-64 flex-col gap-2 overflow-y-auto rounded-lg bg-base-200 p-3">
+            <div className="flex min-w-36 flex-1 flex-col gap-2 sm:min-w-48 sm:gap-3">
+              <h3 className="text-xs font-semibold tracking-wide text-gray-500 uppercase sm:text-sm">
+                To Do
+              </h3>
+              <div className="flex max-h-96 min-h-48 flex-col gap-2 overflow-y-auto rounded-lg bg-base-200 p-2 sm:min-h-64 sm:p-3">
                 <div
-                  className="cursor-pointer rounded-lg border-l-10 border-blue-400 bg-base-100 p-3 shadow-sm"
+                  className="cursor-pointer rounded-lg border-l-4 border-blue-400 bg-base-100 p-2 shadow-sm sm:border-l-10 sm:p-3"
                   onClick={() => document.getElementById("task_modal").showModal()}
                 >
-                  <p className="text-sm font-medium">Task title</p>
+                  <p className="text-xs font-medium sm:text-sm">Task title</p>
                   <p className="mt-1 text-xs text-gray-500">Task description</p>
                 </div>
               </div>
             </div>
             {/* In Progress */}
-            <div className="flex min-w-48 flex-1 flex-col gap-3">
-              <h3 className="text-sm font-semibold tracking-wide text-gray-500 uppercase">
+            <div className="flex min-w-36 flex-1 flex-col gap-2 sm:min-w-48 sm:gap-3">
+              <h3 className="text-xs font-semibold tracking-wide text-gray-500 uppercase sm:text-sm">
                 In Progress
               </h3>
-              <div className="flex max-h-96 min-h-64 flex-col gap-2 overflow-y-auto rounded-lg bg-base-200 p-3">
+              <div className="flex max-h-96 min-h-48 flex-col gap-2 overflow-y-auto rounded-lg bg-base-200 p-2 sm:min-h-64 sm:p-3">
                 <div
-                  className="cursor-pointer rounded-lg border-l-10 border-amber-500 bg-base-100 p-3 shadow-sm"
+                  className="cursor-pointer rounded-lg border-l-4 border-amber-500 bg-base-100 p-2 shadow-sm sm:border-l-10 sm:p-3"
                   onClick={() => document.getElementById("task_modal").showModal()}
                 >
-                  <p className="text-sm font-medium">Task title</p>
+                  <p className="text-xs font-medium sm:text-sm">Task title</p>
                   <p className="mt-1 text-xs text-gray-500">Task description</p>
                   <div className="mt-1 flex flex-wrap gap-1">
-                    <span className="badge rounded-full bg-red-500 p-2 badge-xs">High</span>
-                    <span className="badge rounded-full bg-violet-500 p-2 badge-xs">Frontend</span>
+                    <span className="badge rounded-full bg-red-500 p-1 badge-xs sm:p-2">High</span>
+                    <span className="badge rounded-full bg-violet-500 p-1 badge-xs sm:p-2">
+                      Frontend
+                    </span>
                   </div>
                 </div>
               </div>
             </div>
             {/* Blocked */}
-            <div className="flex min-w-48 flex-1 flex-col gap-3">
-              <h3 className="text-sm font-semibold tracking-wide text-gray-500 uppercase">
+            <div className="flex min-w-36 flex-1 flex-col gap-2 sm:min-w-48 sm:gap-3">
+              <h3 className="text-xs font-semibold tracking-wide text-gray-500 uppercase sm:text-sm">
                 Blocked
               </h3>
-              <div className="flex max-h-96 min-h-64 flex-col gap-2 overflow-y-auto rounded-lg bg-base-200 p-3">
+              <div className="flex max-h-96 min-h-48 flex-col gap-2 overflow-y-auto rounded-lg bg-base-200 p-2 sm:min-h-64 sm:p-3">
                 <div
-                  className="cursor-pointer rounded-lg border-l-10 border-red-500 bg-base-100 p-3 shadow-sm"
+                  className="cursor-pointer rounded-lg border-l-4 border-red-500 bg-base-100 p-2 shadow-sm sm:border-l-10 sm:p-3"
                   onClick={() => document.getElementById("task_modal").showModal()}
                 >
-                  <p className="text-sm font-medium">Task tile</p>
+                  <p className="text-xs font-medium sm:text-sm">Task tile</p>
                   <p className="mt-1 text-xs text-gray-500">Task description</p>
                 </div>
               </div>
             </div>
             {/* Completed */}
-            <div className="flex min-w-48 flex-1 flex-col gap-3">
-              <h3 className="text-sm font-semibold tracking-wide text-gray-500 uppercase">
+            <div className="flex min-w-36 flex-1 flex-col gap-2 sm:min-w-48 sm:gap-3">
+              <h3 className="text-xs font-semibold tracking-wide text-gray-500 uppercase sm:text-sm">
                 Completed
               </h3>
-              <div className="flex max-h-96 min-h-64 flex-col gap-2 overflow-y-auto rounded-lg bg-base-200 p-3">
+              <div className="flex max-h-96 min-h-48 flex-col gap-2 overflow-y-auto rounded-lg bg-base-200 p-2 sm:min-h-64 sm:p-3">
                 <div
-                  className="cursor-pointer rounded-lg border-l-10 border-green-500 bg-base-100 p-3 shadow-sm"
+                  className="cursor-pointer rounded-lg border-l-4 border-green-500 bg-base-100 p-2 shadow-sm sm:border-l-10 sm:p-3"
                   onClick={() => document.getElementById("task_modal").showModal()}
                 >
-                  <p className="text-sm font-medium">Task tile</p>
+                  <p className="text-xs font-medium sm:text-sm">Task tile</p>
                   <p className="mt-1 text-xs text-gray-500">Task description</p>
                 </div>
               </div>
             </div>
             {/* Revised */}
-            <div className="flex min-w-48 flex-1 flex-col gap-3">
-              <h3 className="text-sm font-semibold tracking-wide text-gray-500 uppercase">
+            <div className="flex min-w-36 flex-1 flex-col gap-2 sm:min-w-48 sm:gap-3">
+              <h3 className="text-xs font-semibold tracking-wide text-gray-500 uppercase sm:text-sm">
                 Revised
               </h3>
-              <div className="flex max-h-96 min-h-64 flex-col gap-2 overflow-y-auto rounded-lg bg-base-200 p-3">
+              <div className="flex max-h-96 min-h-48 flex-col gap-2 overflow-y-auto rounded-lg bg-base-200 p-2 sm:min-h-64 sm:p-3">
                 <div
-                  className="cursor-pointer rounded-lg border-l-10 border-violet-500 bg-base-100 p-3 shadow-sm"
+                  className="cursor-pointer rounded-lg border-l-4 border-violet-500 bg-base-100 p-2 shadow-sm sm:border-l-10 sm:p-3"
                   onClick={() => document.getElementById("task_modal").showModal()}
                 >
-                  <p className="text-sm font-medium">Task tile</p>
+                  <p className="text-xs font-medium sm:text-sm">Task tile</p>
                   <p className="mt-1 text-xs text-gray-500">Task description</p>
                 </div>
               </div>
             </div>
             {/* Strategizing */}
-            <div className="flex min-w-48 flex-1 flex-col gap-3">
-              <h3 className="text-sm font-semibold tracking-wide text-gray-500 uppercase">
+            <div className="flex min-w-36 flex-1 flex-col gap-2 sm:min-w-48 sm:gap-3">
+              <h3 className="text-xs font-semibold tracking-wide text-gray-500 uppercase sm:text-sm">
                 Strategizing
               </h3>
-              <div className="flex max-h-96 min-h-64 flex-col gap-2 overflow-y-auto rounded-lg bg-base-200 p-3">
+              <div className="flex max-h-96 min-h-48 flex-col gap-2 overflow-y-auto rounded-lg bg-base-200 p-2 sm:min-h-64 sm:p-3">
                 <div
-                  className="cursor-pointer rounded-lg border-l-10 border-orange-500 bg-base-100 p-3 shadow-sm"
+                  className="cursor-pointer rounded-lg border-l-4 border-orange-500 bg-base-100 p-2 shadow-sm sm:border-l-10 sm:p-3"
                   onClick={() => document.getElementById("task_modal").showModal()}
                 >
-                  <p className="text-sm font-medium">Task tile</p>
+                  <p className="text-xs font-medium sm:text-sm">Task tile</p>
                   <p className="mt-1 text-xs text-gray-500">Task description</p>
                 </div>
               </div>
