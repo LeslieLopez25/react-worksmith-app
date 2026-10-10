@@ -151,6 +151,10 @@ Fields: name, email, password
 
 - Added mobile design to the task creation modal.
 
+## Updated October 09, 2026
+
+- Added mobile design to the task board modal.
+
 ---
 
 ## August 27, 2026
