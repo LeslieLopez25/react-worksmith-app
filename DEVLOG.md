@@ -128,6 +128,10 @@ Fields: name, email, password
 
 - Added mobile design to edit/delete modal.
 
+## Updated October 11, 2026
+
+- Added mobile design to the project page itself.
+
 ---
 
 ## August 23, 2026
