@@ -5,56 +5,66 @@ import TaskBoard from "../pages/TaskBoard.jsx";
 const Project = () => {
   return (
     <>
-      <div className="flex h-full">
-        <div className="flex flex-1 flex-col items-center gap-6 overflow-y-auto p-8 pt-18 pb-24">
-          <h1 className="text-2xl font-bold">Name of Project</h1>
-          <div className="flex w-full items-start gap-4">
-            <div className="flex flex-col gap-4 overflow-visible">
+      <div className="flex h-full flex-col lg:flex-row">
+        <div className="flex flex-1 flex-col items-center gap-6 overflow-y-auto p-4 pt-20 pb-4 sm:p-8 sm:pt-20 sm:pb-24">
+          <h1 className="text-xl font-bold sm:text-2xl">Name of Project</h1>
+          <div className="flex w-full flex-col gap-6 lg:flex-row lg:items-start lg:gap-4">
+            <div className="hidden flex-col gap-4 overflow-visible lg:flex">
               <ImageCard />
               <ImageCard />
             </div>
             <div className="flex flex-1 flex-col gap-4">
               <textarea
                 placeholder="Notes"
-                className="textarea min-h-80 w-full rounded-lg border border-base-300 text-lg textarea-xl textarea-info"
+                className="textarea min-h-48 w-full rounded-lg border border-base-300 text-base textarea-info sm:min-h-80 sm:text-lg sm:textarea-xl"
               ></textarea>
-              <button className="btn btn-outline btn-sm btn-info">Save</button>
+              <button className="btn w-full btn-outline btn-sm btn-info sm:w-auto">Save</button>
             </div>
-            <div className="flex flex-col gap-4 overflow-visible">
+            <div className="hidden flex-col gap-4 overflow-visible lg:flex">
               <ImageCard />
               <ImageCard />
             </div>
           </div>
+          <div className="grid w-full grid-cols-2 gap-4 lg:hidden">
+            <ImageCard />
+            <ImageCard />
+            <ImageCard />
+            <ImageCard />
+          </div>
         </div>
-        <div className="sticky top-0 flex h-full w-50 flex-col justify-between border-l border-base-300 pt-17 pr-5">
-          <div className="flex flex-col gap-2 pt-3 pl-10">
+        <div className="flex flex-col gap-4 border-t border-base-300 p-4 pb-20 lg:sticky lg:top-0 lg:h-full lg:w-50 lg:flex-col lg:justify-between lg:border-t-0 lg:border-l lg:pt-17 lg:pr-5">
+          <div className="flex flex-col gap-2 lg:pt-3">
             <button
               onClick={() => document.getElementById("taskboard_modal").showModal()}
               className="btn pl-3 text-left text-base transition-colors btn-soft btn-sm btn-info"
             >
               Task Board →
             </button>
-            <div className="rounded-lg bg-base-200 p-3">
-              <p className="text-sm text-base-content">To Do (1)</p>
-            </div>
-            <div className="rounded-lg bg-base-200 p-3">
-              <p className="text-sm text-base-content">In Progress (2)</p>
-            </div>
-            <div className="rounded-lg bg-base-200 p-3">
-              <p className="text-sm text-base-content">Completed (3)</p>
-            </div>
-            <div className="rounded-lg bg-base-200 p-3">
-              <p className="text-sm text-base-content">Revised (4)</p>
-            </div>
-            <div className="rounded-lg bg-base-200 p-3">
-              <p className="text-sm text-base-content">Strategizing (5)</p>
+            <div className="grid grid-cols-2 gap-2 lg:grid-cols-1">
+              <div className="rounded-lg bg-base-200 p-2 sm:p-3">
+                <p className="text-xs text-base-content sm:text-sm">To Do (1)</p>
+              </div>
+              <div className="rounded-lg bg-base-200 p-2 sm:p-3">
+                <p className="text-xs text-base-content sm:text-sm">In Progress (2)</p>
+              </div>
+              <div className="rounded-lg bg-base-200 p-2 sm:p-3">
+                <p className="text-xs text-base-content sm:text-sm">Completed (3)</p>
+              </div>
+              <div className="rounded-lg bg-base-200 p-2 sm:p-3">
+                <p className="text-xs text-base-content sm:text-sm">Revised (4)</p>
+              </div>
+              <div className="rounded-lg bg-base-200 p-2 sm:p-3">
+                <p className="text-xs text-base-content sm:text-sm">Strategizing (5)</p>
+              </div>
             </div>
           </div>
 
-          <div className="flex flex-col justify-between gap-3 pt-3 pl-10">
-            <button className="btn w-full btn-dash btn-sm btn-info">Upload Image</button>
+          <div className="flex gap-3 lg:flex-col">
+            <button className="btn flex-1 btn-dash btn-sm btn-info lg:w-full lg:flex-none">
+              Upload Image
+            </button>
             <button
-              className="btn w-full btn-dash btn-sm btn-success"
+              className="btn flex-1 btn-dash btn-sm btn-success lg:w-full lg:flex-none"
               onClick={() => document.getElementById("edit_modal").showModal()}
             >
               Edit
