@@ -32,7 +32,7 @@ const Project = () => {
             <ImageCard />
           </div>
         </div>
-        <div className="flex flex-col gap-4 border-t border-base-300 p-4 pb-20 lg:sticky lg:top-0 lg:h-full lg:w-50 lg:flex-col lg:justify-between lg:border-t-0 lg:border-l lg:pt-17 lg:pr-5">
+        <div className="flex flex-col gap-4 border-t border-base-300 p-4 pb-20 sm:pb-0 lg:sticky lg:top-0 lg:h-full lg:w-50 lg:flex-col lg:justify-between lg:border-t-0 lg:border-l lg:pt-17 lg:pr-5">
           <div className="flex flex-col gap-2 lg:pt-3">
             <button
               onClick={() => document.getElementById("taskboard_modal").showModal()}
