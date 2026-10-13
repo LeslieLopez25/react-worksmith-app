@@ -1,5 +1,6 @@
 import logo from "../../assets/logo.png";
 import ThemeController from "./ThemeController";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
@@ -14,17 +15,19 @@ const Header = () => {
       <div className="hidden flex-none items-center gap-2 px-4 sm:flex">
         <ul className="menu menu-horizontal">
           <li>
-            <a className="rounded-lg">Create</a>
+            <Link to="/create" className="rounded-lg">
+              Create
+            </Link>
           </li>
           <li>
             <details>
               <summary className="rounded-lg">Name</summary>
               <ul className="rounded-t-none bg-base-100 p-0">
                 <li>
-                  <a>Portfolio</a>
+                  <Link to="/profile">Profile</Link>
                 </li>
                 <li>
-                  <a>Logout</a>
+                  <Link to="/login">Logout</Link>
                 </li>
               </ul>
             </details>

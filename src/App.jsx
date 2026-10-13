@@ -15,7 +15,7 @@ import NotFound from "../pages/NotFound.jsx";
 import Loading from "./components/Loading.jsx";
 
 const App = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   return (
     <Router>

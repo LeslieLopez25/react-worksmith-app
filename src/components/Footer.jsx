@@ -7,7 +7,7 @@ const Footer = () => {
         <div className="flex items-center gap-2">
           <img src={logo} alt="Worksmith Logo" className="h-6 w-6 sm:h-8 sm:w-8" />
           <p className="text-xs text-base-content sm:text-sm">
-            Worksmith Copyright © {new Date().getFullYear()} - All right reserved
+            Worksmith Copyright © {new Date().getFullYear()} - All rights reserved
           </p>
         </div>
       </div>
