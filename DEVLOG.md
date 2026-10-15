@@ -90,6 +90,10 @@ Fields: name, email, password
 
 - Added mobile design to register screen.
 
+## Updated October 15, 2026
+
+- Added logic to the register page where it now connects to the backend.
+
 ---
 
 ## July 30, 2026
