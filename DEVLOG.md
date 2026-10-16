@@ -78,6 +78,10 @@ Fields: email, password
 
 - Added mobile design to login screen.
 
+## Updated October 16, 2026
+
+- Added logic to login page to connect to the backend and to let an existing user login to their account.
+
 #### **Register.jsx**
 
 Fields: name, email, password
@@ -93,6 +97,10 @@ Fields: name, email, password
 ## Updated October 15, 2026
 
 - Added logic to the register page where it now connects to the backend.
+
+## Updated October 16, 2026
+
+- Added the logic to connect to the backend and a new user can register or if user already exists, an error message is sent back from the backend to let the individual know.
 
 ---
 
@@ -323,3 +331,9 @@ Fields: name, email, password
 - Added mobile design to image card component.
 
 ---
+
+### API Created
+
+#### **axios.jsx**
+
+- Created axios instance file so that the url would not need to be hardcoded and for when I connect to AWS, it won't break.
