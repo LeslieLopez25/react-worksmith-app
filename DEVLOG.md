@@ -81,6 +81,7 @@ Fields: email, password
 ## Updated October 16, 2026
 
 - Added logic to login page to connect to the backend and to let an existing user login to their account.
+- Added toast component to login page.
 
 #### **Register.jsx**
 
@@ -101,6 +102,7 @@ Fields: name, email, password
 ## Updated October 16, 2026
 
 - Added the logic to connect to the backend and a new user can register or if user already exists, an error message is sent back from the backend to let the individual know.
+- Added toast to register page.
 
 ---
 
@@ -330,6 +332,13 @@ Fields: name, email, password
 
 - Added mobile design to image card component.
 
+## October 16, 2026
+
+#### **Toast.jsx**
+
+- Created Toast component for alerts of success and error.
+- Added logic for the toast component.
+
 ---
 
 ### API Created
@@ -337,3 +346,11 @@ Fields: name, email, password
 #### **axios.jsx**
 
 - Created axios instance file so that the url would not need to be hardcoded and for when I connect to AWS, it won't break.
+
+---
+
+## October 16, 2026
+
+#### **useToast.jsx**
+
+- Created custom hook to manage toast state so that it can be used anywhere.
