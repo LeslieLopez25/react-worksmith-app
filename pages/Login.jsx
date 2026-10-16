@@ -1,16 +1,16 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../src/api/axios.js";
+import Toast from "../src/components/Toast.jsx";
+import useToast from "../src/hooks/useToast.js";
 
 const Login = () => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
-
-  const [message, setMessage] = useState("");
-  const [isError, setIsError] = useState("");
   const navigate = useNavigate();
+  const { toast, showToast, hideToast } = useToast();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -18,29 +18,23 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setMessage("");
-    setIsError("");
-
     try {
       const response = await api.post("../api/auth/login", formData);
-      setMessage(response.data.message || "Login successful!");
+      showToast(response.data.message || "Login successful!", "success");
       setTimeout(() => navigate("/home"), 1500);
     } catch (err) {
-      setIsError(err.response?.data?.message || "An error occurred. Please try again.");
+      showToast(err.response?.data?.message || "An error occurred. Please try again.", "error");
       console.error(err);
     }
   };
 
   return (
     <div className="flex min-h-screen items-center justify-center px-4">
+      <Toast message={toast.message} type={toast.type} onClose={hideToast} />
+
       <fieldset className="fieldset w-full rounded-box rounded-lg border border-base-300 bg-base-200 p-4 sm:w-xs">
         <legend className="fieldset-legend">Login</legend>
 
-        {/* Success message */}
-        {message && <div className="mb-4 alert text-sm alert-success">{message}</div>}
-
-        {/* Error message */}
-        {isError && <div className="mb-4 alert text-sm alert-error">{isError}</div>}
         <form onSubmit={handleSubmit} className="flex flex-col gap-2">
           <label className="label">Email</label>
           <input
