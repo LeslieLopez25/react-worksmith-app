@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import api from "../src/api/axios.js";
 import Toast from "../src/components/Toast.jsx";
 import useToast from "../src/hooks/useToast.js";
+import { useAuth } from "../src/context/AuthContext.jsx";
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -11,6 +12,7 @@ const Login = () => {
   });
   const navigate = useNavigate();
   const { toast, showToast, hideToast } = useToast();
+  const { login } = useAuth();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -20,6 +22,7 @@ const Login = () => {
     e.preventDefault();
     try {
       const response = await api.post("../api/auth/login", formData);
+      login(response.data.user);
       showToast(response.data.message || "Login successful!", "success");
       setTimeout(() => navigate("/home"), 1500);
     } catch (err) {

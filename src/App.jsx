@@ -1,5 +1,5 @@
-import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { useAuth } from "../src/hooks/useAuth.js";
 import Login from "../pages/Login.jsx";
 import Register from "../pages/Register.jsx";
 import AuthLayout from "./layouts/AuthLayout.jsx";
@@ -13,36 +13,84 @@ import Profile from "../pages/Profile.jsx";
 import ImageCardForm from "../pages/ImageCardForm.jsx";
 import NotFound from "../pages/NotFound.jsx";
 import Loading from "./components/Loading.jsx";
+import ProtectedRoute from "./components/ProtectedRoute.jsx";
 
-const App = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+const AppRoutes = () => {
+  const { isLoggedIn, loading } = useAuth();
+
+  if (loading) return <Loading />;
 
   return (
     <Router>
       <Routes>
         <Route path="/loading" element={<Loading />} />
 
-        <Route element={<Layout />}>
-          <Route path="*" element={<NotFound />} />
-        </Route>
+        <Route element={<AuthLayout />}>
+          <Route path="/login" element={isLoggedIn ? <Navigate to="/home" /> : <Login />} />
+          <Route path="/register" element={isLoggedIn ? <Navigate to="/home" /> : <Register />} />
+          <Route path="/" element={<Navigate to={isLoggedIn ? "/home" : "/login"} />} />
 
-        {isLoggedIn ? (
           <Route element={<Layout />}>
-            <Route path="/hero" element={<Hero />} />
-            <Route path="/home" element={<HomePage />} />
-            <Route path="/project" element={<Project />} />
-            <Route path="/create-project" element={<CreateProject />} />
-            <Route path="/profile" element={<Profile />} />
-            <Route path="/add-image" element={<ImageCardForm />} />
+            <Route
+              path="/hero"
+              element={
+                <ProtectedRoute>
+                  <Hero />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/home"
+              element={
+                <ProtectedRoute>
+                  <HomePage />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/project"
+              element={
+                <ProtectedRoute>
+                  <Project />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/create-project"
+              element={
+                <ProtectedRoute>
+                  <CreateProject />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/profile"
+              element={
+                <ProtectedRoute>
+                  <Profile />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/add-image"
+              element={
+                <ProtectedRoute>
+                  <ImageCardForm />
+                </ProtectedRoute>
+              }
+            />
+            <Route path="*" element={<NotFound />} />
           </Route>
-        ) : (
-          <Route element={<AuthLayout />}>
-            <Route element={<Navigate to="/login" />} path="/" />
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-          </Route>
-        )}
+        </Route>
       </Routes>
+    </Router>
+  );
+};
+
+const App = () => {
+  return (
+    <Router>
+      <AppRoutes />
     </Router>
   );
 };
