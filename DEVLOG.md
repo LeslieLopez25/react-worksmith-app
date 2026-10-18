@@ -54,13 +54,22 @@ Key decisions:
 - Used Navigation from react router dom to have the login page be the default page.
 - Added the layout and auth layout components with the current pages that will correspond to the pages using them.
 
-## Updated October 02, 2026
+## October 02, 2026
 
 - Added Loading component to app.jsx.
+
+## October 18, 2026
+
+- Updated the routes and added useAuth hook to file.
+- Added ProtectedRoute to routes where user must be authorized to access.
 
 #### **main.jsx**
 
 - Added the function for Loading component to set the theme color to whatever the user has set.
+
+## October 18, 2026
+
+- Added AuthProvider to main to pass AuthContext.
 
 ---
 
@@ -91,15 +100,15 @@ Fields: name, email, password
 - Link located at the bottom for those who already have an account and need to login.
 - No logic has been added yet.
 
-## Updated September 30, 2026
+## September 30, 2026
 
 - Added mobile design to register screen.
 
-## Updated October 15, 2026
+## October 15, 2026
 
 - Added logic to the register page where it now connects to the backend.
 
-## Updated October 16, 2026
+## October 16, 2026
 
 - Added the logic to connect to the backend and a new user can register or if user already exists, an error message is sent back from the backend to let the individual know.
 - Added toast to register page.
@@ -115,11 +124,11 @@ Fields: name, email, password
 - If a project already exists, then you'll be able to edit it to continue working on it.
 - No logic added yet.
 
-## Updated October 01, 2026
+## October 01, 2026
 
 - Added mobile design to the home page.
 
-## Updated September 17, 2026
+## September 17, 2026
 
 - Created a layout to show projects on the home page.
 - A boolean has been created to show projects if there are projects and to show a message if there are no projects and a create projects button.
@@ -133,16 +142,16 @@ Fields: name, email, password
 - The task board will be styled similar to a kanban board but there will be some differences and the task board will have more functions once the logic is created.
 - No logic added yet.
 
-## Updated September 23, 2026
+## September 23, 2026
 
 - Added another modal only this time it is for editing/deleting the image cards in the project file.
 - No logic added yet.
 
-## Updated October 08, 2026
+## October 08, 2026
 
 - Added mobile design to edit/delete modal.
 
-## Updated October 11, 2026
+## October 11, 2026
 
 - Added mobile design to the project page itself.
 
@@ -156,20 +165,20 @@ Fields: name, email, password
 - Each card will have a title, a description, and 2 tags; 1 for level of urgency and the other for the type of card that it is (frontend, backend, etc.,).
 - No logic added yet.
 
-## Updated August 15, 2026
+## August 15, 2026
 
 - Made the Task Board heading into a link to give access to the actually full page of the task board.
 
-## Updated September 11, 2026
+## September 11, 2026
 
 - Added another column called "Blocked" for tasks that can't be completed at the moment.
 - Created a "Create Task" modal for creating tasks, giving level of urgency, and the type of task it is.
 
-## Updated October 08, 2026
+## October 08, 2026
 
 - Added mobile design to the task creation modal.
 
-## Updated October 09, 2026
+## October 09, 2026
 
 - Added mobile design to the task board modal.
 
@@ -183,7 +192,7 @@ Fields: name, email, password
 - The page will only appear when your creating your project for the first time and from there you can update and edit your project from the project page.
 - No logic added yet.
 
-## Updated October 04, 2026
+## October 04, 2026
 
 - Added mobile design for the create project page.
 
@@ -200,7 +209,7 @@ Fields: name, email, password
 - There will be a modal that will appear if you choose to delete your account asking you to type something out if you are certain that you want to delete your account.
 - No logic added at the moment.
 
-## Updated October 07, 2026
+## October 07, 2026
 
 - Added mobile design to profile page.
 
@@ -227,7 +236,7 @@ Fields: name, email, password
 - There is also a save button at the header as well as a preview button that opens a modal that lets see what the image card will look like before you save it.
 - No logic added at the moment.
 
-## Updated October 08, 2026
+## October 08, 2026
 
 - Added mobile design to image card form.
 
@@ -238,7 +247,7 @@ Fields: name, email, password
 - Used a footer component from daisyUI that has the logo of the website.
 - Has the year automated with the basic copyright info which I added.
 
-## Updated October 01, 2026
+## October 01, 2026
 
 - Added mobile design to footer.
 
@@ -251,7 +260,7 @@ Fields: name, email, password
 - Used a header component from daisyUI that has the logo and name of the app on the far left while on the far right is the name of the user and a drop down menu with the options of portfolio and logout.
 - Currently does not have the logic yet.
 
-## Updated October 01, 2026
+## October 01, 2026
 
 - Added mobile design to header.
 
@@ -270,22 +279,22 @@ Fields: name, email, password
 - Used a toggle component from daisyUI that allows you to toggle from light theme to dark theme.
 - This will be added with the header component.
 
-## Updated September 27, 2026
+## September 27, 2026
 
 - Finished setting up the light theme for the project.
 - Had to make a few adjustments for the light theme to go through the project such as adding borders for certain sections and such.
 
-## Updated September 29, 2026
+## September 29, 2026
 
 - Finished setting up the dark theme for the project.
 - Few adjustments had to be fixed for the dark theme on a few pages.
 
-## Updated September 30, 2026
+## September 30, 2026
 
 - Updated the theme controller so that when the user is changing pages and they have dark theme active, it stays on dark theme and not switch back to light theme.
 - Added to useEffect localStorage to save the user's preferred theme.
 
-## Updated October 01, 2026
+## October 01, 2026
 
 - Updated theme controller by adding a customized size for the icons and a statement whether the screen was compact or not.
 
@@ -302,7 +311,7 @@ Fields: name, email, password
 - The CSS will be updated for this and all other components once the logic for the frontend has been completed.
 - No logic added yet.
 
-## Updated October 01, 2026
+## October 01, 2026
 
 - I went ahead a deleted this as I made new adjustments to the app.
 
@@ -315,7 +324,7 @@ Fields: name, email, password
 - Used the Loading component from daisyUI to create the loader.
 - No logic added yet.
 
-## Updated October 02, 2026
+## October 02, 2026
 
 - Added mobile design to Loading component.
 - Added it to app.jsx.
@@ -328,7 +337,7 @@ Fields: name, email, password
 - This will be connected to the project page itself.
 - No logic added yet.
 
-## Updated October 07, 2026
+## October 07, 2026
 
 - Added mobile design to image card component.
 
@@ -338,6 +347,12 @@ Fields: name, email, password
 
 - Created Toast component for alerts of success and error.
 - Added logic for the toast component.
+
+## October 18, 2026
+
+#### **ProtectedRoute.jsx**
+
+- Created protected route file to protect a user's info and not allow an unauthorized user to try and access a protected URL.
 
 ---
 
@@ -351,6 +366,24 @@ Fields: name, email, password
 
 ## October 16, 2026
 
+## Hooks Created
+
 #### **useToast.jsx**
 
 - Created custom hook to manage toast state so that it can be used anywhere.
+
+## October 18, 2026
+
+#### **useAuth.jsx**
+
+- Created useAuth hook to pass the AuthContext.
+
+---
+
+## October 18, 2026
+
+## Context Created
+
+#### **AuthContext.jsx**
+
+- Created AuthContext to pass user authentication globally.
