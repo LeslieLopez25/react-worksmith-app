@@ -21,69 +21,67 @@ const AppRoutes = () => {
   if (loading) return <Loading />;
 
   return (
-    <Router>
-      <Routes>
-        <Route path="/loading" element={<Loading />} />
+    <Routes>
+      <Route path="/loading" element={<Loading />} />
 
-        <Route element={<AuthLayout />}>
-          <Route path="/login" element={isLoggedIn ? <Navigate to="/home" /> : <Login />} />
-          <Route path="/register" element={isLoggedIn ? <Navigate to="/home" /> : <Register />} />
-          <Route path="/" element={<Navigate to={isLoggedIn ? "/home" : "/login"} />} />
+      <Route element={<AuthLayout />}>
+        <Route path="/login" element={isLoggedIn ? <Navigate to="/home" /> : <Login />} />
+        <Route path="/register" element={isLoggedIn ? <Navigate to="/home" /> : <Register />} />
+        <Route path="/" element={<Navigate to={isLoggedIn ? "/home" : "/login"} />} />
 
-          <Route element={<Layout />}>
-            <Route
-              path="/hero"
-              element={
-                <ProtectedRoute>
-                  <Hero />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/home"
-              element={
-                <ProtectedRoute>
-                  <HomePage />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/project"
-              element={
-                <ProtectedRoute>
-                  <Project />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/create-project"
-              element={
-                <ProtectedRoute>
-                  <CreateProject />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/profile"
-              element={
-                <ProtectedRoute>
-                  <Profile />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/add-image"
-              element={
-                <ProtectedRoute>
-                  <ImageCardForm />
-                </ProtectedRoute>
-              }
-            />
-            <Route path="*" element={<NotFound />} />
-          </Route>
+        <Route element={<Layout />}>
+          <Route
+            path="/hero"
+            element={
+              <ProtectedRoute>
+                <Hero />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/home"
+            element={
+              <ProtectedRoute>
+                <HomePage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/project"
+            element={
+              <ProtectedRoute>
+                <Project />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/create-project"
+            element={
+              <ProtectedRoute>
+                <CreateProject />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/profile"
+            element={
+              <ProtectedRoute>
+                <Profile />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/add-image"
+            element={
+              <ProtectedRoute>
+                <ImageCardForm />
+              </ProtectedRoute>
+            }
+          />
+          <Route path="*" element={<NotFound />} />
         </Route>
-      </Routes>
-    </Router>
+      </Route>
+    </Routes>
   );
 };
 
