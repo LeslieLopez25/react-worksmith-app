@@ -92,6 +92,10 @@ Fields: email, password
 - Added logic to login page to connect to the backend and to let an existing user login to their account.
 - Added toast component to login page.
 
+## October 20, 2026
+
+- Updated Login's CSS.
+
 #### **Register.jsx**
 
 Fields: name, email, password
@@ -264,6 +268,10 @@ Fields: name, email, password
 
 - Added mobile design to header.
 
+## October 20, 2026
+
+- Create a handleLogout function to Header.
+
 #### **Hero.jsx**
 
 - Used a hero component from daisyUI that has a short summary of the project on the left side along with a button at the bottom that will either say "Create Project" or "Edit" depending if a project exists or not.
@@ -387,3 +395,8 @@ Fields: name, email, password
 #### **AuthContext.jsx**
 
 - Created AuthContext to pass user authentication globally.
+
+## October 20, 2026
+
+- There was an issue with AuthContext due to there being another React function so a new file was created just for the AuthProvider to be in and the AuthContext in another file.
+- Had to also go to other files that had AuthContext and update those with AuthProvider.
