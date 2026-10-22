@@ -117,6 +117,10 @@ Fields: name, email, password
 - Added the logic to connect to the backend and a new user can register or if user already exists, an error message is sent back from the backend to let the individual know.
 - Added toast to register page.
 
+## October 22, 2026
+
+- Fixed the logic in register page so that after successful registration, user is redirected to home page instead of login.
+
 ---
 
 ## July 30, 2026
@@ -221,6 +225,10 @@ Fields: name, email, password
 
 - Added logic to the profile page that handles updating account info, updating password, changing password, using the user's initials for the avatar, and deleting the account.
 - The handles were then applied to the divs that corresponded to them.
+
+## October 22, 2026
+
+- Added logic to call updateUser after successful account update.
 
 ---
 
@@ -405,3 +413,9 @@ Fields: name, email, password
 
 - There was an issue with AuthContext due to there being another React function so a new file was created just for the AuthProvider to be in and the AuthContext in another file.
 - Had to also go to other files that had AuthContext and update those with AuthProvider.
+
+## October 22, 2026
+
+#### **AuthProvider**
+
+- Added logic of updateUser so that it updates the user state directly.
