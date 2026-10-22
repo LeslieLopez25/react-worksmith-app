@@ -6,7 +6,7 @@ import useToast from "../src/hooks/useToast";
 import Toast from "../src/components/Toast";
 
 const Profile = () => {
-  const { user, logout } = useAuth();
+  const { user, logout, updateUser } = useAuth();
   const { toast, showToast, hideToast } = useToast();
   const navigate = useNavigate();
 
@@ -41,7 +41,8 @@ const Profile = () => {
   const handleUpdateAccount = async (e) => {
     e.preventDefault();
     try {
-      await api.patch("/api/users/profile", accountData);
+      const response = await api.patch("/api/users/profile", accountData);
+      updateUser(response.data);
       showToast("Account updated successfully", "success");
     } catch (error) {
       showToast(error.response?.data?.message || "Failed to update account", "error");

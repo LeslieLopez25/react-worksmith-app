@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import api from "../src/api/axios.js";
 import Toast from "../src/components/Toast.jsx";
 import useToast from "../src/hooks/useToast.js";
+import { useAuth } from "../src/hooks/useAuth.js";
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -12,6 +13,7 @@ const Register = () => {
   });
   const navigate = useNavigate();
   const { toast, showToast, hideToast } = useToast();
+  const { login } = useAuth();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -21,8 +23,15 @@ const Register = () => {
     e.preventDefault();
     try {
       const response = await api.post("../api/auth/register", formData);
-      showToast(response.data.message || "Registration successful!", "success");
-      setTimeout(() => navigate("/login"), 1500);
+
+      if (response.data.user) {
+        login(response.data.user);
+        showToast(response.data.message || "Registration successful!", "success");
+        setTimeout(() => navigate("/home"), 1500);
+      } else {
+        showToast(response.data.message || "Registration successful!", "success");
+        setTimeout(() => navigate("/login"), 1500);
+      }
     } catch (err) {
       showToast(err.response?.data?.message || "An error occurred. Please try again.", "error");
       console.error(err);
