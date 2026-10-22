@@ -217,6 +217,11 @@ Fields: name, email, password
 
 - Added mobile design to profile page.
 
+## October 21, 2026
+
+- Added logic to the profile page that handles updating account info, updating password, changing password, using the user's initials for the avatar, and deleting the account.
+- The handles were then applied to the divs that corresponded to them.
+
 ---
 
 ## September 17, 2026
