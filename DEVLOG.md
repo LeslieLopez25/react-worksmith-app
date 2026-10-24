@@ -63,6 +63,10 @@ Key decisions:
 - Updated the routes and added useAuth hook to file.
 - Added ProtectedRoute to routes where user must be authorized to access.
 
+## October 24, 2026
+
+- Added dynamic project route to App.jsx.
+
 #### **main.jsx**
 
 - Added the function for Loading component to set the theme color to whatever the user has set.
@@ -141,6 +145,15 @@ Fields: name, email, password
 - Created a layout to show projects on the home page.
 - A boolean has been created to show projects if there are projects and to show a message if there are no projects and a create projects button.
 
+## October 24, 2026
+
+- Added logic to the home page by using useEffect to fetch all projects on page loading using getAllProjects from projectAPI.js.
+- Loading state shows spinner while projects are being fetched.
+- hasProjects is now derived from actual data instead of hardcoded boolean.
+- Each project card navigates to /project/${project.\_id} when clicked.
+- project.images?.[0]?.url shows the first image if one exists, falls back to placeholder.
+- key={project.\_id} uses the real MongoDB ID instead of the array index.
+
 #### **Project.jsx**
 
 - Used the Textarea component from daisyUI which is the main part of where the notes will be created in the middle of the main page.
@@ -203,6 +216,15 @@ Fields: name, email, password
 ## October 04, 2026
 
 - Added mobile design for the create project page.
+
+## October 24, 2026
+
+- formData state tracks title, description, status and projectType.
+- Status and project type radio button are now controlled -- they update formData when selected and the Publish card shows the currently selected status.
+- handleSubmit handles both Save Draft and Create Project -- the draft boolean differentiates them.
+- Title is required -- shows and error toast if empty.
+- After successful creation navigate to the new project's page using the returned \_id.
+- Status and project type options use .map() so adding new options is just adding to the arrays at the top.
 
 ---
 
@@ -382,6 +404,12 @@ Fields: name, email, password
 #### **axios.jsx**
 
 - Created axios instance file so that the url would not need to be hardcoded and for when I connect to AWS, it won't break.
+
+## October 24, 2026
+
+#### **projectAPI.jsx**
+
+- Created projectAPI to keep all project API calls in one place.
 
 ---
 
