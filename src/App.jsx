@@ -47,7 +47,7 @@ const AppRoutes = () => {
             }
           />
           <Route
-            path="/project"
+            path="/project/:id"
             element={
               <ProtectedRoute>
                 <Project />

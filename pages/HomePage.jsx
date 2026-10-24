@@ -1,33 +1,46 @@
-import { Link } from "react-router-dom";
-
-const projects = [
-  {
-    title: "Project 1 Title",
-    type: "Fullstack",
-    status: "In Progress",
-    image: "https://images.pexels.com/photos/12899157/pexels-photo-12899157.jpeg",
-  },
-  {
-    title: "Project 2 Title",
-    type: "Design",
-    status: "Idea",
-    image: "https://images.pexels.com/photos/12899157/pexels-photo-12899157.jpeg",
-  },
-  {
-    title: "Project 3 Title",
-    type: "Backend",
-    status: "Completed",
-    image: "https://images.pexels.com/photos/12899157/pexels-photo-12899157.jpeg",
-  },
-];
-
-const hasProjects = false;
+import { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { getAllProjects } from "../src/api/projectAPI.js";
+import useToast from "../src/hooks/useToast";
+import Toast from "../src/components/Toast.jsx";
 
 const HomePage = () => {
+  const [projects, setProjects] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const { toast, showToast, hideToast } = useToast();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchProjects = async () => {
+      try {
+        const response = await getAllProjects();
+        setProjects(response.data);
+      } catch (err) {
+        showToast(err.response?.data?.message || "Failed to load projects.", "error");
+        console.error(err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchProjects();
+  }, []);
+
+  const hasProjects = projects.length > 0;
+
+  if (loading) {
+    return (
+      <div className="flex min-h-screen items-center justify-center bg-base-100">
+        <span className="loading loading-lg loading-bars text-info"></span>
+      </div>
+    );
+  }
+
   return (
     <div
       className={`flex min-h-screen bg-base-100 ${hasProjects ? "flex-col items-start p-4 pt-20 pb-20 sm:p-8 sm:pt-18" : "items-center justify-center px-4"}`}
     >
+      <Toast message={toast.message} type={toast.type} onClose={hideToast} />
+
       {hasProjects ? (
         <>
           {/* Header */}
@@ -40,14 +53,18 @@ const HomePage = () => {
 
           {/* Projects grid */}
           <div className="mx-auto grid w-full max-w-5xl grid-cols-1 gap-4 sm:gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {projects.map((project, index) => (
+            {projects.map((project) => (
               <div
-                key={index}
+                key={project._id}
+                onClick={() => navigate(`/project/${project._id}`)}
                 className="card cursor-pointer rounded-lg bg-base-100 shadow-sm transition-shadow hover:shadow-md"
               >
                 <figure>
                   <img
-                    src={project.image}
+                    src={
+                      project.images?.[0]?.url ||
+                      "https://images.pexels.com/photos/12899157/pexels-photo-12899157.jpeg"
+                    }
                     alt={project.title}
                     className="h-40 w-full object-cover sm:h-48"
                   />
@@ -56,7 +73,7 @@ const HomePage = () => {
                   <h2 className="card-title text-base sm:text-lg">{project.title}</h2>
                   <div className="flex flex-wrap items-center gap-2">
                     <span className="badge rounded-full p-2 badge-sm badge-info">
-                      {project.type}
+                      {project.projectType || "General"}
                     </span>
                     <span className="badge rounded-full badge-ghost p-2 badge-sm">
                       {project.status}
