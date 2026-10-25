@@ -4,6 +4,21 @@ import { getAllProjects } from "../src/api/projectAPI.js";
 import useToast from "../src/hooks/useToast";
 import Toast from "../src/components/Toast.jsx";
 
+const getStatusColor = (status) => {
+  switch (status) {
+    case "in-progress":
+      return "badge-warning";
+    case "completed":
+      return "badge-success";
+    case "on-hold":
+      return "badge-error";
+    case "archived":
+      return "badge-ghost";
+    default:
+      return "badge-secondary";
+  }
+};
+
 const HomePage = () => {
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -37,7 +52,7 @@ const HomePage = () => {
 
   return (
     <div
-      className={`flex min-h-screen bg-base-100 ${hasProjects ? "flex-col items-start p-4 pt-20 pb-20 sm:p-8 sm:pt-18" : "items-center justify-center px-4"}`}
+      className={`flex min-h-screen bg-base-100 ${hasProjects ? "flex-col items-start p-4 pt-20 pb-24 sm:p-8 sm:pt-18 sm:pb-24" : "items-center justify-center px-4"}`}
     >
       <Toast message={toast.message} type={toast.type} onClose={hideToast} />
 
@@ -57,7 +72,7 @@ const HomePage = () => {
               <div
                 key={project._id}
                 onClick={() => navigate(`/project/${project._id}`)}
-                className="card cursor-pointer rounded-lg bg-base-100 shadow-sm transition-shadow hover:shadow-md"
+                className="card cursor-pointer rounded-lg bg-base-100 shadow-md transition-shadow hover:shadow-md"
               >
                 <figure>
                   <img
@@ -73,9 +88,11 @@ const HomePage = () => {
                   <h2 className="card-title text-base sm:text-lg">{project.title}</h2>
                   <div className="flex flex-wrap items-center gap-2">
                     <span className="badge rounded-full p-2 badge-sm badge-info">
-                      {project.projectType || "General"}
+                      {project.projectType || "general"}
                     </span>
-                    <span className="badge rounded-full badge-ghost p-2 badge-sm">
+                    <span
+                      className={`badge rounded-full p-2 ${getStatusColor(project.status)} badge-sm`}
+                    >
                       {project.status}
                     </span>
                   </div>
