@@ -153,6 +153,7 @@ Fields: name, email, password
 - Each project card navigates to /project/${project.\_id} when clicked.
 - project.images?.[0]?.url shows the first image if one exists, falls back to placeholder.
 - key={project.\_id} uses the real MongoDB ID instead of the array index.
+- Added a function to change the color of the tags for the projectType using a case function.
 
 #### **Project.jsx**
 
