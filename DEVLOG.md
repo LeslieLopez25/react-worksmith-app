@@ -164,6 +164,13 @@ Fields: name, email, password
 - The task board will be styled similar to a kanban board but there will be some differences and the task board will have more functions once the logic is created.
 - No logic added yet.
 
+## October 27, 2026
+
+- Added logic to the project page so that notes can be created, saved, and delete.
+- Logic to be able to delete the project itself.
+- Logic created to be able to save an image or update an image.
+- Logic added to the activeTab state so that it shows which tab is active, Image Card or Notes.
+
 ## September 23, 2026
 
 - Added another modal only this time it is for editing/deleting the image cards in the project file.
@@ -275,6 +282,11 @@ Fields: name, email, password
 - Created image card form page that lets you add an image that shows your current progress, a title, and a short description for the image.
 - There is also a save button at the header as well as a preview button that opens a modal that lets see what the image card will look like before you save it.
 - No logic added at the moment.
+
+## October 27, 2026
+
+- Created logic for the image card so that an image, its title, and its description are passed through.
+- Through the image card form it can be updated.
 
 ## October 08, 2026
 
