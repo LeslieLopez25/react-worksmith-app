@@ -424,6 +424,10 @@ Fields: name, email, password
 
 - Created projectAPI to keep all project API calls in one place.
 
+## October 27, 2026
+
+-Create tasksAPI to keep all the tasks API calls in one place.
+
 ---
 
 ## October 16, 2026
