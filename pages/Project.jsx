@@ -34,7 +34,7 @@ const Project = () => {
       }
     };
     fetchProject();
-  }, [id]);
+  }, [id, showToast]);
 
   const handleAddNote = async () => {
     if (!newNote.trim()) {
