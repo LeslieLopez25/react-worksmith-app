@@ -43,7 +43,7 @@ const Project = () => {
     }
     try {
       const response = await updateProject(id, {
-        notes: [...project.notes, { content: newNote, createAt: new Date() }],
+        notes: [...project.notes, { content: newNote, createdAt: new Date() }],
       });
       setProject(response.data);
       setNewNote("");
@@ -146,7 +146,7 @@ const Project = () => {
               {project.images?.slice(0, 2).map((image, index) => (
                 <ImageCard
                   key={index}
-                  imageUrl={Image.url}
+                  imageUrl={image.url}
                   title={image.filename}
                   description={image.description}
                 />
@@ -365,7 +365,7 @@ const Project = () => {
         </form>
       </dialog>
 
-      <TaskBoard />
+      <TaskBoard projectId={id} />
     </>
   );
 };
