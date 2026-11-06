@@ -184,6 +184,14 @@ Fields: name, email, password
 
 - Added mobile design to the project page itself.
 
+## November 4, 2026
+
+- Added the logic to have the project that is currently being created appear on the main board.
+- Created logic to make notes in the form of bulletins. You can also edit or delete the notes.
+- Created a delete button and added the logic to delete the project if the user wants to.
+- Created logic to save and edit an image.
+- Created logic so that in the edit image section, there is another tab so that you can add or edit notes.
+
 ---
 
 ## August 23, 2026
@@ -210,6 +218,13 @@ Fields: name, email, password
 ## October 09, 2026
 
 - Added mobile design to the task board modal.
+
+## November 4, 2026
+
+- Added the logic with columns having its own array and set up to respond to the task types and has its own border color.
+- Tasks are filtered per column by status, and each column header shows a count.
+- One modal handles create and edit. Clicking the card fills the form and shows "Edit Task" with a delete button. Clicking "Create Task" resets the form and hides delete.
+- Select values are real backend values. The old <option> text would have been rejected.
 
 ---
 
