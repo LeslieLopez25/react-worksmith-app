@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import api from "../src/api/axios";
-import { useAuth } from "../src/hooks/useAuth";
-import useToast from "../src/hooks/useToast";
-import Toast from "../src/components/Toast";
+import api from "../api/axios";
+import { useAuth } from "../hooks/useAuth";
+import useToast from "../hooks/useToast";
+import Toast from "../components/Toast";
 
 const Profile = () => {
   const { user, logout, updateUser } = useAuth();

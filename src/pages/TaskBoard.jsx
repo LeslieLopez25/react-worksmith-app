@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import { getTasksByProject, createTask, updateTask, deleteTask } from "../src/api/taskAPI.js";
-import useToast from "../src/hooks/useToast";
-import Toast from "../src/components/Toast.jsx";
+import { getTasksByProject, createTask, updateTask, deleteTask } from "../api/taskAPI.js";
+import useToast from "../hooks/useToast";
+import Toast from "../components/Toast.jsx";
 
 const columns = [
   { status: "todo", label: "To Do", border: "border-blue-400" },

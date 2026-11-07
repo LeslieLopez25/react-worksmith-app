@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import ImageCard from "../src/components/ImageCard.jsx";
+import ImageCard from "../components/ImageCard.jsx";
 import TaskBoard from "../pages/TaskBoard.jsx";
-import { getProjectById, updateProject, deleteProject } from "../src/api/projectAPI.js";
-import useToast from "../src/hooks/useToast.js";
-import Toast from "../src/components/Toast.jsx";
+import { getProjectById, updateProject, deleteProject } from "../api/projectAPI.js";
+import useToast from "../hooks/useToast.js";
+import Toast from "../components/Toast.jsx";
 
 const Project = () => {
   const { id } = useParams();

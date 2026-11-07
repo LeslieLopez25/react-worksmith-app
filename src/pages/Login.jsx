@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import api from "../src/api/axios.js";
-import Toast from "../src/components/Toast.jsx";
-import useToast from "../src/hooks/useToast.js";
-import { useAuth } from "../src/hooks/useAuth.js";
+import api from "../api/axios.js";
+import Toast from "../components/Toast.jsx";
+import useToast from "../hooks/useToast.js";
+import { useAuth } from "../hooks/useAuth.js";
 
 const Login = () => {
   const [formData, setFormData] = useState({

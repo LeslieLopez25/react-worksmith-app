@@ -1,17 +1,17 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { useAuth } from "../src/hooks/useAuth.js";
-import Login from "../pages/Login.jsx";
-import Register from "../pages/Register.jsx";
+import Login from "../src/pages/Login.jsx";
+import Register from "../src/pages/Register.jsx";
 import AuthLayout from "./layouts/AuthLayout.jsx";
 import Layout from "./layouts/Layout.jsx";
-import Hero from "../pages/Hero.jsx";
+import Hero from "../src/pages/Hero.jsx";
 import { Navigate } from "react-router-dom";
-import HomePage from "../pages/HomePage.jsx";
-import Project from "../pages/Project.jsx";
-import CreateProject from "../pages/CreateProject.jsx";
-import Profile from "../pages/Profile.jsx";
-import ImageCardForm from "../pages/ImageCardForm.jsx";
-import NotFound from "../pages/NotFound.jsx";
+import HomePage from "../src/pages/HomePage.jsx";
+import Project from "../src/pages/Project.jsx";
+import CreateProject from "../src/pages/CreateProject.jsx";
+import Profile from "../src/pages/Profile.jsx";
+import ImageCardForm from "../src/pages/ImageCardForm.jsx";
+import NotFound from "../src/pages/NotFound.jsx";
 import Loading from "./components/Loading.jsx";
 import ProtectedRoute from "./components/ProtectedRoute.jsx";
 

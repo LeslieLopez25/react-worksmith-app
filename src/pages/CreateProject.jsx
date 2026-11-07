@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { createProject } from "../src/api/projectAPI.js";
-import useToast from "../src/hooks/useToast.js";
-import Toast from "../src/components/Toast.jsx";
+import { createProject } from "../api/projectAPI.js";
+import useToast from "../hooks/useToast.js";
+import Toast from "../components/Toast.jsx";
 
 const statusOptions = ["idea", "in-progress", "on-hold", "completed", "archived"];
 const projectTypeOptions = [

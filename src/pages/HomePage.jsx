@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { getAllProjects } from "../src/api/projectAPI.js";
-import useToast from "../src/hooks/useToast";
-import Toast from "../src/components/Toast.jsx";
+import { getAllProjects } from "../api/projectAPI.js";
+import useToast from "../hooks/useToast";
+import Toast from "../components/Toast.jsx";
 
 const getStatusColor = (status) => {
   switch (status) {
