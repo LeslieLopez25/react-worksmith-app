@@ -1,16 +1,8 @@
 import { useState, useEffect } from "react";
 import { getTasksByProject, createTask, updateTask, deleteTask } from "../api/taskAPI.js";
 import useToast from "../hooks/useToast";
+import { columns } from "../constants/taskColumns.js";
 import Toast from "../components/Toast.jsx";
-
-const columns = [
-  { status: "todo", label: "To Do", border: "border-blue-400" },
-  { status: "in-progress", label: "In Progress", border: "border-amber-500" },
-  { status: "blocked", label: "Blocked", border: "border-red-500" },
-  { status: "completed", label: "Completed", border: "border-green-500" },
-  { status: "revise", label: "Revise", border: "border-violet-500" },
-  { status: "later-plan", label: "Strategizing", border: "border-orange-500" },
-];
 
 const urgencyOptions = ["low", "medium", "high"];
 
@@ -68,7 +60,7 @@ const emptyForm = {
   taskType: "",
 };
 
-const TaskBoard = ({ projectId }) => {
+const TaskBoard = ({ projectId, onTasksLoaded }) => {
   const [tasks, setTasks] = useState([]);
   const [refreshKey, setRefreshKey] = useState(0);
   const [formData, setFormData] = useState(emptyForm);
@@ -81,7 +73,10 @@ const TaskBoard = ({ projectId }) => {
     const loadTasks = async () => {
       try {
         const response = await getTasksByProject(projectId);
-        if (!ignore) setTasks(response.data);
+        if (!ignore) {
+          setTasks(response.data);
+          onTasksLoaded(response.data);
+        }
       } catch (error) {
         if (!ignore) {
           showToast(error.response?.data?.message || "Failed to load tasks.", "error");
@@ -95,7 +90,7 @@ const TaskBoard = ({ projectId }) => {
     return () => {
       ignore = true;
     };
-  }, [projectId, refreshKey, showToast]);
+  }, [projectId, refreshKey, showToast, onTasksLoaded]);
 
   const refreshTasks = () => setRefreshKey((key) => key + 1);
 

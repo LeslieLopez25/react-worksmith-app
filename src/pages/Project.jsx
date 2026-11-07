@@ -4,6 +4,7 @@ import ImageCard from "../components/ImageCard.jsx";
 import TaskBoard from "../pages/TaskBoard.jsx";
 import { getProjectById, updateProject, deleteProject } from "../api/projectAPI.js";
 import useToast from "../hooks/useToast.js";
+import { columns } from "../constants/taskColumns.js";
 import Toast from "../components/Toast.jsx";
 
 const Project = () => {
@@ -20,6 +21,7 @@ const Project = () => {
   const [activeTab, setActiveTab] = useState("image");
   const [editNoteContent, setEditNoteContent] = useState("");
   const [newNote, setNewNote] = useState("");
+  const [tasks, setTasks] = useState([]);
 
   useEffect(() => {
     const fetchProject = async () => {
@@ -234,21 +236,13 @@ const Project = () => {
               Task Board →
             </button>
             <div className="grid grid-cols-2 gap-2 lg:grid-cols-1">
-              <div className="rounded-lg bg-base-200 p-2 sm:p-3">
-                <p className="text-xs text-base-content sm:text-sm">To Do (1)</p>
-              </div>
-              <div className="rounded-lg bg-base-200 p-2 sm:p-3">
-                <p className="text-xs text-base-content sm:text-sm">In Progress (2)</p>
-              </div>
-              <div className="rounded-lg bg-base-200 p-2 sm:p-3">
-                <p className="text-xs text-base-content sm:text-sm">Completed (3)</p>
-              </div>
-              <div className="rounded-lg bg-base-200 p-2 sm:p-3">
-                <p className="text-xs text-base-content sm:text-sm">Revised (4)</p>
-              </div>
-              <div className="rounded-lg bg-base-200 p-2 sm:p-3">
-                <p className="text-xs text-base-content sm:text-sm">Strategizing (5)</p>
-              </div>
+              {columns.map((column) => (
+                <div key={column.status} className="rounded-lg bg-base-200 p-2 sm:p-3">
+                  <p className="text-xs text-base-content sm:text-sm">
+                    {column.label} ({tasks.filter((t) => t.status === column.status).length})
+                  </p>
+                </div>
+              ))}
             </div>
           </div>
 
@@ -365,7 +359,7 @@ const Project = () => {
         </form>
       </dialog>
 
-      <TaskBoard projectId={id} />
+      <TaskBoard projectId={id} onTasksLoaded={setTasks} />
     </>
   );
 };
