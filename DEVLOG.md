@@ -479,3 +479,14 @@ Fields: name, email, password
 #### **AuthProvider**
 
 - Added logic of updateUser so that it updates the user state directly.
+
+---
+
+## November 07, 2026
+
+## Constants
+
+#### **taskColumns.jsx**
+
+- Moved the columns function that existed in the task board page into it's own separate file due to both project and task board files needing access to the function.
+- It is in its own separate file so that the count in the right column in the project file goes up or down depending on how many tasks there are for each task type and it allows both the project and task board page to stay sync together.
