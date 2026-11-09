@@ -67,6 +67,10 @@ Key decisions:
 
 - Added dynamic project route to App.jsx.
 
+## November 09, 2026
+
+- Updated the image card form path to have the project id.
+
 #### **main.jsx**
 
 - Added the function for Loading component to set the theme color to whatever the user has set.
@@ -192,6 +196,10 @@ Fields: name, email, password
 - Created logic to save and edit an image.
 - Created logic so that in the edit image section, there is another tab so that you can add or edit notes.
 
+## November 09, 2026
+
+- Turned the Upload Image from a button to a link.
+
 ---
 
 ## August 23, 2026
@@ -306,6 +314,14 @@ Fields: name, email, password
 ## October 08, 2026
 
 - Added mobile design to image card form.
+
+## November 09, 2026
+
+- Added the logic to the form. Created the logic for allowing the image types that will be accepted and the max size of 5MB.
+- The logic to free the preview URL when it changes or the page closes.
+- The logic to select the file and only allow the types that are accepted and the max size.
+- The logic to handle dropping and dragging the image.
+- The logic to save the image and it must include an image and title. The information file, description, and title get passed through and saved and if an error occurs, an error message is displayed.
 
 ### Components Created
 
@@ -443,6 +459,10 @@ Fields: name, email, password
 
 -Create tasksAPI to keep all the tasks API calls in one place.
 
+## November 09, 2026
+
+- Added the call, uploadProjectImage, to the api file.
+
 ---
 
 ## October 16, 2026
@@ -490,3 +510,13 @@ Fields: name, email, password
 
 - Moved the columns function that existed in the task board page into it's own separate file due to both project and task board files needing access to the function.
 - It is in its own separate file so that the count in the right column in the project file goes up or down depending on how many tasks there are for each task type and it allows both the project and task board page to stay sync together.
+
+---
+
+## November 09, 2026
+
+## CSS File
+
+#### **index.css**
+
+- Updated the file to fix the project file's CSS issue.
