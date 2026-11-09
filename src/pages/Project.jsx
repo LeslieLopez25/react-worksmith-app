@@ -6,6 +6,7 @@ import { getProjectById, updateProject, deleteProject } from "../api/projectAPI.
 import useToast from "../hooks/useToast.js";
 import { columns } from "../constants/taskColumns.js";
 import Toast from "../components/Toast.jsx";
+import { Link } from "react-router-dom";
 
 const Project = () => {
   const { id } = useParams();
@@ -227,7 +228,7 @@ const Project = () => {
           </div>
         </div>
 
-        <div className="flex flex-col gap-4 border-t border-base-300 p-4 pb-20 sm:pb-0 lg:sticky lg:top-0 lg:h-full lg:w-50 lg:flex-col lg:justify-between lg:border-t-0 lg:border-l lg:pt-17 lg:pr-5">
+        <div className="flex flex-col gap-4 border-t border-base-300 p-4 pb-20 lg:sticky lg:top-0 lg:h-screen lg:w-50 lg:flex-col lg:justify-between lg:overflow-y-auto lg:border-t-0 lg:border-l lg:pt-17 lg:pr-5">
           <div className="flex flex-col gap-2 lg:pt-3">
             <button
               onClick={() => document.getElementById("taskboard_modal").showModal()}
@@ -235,9 +236,9 @@ const Project = () => {
             >
               Task Board →
             </button>
-            <div className="grid grid-cols-2 gap-2 lg:grid-cols-1">
+            <div className="grid grid-cols-2 gap-2 lg:grid-cols-1 lg:gap-1.5 lg:short:gap-1">
               {columns.map((column) => (
-                <div key={column.status} className="rounded-lg bg-base-200 p-2 sm:p-3">
+                <div key={column.status} className="rounded-lg bg-base-200 p-2 lg:short:p-1">
                   <p className="text-xs text-base-content sm:text-sm">
                     {column.label} ({tasks.filter((t) => t.status === column.status).length})
                   </p>
@@ -247,11 +248,14 @@ const Project = () => {
           </div>
 
           <div className="flex gap-3 lg:flex-col">
-            <button className="btn flex-1 btn-dash btn-sm btn-info lg:w-full lg:flex-none">
+            <Link
+              to={`/add-image/${id}`}
+              className="btn flex-1 btn-dash btn-sm btn-info lg:w-full lg:flex-none lg:short:btn-xs"
+            >
               Upload Image
-            </button>
+            </Link>
             <button
-              className="btn flex-1 btn-dash btn-sm btn-success lg:w-full lg:flex-none"
+              className="btn flex-1 btn-dash btn-sm btn-success lg:w-full lg:flex-none lg:short:btn-xs"
               onClick={() => document.getElementById("edit_modal").showModal()}
             >
               Edit
