@@ -200,6 +200,24 @@ Fields: name, email, password
 
 - Turned the Upload Image from a button to a link.
 
+## November 12, 2026
+
+- Reworked the edit/delete modal. A dropdown at the top lets you choose which image card or note to edit, and the fields fill in when you pick one (handleSelectImage and handleSelectNote).
+- openEditModal opens the modal with the first image card and first note already selected.
+- Save Changes and Delete follow whichever tab is active, and both are disabled while saving or when nothing is selected.
+- Image cards: edit the title and description, optionally replace the image, or delete the card with a confirmation. The file input uses a `key` that changes so it clears after each save.
+- Notes: edit a note or delete it from the modal. The X on the notes list now deletes by `note._id` instead of array position, and the list items use `_id` as their key.
+- The Toast is also rendered inside the edit dialog, because an open dialog covers the page and a page-level toast would be hidden behind it.
+- Added empty messages for when a project has no image cards or no notes yet.
+- Fixed the right column getting clipped by the fixed footer. It is now `lg:h-screen` with `overflow-y-auto` and footer clearance at every width, and the task count boxes are tighter.
+
+**Bugs fixed:**
+
+- The old handleSaveImageEdit replaced the entire images array with a single item, which would have wiped every other image card. It was replaced by the new per-card save.
+- Typo in openEditModal: `project.image` instead of `project.images`, so the fields opened empty and saving would have erased the card's text.
+- Typo `Image.url` (capital I) in the left-hand image cards on desktop; it refers to the browser's built-in Image constructor, so the cards would always have shown the placeholder.
+- Typo `createAt` instead of `createdAt` when adding a note.
+
 ---
 
 ## August 23, 2026
@@ -233,6 +251,16 @@ Fields: name, email, password
 - Tasks are filtered per column by status, and each column header shows a count.
 - One modal handles create and edit. Clicking the card fills the form and shows "Edit Task" with a delete button. Clicking "Create Task" resets the form and hides delete.
 - Select values are real backend values. The old <option> text would have been rejected.
+
+## November 12, 2026
+
+- TaskBoard now takes an `onTasksLoaded` prop and sends its loaded tasks up to the Project page, so the task counts in the right column stay in sync after every create, edit, and delete.
+- Fetching tasks now happens inside the useEffect with an `ignore` flag and a `refreshKey` that reloads the list. This fixed the "Calling setState synchronously within an effect" warning, and it stops a slow response from updating state after switching projects.
+- Updated formatLabel so acronyms show fully capitalized (UI, UX, API) in the dropdowns and on the badges, and so labels with more than one hyphen work.
+
+**Bugs fixed:**
+
+- handleChange used `e.target.value` as the key instead of `e.target.name`, so none of the inputs or selects in the task modal could be typed in or changed.
 
 ---
 
@@ -322,6 +350,14 @@ Fields: name, email, password
 - The logic to select the file and only allow the types that are accepted and the max size.
 - The logic to handle dropping and dragging the image.
 - The logic to save the image and it must include an image and title. The information file, description, and title get passed through and saved and if an error occurs, an error message is displayed.
+
+## November 12, 2026
+
+**Bugs fixed:**
+
+- After saving, the page redirected to the 404 page. `navigate("project/...")` had no leading slash, so React Router treated it as relative to the current URL. Changed it to `navigate("/project/...")`.
+
+---
 
 ### Components Created
 
@@ -449,6 +485,10 @@ Fields: name, email, password
 
 - Created axios instance file so that the url would not need to be hardcoded and for when I connect to AWS, it won't break.
 
+## November 12, 2026
+
+- The base URL reads from `VITE_API_URL` in the frontend `.env`, with `http://localhost:7000` as a fallback, and `withCredentials: true` is set once on the instance so cookies are sent with every request.
+
 ## October 24, 2026
 
 #### **projectAPI.jsx**
@@ -462,6 +502,10 @@ Fields: name, email, password
 ## November 09, 2026
 
 - Added the call, uploadProjectImage, to the api file.
+
+## November 12, 2026
+
+- Added updateProjectImage, deleteProjectImage, updateProjectNote, and deleteProjectNote.
 
 ---
 
@@ -519,4 +563,5 @@ Fields: name, email, password
 
 #### **index.css**
 
-- Updated the file to fix the project file's CSS issue.
+- Added a custom `short` variant (`@custom-variant short (@media (max-height: 600px))`) so the Project page right column gets compact sizing only on very short windows.
+- The first version triggered at 760px, which shrank the task count boxes and the buttons on normal laptop windows and left a big gap. Lowered it to 600px.

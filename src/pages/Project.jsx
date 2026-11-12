@@ -2,7 +2,15 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import ImageCard from "../components/ImageCard.jsx";
 import TaskBoard from "../pages/TaskBoard.jsx";
-import { getProjectById, updateProject, deleteProject } from "../api/projectAPI.js";
+import {
+  getProjectById,
+  updateProject,
+  deleteProject,
+  updateProjectImage,
+  deleteProjectImage,
+  updateProjectNote,
+  deleteProjectNote,
+} from "../api/projectAPI.js";
 import useToast from "../hooks/useToast.js";
 import { columns } from "../constants/taskColumns.js";
 import Toast from "../components/Toast.jsx";
@@ -15,14 +23,16 @@ const Project = () => {
 
   const [project, setProject] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [editImageData, setEditImageData] = useState({
-    title: "",
-    description: "",
-  });
-  const [activeTab, setActiveTab] = useState("image");
-  const [editNoteContent, setEditNoteContent] = useState("");
   const [newNote, setNewNote] = useState("");
   const [tasks, setTasks] = useState([]);
+  const [activeTab, setActiveTab] = useState("image");
+  const [selectedImageId, setSelectedImageId] = useState("");
+  const [editImageData, setEditImageData] = useState({ title: "", description: "" });
+  const [replaceFile, setReplaceFile] = useState(null);
+  const [fileInputKey, setFileInputKey] = useState(0);
+  const [selectedNoteId, setSelectedNoteId] = useState("");
+  const [editNoteContent, setEditNoteContent] = useState("");
+  const [saving, setSaving] = useState(false);
 
   useEffect(() => {
     const fetchProject = async () => {
@@ -57,16 +67,122 @@ const Project = () => {
     }
   };
 
-  const handleDeleteNote = async (noteIndex) => {
+  const handleDeleteNote = async (noteId) => {
     try {
-      const updatedNotes = project.notes.filter((_, i) => i !== noteIndex);
-      const response = await updateProject(id, { notes: updatedNotes });
+      const response = await deleteProjectNote(id, noteId);
       setProject(response.data);
       showToast("Note deleted", "success");
+      return true;
     } catch (error) {
       showToast(error.response?.data?.message || "Failed to delete note.", "error");
       console.error(error);
+      return false;
     }
+  };
+
+  const closeEditModal = () => document.getElementById("edit_modal").close();
+
+  const openEditModal = () => {
+    const firstImage = project.images?.[0];
+    const firstNote = project.notes?.[0];
+    setSelectedImageId(firstImage?._id || "");
+    setEditImageData({
+      title: firstImage?.filename || "",
+      description: firstImage?.description || "",
+    });
+    setReplaceFile(null);
+    setFileInputKey((key) => key + 1);
+    setSelectedNoteId(firstNote?._id || "");
+    setEditNoteContent(firstNote?.content || "");
+    setActiveTab("image");
+    document.getElementById("edit_modal").showModal();
+  };
+
+  const handleSelectImage = (imageId) => {
+    const image = project.images.find((img) => img._id === imageId);
+    setSelectedImageId(imageId);
+    setEditImageData({
+      title: image?.filename || "",
+      description: image?.description || "",
+    });
+    setReplaceFile(null);
+    setFileInputKey((key) => key + 1);
+  };
+
+  const handleSelectNote = (noteId) => {
+    const note = project.notes.find((n) => n._id === noteId);
+    setSelectedNoteId(noteId);
+    setEditNoteContent(note?.content || "");
+  };
+
+  const handleSaveImageEdit = async () => {
+    if (!selectedImageId) return;
+    if (!editImageData.title.trim()) {
+      showToast("Image title is required.", "error");
+      return;
+    }
+    const formData = new FormData();
+    formData.append("title", editImageData.title);
+    formData.append("description", editImageData.description);
+    if (replaceFile) formData.append("image", replaceFile);
+
+    setSaving(true);
+    try {
+      const response = await updateProjectImage(id, selectedImageId, formData);
+      setProject(response.data);
+      closeEditModal();
+      showToast("Image card updated", "success");
+    } catch (error) {
+      showToast(error.response?.data?.message || "Failed to update image card.", "error");
+      console.error(error);
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  const handleDeleteImage = async () => {
+    if (!selectedImageId) return;
+    if (!window.confirm("Delete this image card? This can not be undone.")) return;
+    setSaving(true);
+    try {
+      const response = await deleteProjectImage(id, selectedImageId);
+      setProject(response.data);
+      closeEditModal();
+      showToast("Image card deleted", "success");
+    } catch (error) {
+      showToast(error.response?.data?.message || "Failed to delete image card.", "error");
+      console.error(error);
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  const handleSaveNoteEdit = async () => {
+    if (!selectedNoteId) return;
+    if (!editNoteContent.trim()) {
+      showToast("Note cannot be empty.", "error");
+      return;
+    }
+    setSaving(true);
+    try {
+      const response = await updateProjectNote(id, selectedNoteId, editNoteContent);
+      setProject(response.data);
+      closeEditModal();
+      showToast("Note updated", "success");
+    } catch (error) {
+      showToast(error.response?.data?.message || "Failed to update note.", "error");
+      console.error(error);
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  const handleDeleteNoteFromModal = async () => {
+    if (!selectedNoteId) return;
+    if (!window.confirm("Delete this note? This cannot be undone.")) return;
+    setSaving(true);
+    if (await handleDeleteNote(selectedNoteId)) closeEditModal();
+    setSaving(false);
   };
 
   const formatDate = (dateString) => {
@@ -94,26 +210,6 @@ const Project = () => {
     }
   };
 
-  const handleSaveImageEdit = async () => {
-    try {
-      const response = await updateProject(id, {
-        images: [
-          {
-            url: project.images?.[0]?.url || "",
-            filename: editImageData.title,
-            description: editImageData.description,
-          },
-        ],
-      });
-      setProject(response.data);
-      showToast("Image card updated successfully", "success");
-      document.getElementById("edit_modal").close();
-    } catch (error) {
-      showToast(error.response?.data?.message || "Failed to update image card.", "error");
-      console.error(error);
-    }
-  };
-
   if (loading) {
     return (
       <div className="flex min-h-screen items-center justify-center bg-base-100">
@@ -129,6 +225,8 @@ const Project = () => {
       </div>
     );
   }
+
+  const hasSelection = activeTab === "image" ? selectedImageId : selectedNoteId;
 
   return (
     <>
@@ -161,9 +259,9 @@ const Project = () => {
               <div className="flex flex-col gap-2">
                 {project.notes?.length > 0 ? (
                   <ul className="flex flex-col gap-2">
-                    {project.notes.map((note, index) => (
+                    {project.notes.map((note) => (
                       <li
-                        key={index}
+                        key={note._id}
                         className="flex items-start gap-3 rounded-lg border border-base-300 bg-base-100 p-3"
                       >
                         {/* Bullet */}
@@ -176,7 +274,7 @@ const Project = () => {
 
                         {/* Delete note button */}
                         <button
-                          onClick={() => handleDeleteNote(index)}
+                          onClick={() => handleDeleteNote(note._id)}
                           className="btn text-error btn-ghost btn-xs"
                         >
                           X
@@ -256,7 +354,7 @@ const Project = () => {
             </Link>
             <button
               className="btn flex-1 btn-dash btn-sm btn-success lg:w-full lg:flex-none lg:short:btn-xs"
-              onClick={() => document.getElementById("edit_modal").showModal()}
+              onClick={openEditModal}
             >
               Edit
             </button>
@@ -266,6 +364,7 @@ const Project = () => {
 
       {/* Edit/Delete modal */}
       <dialog id="edit_modal" className="modal">
+        <Toast message={toast.message} type={toast.type} onClose={hideToast} />
         <div className="modal-box w-11/12 max-w-2xl rounded-lg">
           {/* Header */}
           <div className="mb-4 flex items-center justify-between sm:mb-6">
@@ -275,7 +374,7 @@ const Project = () => {
             </form>
           </div>
 
-          {/* Tabs for image card or note */}
+          {/* Tabs */}
           <div className="tabs-bordered mb-4 tabs sm:mb-6">
             <a
               className={`tab text-sm sm:text-base ${activeTab === "image" ? "tab-active" : ""}`}
@@ -291,68 +390,113 @@ const Project = () => {
             </a>
           </div>
 
-          {/* Image card edit form */}
-          {activeTab === "image" && (
-            <div className="flex flex-col gap-3 sm:gap-4">
-              <div className="flex flex-col gap-1">
-                <label className="text-sm font-semibold">Image Title</label>
-                <input
-                  type="text"
-                  placeholder="e.g. Stage 1 — Initial wireframe"
-                  value={editImageData.title}
-                  onChange={(e) => setEditImageData({ ...editImageData, title: e.target.value })}
-                  className="input-bordered input w-full rounded-lg border border-base-300"
-                />
+          {/* Image card tab */}
+          {activeTab === "image" &&
+            (project.images?.length > 0 ? (
+              <div className="flex flex-col gap-3 sm:gap-4">
+                <div className="flex flex-col gap-1">
+                  <label className="text-sm font-semibold">Choose Image Card</label>
+                  <select
+                    value={selectedImageId}
+                    onChange={(e) => handleSelectImage(e.target.value)}
+                    className="select-bordered select w-full rounded-lg border border-base-300"
+                  >
+                    {project.images.map((image, index) => (
+                      <option key={image._id} value={image._id}>
+                        {`${index + 1}. ${image.filename || "Untitled"}`}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+                <div className="flex flex-col gap-1">
+                  <label className="text-sm font-semibold">Image Title</label>
+                  <input
+                    type="text"
+                    placeholder="e.g. Stage 1 — Initial wireframe"
+                    value={editImageData.title}
+                    onChange={(e) => setEditImageData({ ...editImageData, title: e.target.value })}
+                    className="input-bordered input w-full rounded-lg border border-base-300"
+                  />
+                </div>
+                <div className="flex flex-col gap-1">
+                  <label className="text-sm font-semibold">Description</label>
+                  <textarea
+                    placeholder="Brief summary of what this image shows..."
+                    value={editImageData.description}
+                    onChange={(e) =>
+                      setEditImageData({ ...editImageData, description: e.target.value })
+                    }
+                    className="textarea-bordered textarea min-h-20 w-full rounded-lg border border-base-300 sm:min-h-28"
+                  ></textarea>
+                </div>
+                <div className="flex flex-col gap-1">
+                  <label className="text-sm font-semibold">Replace Image (optional)</label>
+                  <input
+                    key={fileInputKey}
+                    type="file"
+                    accept="image/jpeg,image/png"
+                    onChange={(e) => setReplaceFile(e.target.files[0] || null)}
+                    className="file-input-bordered file-input w-full file-input-xs sm:file-input-sm"
+                  />
+                </div>
               </div>
-              <div className="flex flex-col gap-1">
-                <label className="text-sm font-semibold">Description</label>
-                <textarea
-                  placeholder="Brief summary of what this image shows..."
-                  value={editImageData.description}
-                  onChange={(e) =>
-                    setEditImageData({
-                      ...editImageData,
-                      description: e.target.value,
-                    })
-                  }
-                  className="textarea-bordered textarea min-h-20 w-full rounded-lg border border-base-300 sm:min-h-28"
-                ></textarea>
-              </div>
-              <div className="flex flex-col gap-1">
-                <label className="text-sm font-semibold">Replace Image</label>
-                <input
-                  type="file"
-                  className="file-input-bordered file-input w-full file-input-xs sm:file-input-sm"
-                  accept="image/*"
-                />
-              </div>
-            </div>
-          )}
+            ) : (
+              <p className="text-sm text-gray-500">
+                No image cards yet. Use Upload Image to add one.
+              </p>
+            ))}
 
-          {/* Note edit form */}
-          {activeTab === "note" && (
-            <div className="flex flex-col gap-3 sm:gap-4">
-              <div className="flex flex-col gap-1">
-                <label className="text-sm font-semibold">Note Content</label>
-                <textarea
-                  placeholder="Edit your note..."
-                  value={editNoteContent}
-                  onChange={(e) => setEditNoteContent(e.target.value)}
-                  className="textarea-bordered textarea min-h-28 w-full rounded-lg border border-base-300"
-                ></textarea>
+          {/* Note tab */}
+          {activeTab === "note" &&
+            (project.notes?.length > 0 ? (
+              <div className="flex flex-col gap-3 sm:gap-4">
+                <div className="flex flex-col gap-1">
+                  <label className="text-sm font-semibold">Choose Note</label>
+                  <select
+                    value={selectedNoteId}
+                    onChange={(e) => handleSelectNote(e.target.value)}
+                    className="select-bordered select w-full rounded-lg border border-base-300"
+                  >
+                    {project.notes.map((note, index) => (
+                      <option key={note._id} value={note._id}>
+                        {`${index + 1}. ${note.content.slice(0, 40)}${note.content.length > 40 ? "…" : ""}`}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+                <div className="flex flex-col gap-1">
+                  <label className="text-sm font-semibold">Note Content</label>
+                  <textarea
+                    placeholder="Edit your note..."
+                    value={editNoteContent}
+                    onChange={(e) => setEditNoteContent(e.target.value)}
+                    className="textarea-bordered textarea min-h-28 w-full rounded-lg border border-base-300"
+                  ></textarea>
+                </div>
               </div>
-            </div>
-          )}
+            ) : (
+              <p className="text-sm text-gray-500">No notes yet. Add one from the notes box.</p>
+            ))}
 
           {/* Modal actions */}
           <div className="modal-action flex justify-between">
-            <button className="btn btn-outline btn-xs btn-error sm:btn-sm">Delete</button>
+            <button
+              onClick={activeTab === "image" ? handleDeleteImage : handleDeleteNoteFromModal}
+              disabled={saving || !hasSelection}
+              className="btn btn-outline btn-xs btn-error sm:btn-sm"
+            >
+              Delete
+            </button>
             <div className="flex items-center gap-2">
               <form method="dialog" className="flex items-center">
                 <button className="btn btn-ghost btn-xs sm:btn-sm">Cancel</button>
               </form>
-              <button className="btn btn-xs btn-info sm:btn-sm" onClick={handleSaveImageEdit}>
-                Save Changes
+              <button
+                onClick={activeTab === "image" ? handleSaveImageEdit : handleSaveNoteEdit}
+                disabled={saving || !hasSelection}
+                className="btn btn-xs btn-info sm:btn-sm"
+              >
+                {saving ? "Saving..." : "Save Changes"}
               </button>
             </div>
           </div>
