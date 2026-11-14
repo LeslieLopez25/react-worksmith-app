@@ -1,4 +1,15 @@
 import { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
+import {
+  DndContext,
+  DragOverlay,
+  MouseSensor,
+  TouchSensor,
+  useDraggable,
+  useDroppable,
+  useSensor,
+  useSensors,
+} from "@dnd-kit/core";
 import { getTasksByProject, createTask, updateTask, deleteTask } from "../api/taskAPI.js";
 import useToast from "../hooks/useToast";
 import { columns } from "../constants/taskColumns.js";
@@ -60,12 +71,105 @@ const emptyForm = {
   taskType: "",
 };
 
+const TaskCardBody = ({ task }) => (
+  <>
+    <p className="text-xs font-medium sm:text-sm">{task.title}</p>
+    {task.description && <p className="mt-1 text-xs text-gray-500">{task.description}</p>}
+    <div className="mt-1 flex flex-wrap gap-1">
+      <span
+        className={`badge rounded-full p-1 badge-xs text-white sm:p-2 ${urgencyColor[task.urgency] || "bg-green-500"}`}
+      >
+        {formatLabel(task.urgency || "low")}
+      </span>
+      {task.taskType && (
+        <span
+          className={`badge rounded-full p-1 badge-xs text-white sm:p-2 ${typeColor(task.taskType)}`}
+        >
+          {formatLabel(task.taskType)}
+        </span>
+      )}
+    </div>
+  </>
+);
+
+const DraggableTask = ({ task, border, onOpen }) => {
+  const { attributes, listeners, setNodeRef, isDragging } = useDraggable({ id: task._id });
+  return (
+    <div
+      ref={setNodeRef}
+      {...listeners}
+      {...attributes}
+      onClick={() => onOpen(task)}
+      className={`cursor-grab rounded-lg border-l-4 bg-base-100 p-2 shadow-sm select-none sm:border-l-10 sm:p-3 ${border} ${isDragging ? "opacity-40" : ""}`}
+    >
+      <TaskCardBody task={task} />
+    </div>
+  );
+};
+
+const DroppableColumn = ({ column, count, children }) => {
+  const { setNodeRef, isOver } = useDroppable({ id: column.status });
+  return (
+    <div className="flex min-w-36 flex-1 flex-col gap-2 sm:min-w-48 sm:gap-3">
+      <h3 className="text-xs font-semibold tracking-wide text-gray-500 uppercase sm:text-sm">
+        {column.label} ({count})
+      </h3>
+      <div
+        ref={setNodeRef}
+        className={`flex max-h-96 min-h-48 flex-col gap-2 overflow-y-auto rounded-lg bg-base-200 p-2 sm:min-h-64 sm:p-3 ${isOver ? "ring-2 ring-info" : ""}`}
+      >
+        {children}
+      </div>
+    </div>
+  );
+};
+
 const TaskBoard = ({ projectId, onTasksLoaded }) => {
   const [tasks, setTasks] = useState([]);
   const [refreshKey, setRefreshKey] = useState(0);
   const [formData, setFormData] = useState(emptyForm);
   const [editingTask, setEditingTask] = useState(null);
   const { toast, showToast, hideToast } = useToast();
+  const [activeTask, setActiveTask] = useState(null);
+  const [overlayHost, setOverlayHost] = useState(null);
+
+  const sensors = useSensors(
+    useSensor(MouseSensor, { activationConstraint: { distance: 8 } }),
+    useSensor(TouchSensor, { activationConstraint: { delay: 250, tolerance: 5 } })
+  );
+
+  const moveTask = async (taskId, newStatus) => {
+    const previous = tasks;
+    const updated = tasks.map((t) => (t._id === taskId ? { ...t, status: newStatus } : t));
+
+    setTasks(updated);
+    onTasksLoaded?.(updated);
+
+    try {
+      await updateTask(taskId, { status: newStatus });
+    } catch (error) {
+      setTasks(previous);
+      onTasksLoaded?.(previous);
+      showToast(error.response?.data?.message || "Failed to move task.", "error");
+      console.error(error);
+    }
+  };
+
+  const handleDragStart = (event) => {
+    setActiveTask(tasks.find((t) => t._id === event.active.id) || null);
+  };
+
+  const handleDragEnd = (event) => {
+    const { active, over } = event;
+    setActiveTask(null);
+    if (!over) return;
+    const task = tasks.find((t) => t._id === active.id);
+    if (task && task.status !== over.id) moveTask(task._id, over.id);
+  };
+
+  const handleDragCancel = () => setActiveTask(null);
+
+  const activeBorder = columns.find((c) => c.status === activeTask?.status)?.border;
 
   useEffect(() => {
     let ignore = false;
@@ -75,7 +179,7 @@ const TaskBoard = ({ projectId, onTasksLoaded }) => {
         const response = await getTasksByProject(projectId);
         if (!ignore) {
           setTasks(response.data);
-          onTasksLoaded(response.data);
+          onTasksLoaded?.(response.data);
         }
       } catch (error) {
         if (!ignore) {
@@ -161,6 +265,7 @@ const TaskBoard = ({ projectId, onTasksLoaded }) => {
   return (
     <>
       <dialog id="taskboard_modal" className="modal">
+        <div ref={setOverlayHost} className="fixed" />
         <Toast message={toast.message} type={toast.type} onClose={hideToast} />
         <div className="modal-box h-5/6 w-11/12 max-w-7xl rounded-lg p-4 sm:p-6">
           <div className="mb-4 flex items-center justify-between sm:mb-6">
@@ -176,52 +281,47 @@ const TaskBoard = ({ projectId, onTasksLoaded }) => {
           </div>
 
           {/* Kanban columns */}
-          <div
-            className="flex gap-3 overflow-x-auto pb-4 sm:gap-4 sm:pb-6"
-            style={{ height: "calc(100% - 80px)" }}
+          <DndContext
+            sensors={sensors}
+            onDragStart={handleDragStart}
+            onDragEnd={handleDragEnd}
+            onDragCancel={handleDragCancel}
           >
-            {columns.map((column) => {
-              const columnTasks = tasks.filter((t) => t.status === column.status);
-              return (
-                <div
-                  key={column.status}
-                  className="flex min-w-36 flex-1 flex-col gap-2 sm:min-w-48 sm:gap-3"
-                >
-                  <h3 className="text-xs font-semibold tracking-wide text-gray-500 uppercase sm:text-sm">
-                    {column.label} ({columnTasks.length})
-                  </h3>
-                  <div className="flex max-h-96 min-h-48 flex-col gap-2 overflow-y-auto rounded-lg bg-base-200 p-2 sm:min-h-64 sm:p-3">
+            <div
+              className="flex gap-3 overflow-x-auto pb-4 sm:gap-4 sm:pb-6"
+              style={{ height: "calc(100% - 80px)" }}
+            >
+              {columns.map((column) => {
+                const columnTasks = tasks.filter((t) => t.status === column.status);
+                return (
+                  <DroppableColumn key={column.status} column={column} count={columnTasks.length}>
                     {columnTasks.map((task) => (
-                      <div
+                      <DraggableTask
                         key={task._id}
-                        onClick={() => openEditModal(task)}
-                        className={`cursor-pointer rounded-lg border-l-4 bg-base-100 p-2 shadow-sm sm:border-l-10 sm:p-3 ${column.border}`}
-                      >
-                        <p className="text-xs font-medium sm:text-sm">{task.title}</p>
-                        {task.description && (
-                          <p className="mt-1 text-xs text-gray-500">{task.description}</p>
-                        )}
-                        <div className="mt-1 flex flex-wrap gap-1">
-                          <span
-                            className={`badge rounded-full p-1 badge-xs text-white sm:p-2 ${urgencyColor[task.urgency] || "bg-green-500"}`}
-                          >
-                            {formatLabel(task.urgency || "low")}
-                          </span>
-                          {task.taskType && (
-                            <span
-                              className={`badge rounded-full p-1 badge-xs text-white sm:p-2 ${typeColor(task.taskType)}`}
-                            >
-                              {formatLabel(task.taskType)}
-                            </span>
-                          )}
-                        </div>
-                      </div>
+                        task={task}
+                        border={column.border}
+                        onOpen={openEditModal}
+                      />
                     ))}
-                  </div>
-                </div>
-              );
-            })}
-          </div>
+                  </DroppableColumn>
+                );
+              })}
+            </div>
+
+            {overlayHost &&
+              createPortal(
+                <DragOverlay>
+                  {activeTask ? (
+                    <div
+                      className={`cursor-grabbing rounded-lg border-l-4 bg-base-100 p-2 shadow-xl sm:border-l-10 sm:p-3 ${activeBorder}`}
+                    >
+                      <TaskCardBody task={activeTask} />
+                    </div>
+                  ) : null}
+                </DragOverlay>,
+                overlayHost
+              )}
+          </DndContext>
         </div>
 
         {/* Click outside to close */}
