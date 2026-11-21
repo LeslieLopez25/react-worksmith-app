@@ -71,6 +71,10 @@ Key decisions:
 
 - Updated the image card form path to have the project id.
 
+## November 14, 2026
+
+- Added the protected `/drafts` route.
+
 #### **main.jsx**
 
 - Added the function for Loading component to set the theme color to whatever the user has set.
@@ -218,6 +222,14 @@ Fields: name, email, password
 - Typo `Image.url` (capital I) in the left-hand image cards on desktop; it refers to the browser's built-in Image constructor, so the cards would always have shown the placeholder.
 - Typo `createAt` instead of `createdAt` when adding a note.
 
+## November 20, 2026
+
+- The project description now shows under the title. It is rendered from HTML with `dangerouslySetInnerHTML` only after DOMPurify cleans it, so saved HTML can't run scripts. Installed `dompurify`.
+
+**Bugs fixed:**
+
+- The description block was inside the row with the title and Delete Project button, so it squeezed both. Moved it below the row.
+
 ---
 
 ## August 23, 2026
@@ -262,6 +274,28 @@ Fields: name, email, password
 
 - handleChange used `e.target.value` as the key instead of `e.target.name`, so none of the inputs or selects in the task modal could be typed in or changed.
 
+## November 13, 2026
+
+- Added drag and drop with `@dnd-kit/core`. Tasks can be dragged between columns to change their status.
+- Split the board into small components: TaskCardBody (the card content, shared by the real card and the dragged copy), DraggableTask, and DroppableColumn.
+- The mouse sensor needs 8px of movement before a drag starts, so a plain click still opens the edit modal. The touch sensor needs a 250ms press and hold, so normal swiping still scrolls the board on mobile.
+- The card being dragged is drawn with DragOverlay through `createPortal` into an empty fixed div inside the dialog. Without that, the scrolling columns and the modal would clip it. The original card stays in its column at 40% opacity, and the column under the cursor gets a blue ring.
+- moveTask updates the board immediately, saves with updateTask in the background, and puts the card back with an error toast if the save fails.
+- moveTask also calls onTasksLoaded, so the task counts in the Project page right column update at the same time.
+
+## November 14, 2026
+
+**Bugs fixed:**
+
+- DraggableTask was missing its base `p-2` (only `sm:p-3` was left), so on mobile the text and badges touched the colored border.
+- DndContext was still wrapped in the old scroll container, which subtracted the 80px height twice and created two nested scroll areas.
+- There was a duplicate `modal-backdrop` form at the top of the dialog.
+- The badge text had changed to `formatLabel(task.urgency) || "low"`, which would crash for a task with no urgency. Restored `formatLabel(task.urgency || "low")`.
+
+**Testing:**
+
+- Tested the rollback by setting the browser's Network tab to Offline and dragging a card. It snaps back with the error toast and the counts return. Stopping the backend with Ctrl+C on Windows first asks "Terminate batch job (Y/N)?", so the server kept running until answered, which is why the first test failed.
+
 ---
 
 ## August 27, 2026
@@ -284,6 +318,22 @@ Fields: name, email, password
 - Title is required -- shows and error toast if empty.
 - After successful creation navigate to the new project's page using the returned \_id.
 - Status and project type options use .map() so adding new options is just adding to the arrays at the top.
+
+## November 14, 2026
+
+- Save as Draft now sends the user to `/drafts` instead of the project page. Create Project still opens the new project.
+
+## November 20, 2026
+
+- Replaced the description textarea with a TipTap rich-text editor so the toolbar buttons actually work: bold, italic, underline, numbered list, and bulleted list.
+- The toolbar is built from a config array. Each button highlights when its formatting is active at the cursor.
+- `onMouseDown` with `preventDefault` on each button keeps the text selection when a button is clicked.
+- The description is saved as HTML. An empty editor saves an empty string instead of `<p></p>`.
+- Installed `@tiptap/react`, `@tiptap/pm`, `@tiptap/starter-kit`, and `@tiptap/extension-placeholder`.
+
+**Bugs fixed:**
+
+- Typo in the editor's class name (`rice-text` instead of `rich-text`). The lists were being created, but Tailwind removes bullets and numbers by default, and the list styles never applied.
 
 ---
 
@@ -357,6 +407,29 @@ Fields: name, email, password
 
 - After saving, the page redirected to the 404 page. `navigate("project/...")` had no leading slash, so React Router treated it as relative to the current URL. Changed it to `navigate("/project/...")`.
 
+#### **Drafts.jsx**
+
+## November 14, 2026
+
+- Created a Drafts page at `/drafts` for projects saved with Save as Draft.
+- Fetches the drafts with getDraftProjects. Each draft shows its title, a two-line snippet of the description, project type and status badges, and the date it was last edited.
+- Three actions per draft: Open (goes to the project page), Publish (sets `isDraft` to false and removes it from the list), and Delete (asks for confirmation first).
+- Shows a loading spinner while fetching and a "No drafts" message with a Create a project button when the list is empty.
+
+## November 18, 2026
+
+**Bugs fixed:**
+
+- The empty state had its own `py-16` padding on top of the page padding, which made a small scrollbar on mobile. Changed it to `flex-1 justify-center` so it fills the remaining space.
+
+## November 20, 2026
+
+- Descriptions are rich text now, so the snippet uses toPlainText to strip the tags.
+
+**Bugs fixed:**
+
+- `sm:p-8` overrode `pb-24` at 640px and wider, so the last draft sat under the fixed footer. Added `sm:pb-24`.
+
 ---
 
 ### Components Created
@@ -386,6 +459,11 @@ Fields: name, email, password
 ## October 20, 2026
 
 - Create a handleLogout function to Header.
+
+## November 14, 2026
+
+- Added a Drafts link to the desktop menu and the mobile dropdown.
+- It lives in the Header instead of the home page because the home page header is hidden when there are no published projects, which would leave a user with only drafts unable to reach it.
 
 #### **Hero.jsx**
 
@@ -507,6 +585,10 @@ Fields: name, email, password
 
 - Added updateProjectImage, deleteProjectImage, updateProjectNote, and deleteProjectNote.
 
+## November 14, 2026
+
+- Added getDraftProjects.
+
 ---
 
 ## October 16, 2026
@@ -522,6 +604,17 @@ Fields: name, email, password
 #### **useAuth.jsx**
 
 - Created useAuth hook to pass the AuthContext.
+
+---
+
+### Utils Created
+
+#### **richText.js**
+
+## November 20, 2026
+
+- Created toPlainText, which strips the HTML tags from a rich-text description. It adds a space after each paragraph and list item so lists and paragraphs don't run together.
+- It also works on older plain-text descriptions, since text without tags comes through unchanged.
 
 ---
 
@@ -565,3 +658,9 @@ Fields: name, email, password
 
 - Added a custom `short` variant (`@custom-variant short (@media (max-height: 600px))`) so the Project page right column gets compact sizing only on very short windows.
 - The first version triggered at 760px, which shrank the task count boxes and the buttons on normal laptop windows and left a big gap. Lowered it to 600px.
+
+## November 20, 2026
+
+- Added `.rich-text` styles for the editor and the project description: bullets, numbers, and indentation for lists, which Tailwind removes by default, plus styling for the editor's placeholder text.
+- Spacing between blocks uses one rule (`.rich-text > * + *`, 12px) so a paragraph, bulleted list, and numbered list are all spaced evenly. Before, each element had its own margin and a bulleted list and numbered list were squished together.
+- After editing `index.css` the lists disappeared even though the CSS was valid. Restarting the Vite dev server fixed it, so a stale build was the cause.
