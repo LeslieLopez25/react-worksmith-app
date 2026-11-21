@@ -14,6 +14,7 @@ import ImageCardForm from "../src/pages/ImageCardForm.jsx";
 import NotFound from "../src/pages/NotFound.jsx";
 import Loading from "./components/Loading.jsx";
 import ProtectedRoute from "./components/ProtectedRoute.jsx";
+import Drafts from "./pages/Drafts.jsx";
 
 const AppRoutes = () => {
   const { isLoggedIn, loading } = useAuth();
@@ -76,6 +77,14 @@ const AppRoutes = () => {
           element={
             <ProtectedRoute>
               <ImageCardForm />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/drafts"
+          element={
+            <ProtectedRoute>
+              <Drafts />
             </ProtectedRoute>
           }
         />

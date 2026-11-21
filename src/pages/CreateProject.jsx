@@ -3,6 +3,9 @@ import { useNavigate } from "react-router-dom";
 import { createProject } from "../api/projectAPI.js";
 import useToast from "../hooks/useToast.js";
 import Toast from "../components/Toast.jsx";
+import { useEditor, EditorContent } from "@tiptap/react";
+import StarterKit from "@tiptap/starter-kit";
+import { Placeholder } from "@tiptap/extension-placeholder";
 
 const statusOptions = ["idea", "in-progress", "on-hold", "completed", "archived"];
 const projectTypeOptions = [
@@ -14,12 +17,65 @@ const projectTypeOptions = [
   "documentation",
 ];
 
+const toolbar = [
+  {
+    title: "Bold",
+    label: "B",
+    style: "font-bold",
+    mark: "bold",
+    run: (e) => e.chain().focus().toggleBold().run(),
+  },
+  {
+    title: "Italic",
+    label: "I",
+    style: "italic",
+    mark: "italic",
+    run: (e) => e.chain().focus().toggleItalic().run(),
+  },
+  {
+    title: "Underline",
+    label: "U",
+    style: "underline",
+    mark: "underline",
+    run: (e) => e.chain().focus().toggleUnderline().run(),
+  },
+  { divider: true },
+  {
+    title: "Numbered list",
+    label: "≡",
+    mark: "orderedList",
+    run: (e) => e.chain().focus().toggleOrderedList().run(),
+  },
+  {
+    title: "Bulleted list",
+    label: "•≡",
+    mark: "bulletList",
+    run: (e) => e.chain().focus().toggleBulletList().run(),
+  },
+];
+
 const CreateProject = () => {
   const [formData, setFormData] = useState({
     title: "",
     description: "",
     status: "idea",
     projectType: "",
+  });
+  const editor = useEditor({
+    extensions: [StarterKit, Placeholder.configure({ placeholder: "Describe your project..." })],
+    content: "",
+    shouldRerenderOnTransaction: true,
+    editorProps: {
+      attributes: {
+        class: "rich-text min-h-48 p-3 text-base focus:outline-none sm:min-h-96",
+      },
+    },
+    onUpdate: ({ editor }) => {
+      setFormData((prev) => ({
+        ...prev,
+        description: editor.isEmpty ? "" : editor.getHTML(),
+      }));
+    },
   });
   const { toast, showToast, hideToast } = useToast();
   const navigate = useNavigate();
@@ -35,7 +91,7 @@ const CreateProject = () => {
         isDraft: draft,
       });
       showToast(draft ? "Project saved as draft!" : "Project created successfully!", "success");
-      setTimeout(() => navigate(`/project/${response.data._id}`), 1500);
+      setTimeout(() => navigate(draft ? "/drafts" : `/project/${response.data._id}`), 1500);
     } catch (err) {
       showToast(err.response?.data?.message || "Failed to create project.", "error");
       console.error(err);
@@ -57,29 +113,28 @@ const CreateProject = () => {
         />
         <div className="flex flex-col gap-0">
           <div className="flex gap-2 rounded-t-lg border border-base-300 bg-base-200 p-2">
-            <button className="btn font-bold btn-ghost btn-xs hover:bg-base-300 hover:text-base-content">
-              B
-            </button>
-            <button className="btn italic btn-ghost btn-xs hover:bg-base-300 hover:text-base-content">
-              I
-            </button>
-            <button className="btn underline btn-ghost btn-xs hover:bg-base-300 hover:text-base-content">
-              U
-            </button>
-            <div className="divider mx-0 divider-horizontal"></div>
-            <button className="btn btn-ghost btn-xs hover:bg-base-300 hover:text-base-content">
-              ≡
-            </button>
-            <button className="btn btn-ghost btn-xs hover:bg-base-300 hover:text-base-content">
-              •≡
-            </button>
+            {toolbar.map((item, index) =>
+              item.divider ? (
+                <div key={index} className="divider mx-0 divider-horizontal"></div>
+              ) : (
+                <button
+                  key={item.title}
+                  type="button"
+                  title={item.title}
+                  aria-label={item.title}
+                  disabled={!editor}
+                  onMouseDown={(e) => e.preventDefault()}
+                  onClick={() => item.run(editor)}
+                  className={`btn btn-ghost btn-xs hover:bg-base-300 hover:text-base-content ${item.style || ""} ${editor?.isActive(item.mark) ? "btn-active bg-base-300" : ""}`}
+                >
+                  {item.label}
+                </button>
+              )
+            )}
           </div>
-          <textarea
-            placeholder="Describe your project..."
-            value={formData.description}
-            onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-            className="textarea-bordered textarea min-h-48 w-full rounded-lg rounded-t-none border border-base-300 text-base sm:min-h-96"
-          ></textarea>
+          <div className="rounded-lg rounded-t-none border border-base-300 bg-base-100 focus-within:border-info">
+            <EditorContent editor={editor} />
+          </div>
         </div>
       </div>
 

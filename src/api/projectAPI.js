@@ -14,3 +14,4 @@ export const deleteProjectImage = (id, imageId) =>
 export const updateProjectNote = (id, noteId, content) =>
   api.patch(`/api/projects/${id}/notes/${noteId}`, { content });
 export const deleteProjectNote = (id, noteId) => api.delete(`/api/projects/${id}/notes/${noteId}`);
+export const getDraftProjects = () => api.get("/api/projects/drafts");

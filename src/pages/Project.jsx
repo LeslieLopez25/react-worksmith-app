@@ -15,6 +15,7 @@ import useToast from "../hooks/useToast.js";
 import { columns } from "../constants/taskColumns.js";
 import Toast from "../components/Toast.jsx";
 import { Link } from "react-router-dom";
+import DOMPurity from "dompurify";
 
 const Project = () => {
   const { id } = useParams();
@@ -241,6 +242,13 @@ const Project = () => {
               Delete Project
             </button>
           </div>
+
+          {project.description && (
+            <div
+              className="rich-text w-full max-w-5xl text-sm sm:text-base"
+              dangerouslySetInnerHTML={{ __html: DOMPurity.sanitize(project.description) }}
+            />
+          )}
 
           <div className="flex w-full flex-col gap-6 lg:flex-row lg:items-start lg:gap-4">
             <div className="hidden flex-col gap-4 overflow-visible lg:flex">

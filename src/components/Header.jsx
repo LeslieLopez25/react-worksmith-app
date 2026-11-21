@@ -42,6 +42,11 @@ const Header = () => {
               </Link>
             </li>
             <li>
+              <Link to="/drafts" className="rounded-lg">
+                Drafts
+              </Link>
+            </li>
+            <li>
               <details>
                 <summary className="rounded-lg">{user?.name || "Account"}</summary>
                 <ul className="rounded-t-none bg-base-100 p-0">
@@ -86,6 +91,9 @@ const Header = () => {
             >
               <li>
                 <Link to="/create-project">Create</Link>
+              </li>
+              <li>
+                <Link to="/drafts">Drafts</Link>
               </li>
               <li>
                 <Link to="/profile">Profile</Link>
