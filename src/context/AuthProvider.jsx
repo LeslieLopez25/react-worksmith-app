@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { AuthContext } from "./AuthContext.jsx";
 import api from "../api/axios.js";
+import { applyTheme } from "../utils/theme.js";
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
@@ -13,6 +14,7 @@ export const AuthProvider = ({ children }) => {
         const response = await api.get("/api/auth/me");
         setUser(response.data);
         setIsLoggedIn(true);
+        applyTheme(response.data.theme);
       } catch (error) {
         console.log(error);
         setUser(null);
@@ -27,6 +29,7 @@ export const AuthProvider = ({ children }) => {
   const login = (userData) => {
     setUser(userData);
     setIsLoggedIn(true);
+    applyTheme(userData?.theme);
   };
 
   const logout = async () => {
