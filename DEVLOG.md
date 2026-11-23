@@ -230,6 +230,17 @@ Fields: name, email, password
 
 - The description block was inside the row with the title and Delete Project button, so it squeezed both. Moved it below the row.
 
+## November 22, 2026
+
+- The desktop layout only has room for two image cards on each side of the notes, so a fifth upload only showed on mobile. Added a "View all images" modal.
+- A **View all images (N)** button appears below the three-column row, only on desktop and only when a project has more than four images. The first four cards stay where they are.
+- The modal shows every image card in upload order, in a grid of two columns on smaller screens and three on desktop. The grid is sized to the ImageCard widths so no card is cut off, and the modal scrolls when there are many images.
+- Mobile was not changed because its grid already showed every image.
+
+**Decision:**
+
+- Chose a modal over scrolling side columns or a grid below the notes, because it keeps the desktop layout that was already tuned and shows every image in one place.
+
 ---
 
 ## August 23, 2026
@@ -499,6 +510,19 @@ Fields: name, email, password
 
 - Updated theme controller by adding a customized size for the icons and a statement whether the screen was compact or not.
 
+## November 20, 2026
+
+- The theme toggle now saves the user's choice to their account instead of only the browser.
+- The account's saved theme wins when there is one, and `localStorage` is the fallback for someone who isn't logged in.
+- Toggling updates the app right away through `updateUser`, then saves with updateTheme in the background, so the toggle never waits on the network.
+- The desktop and mobile toggles in the Header both read the theme from the auth state, so they always agree with each other.
+
+## November 22, 2026
+
+**Testing:**
+
+- Tested theme persistence: the toggle saves and returns a 200, the theme survives a refresh, a second browser logged into the same account opens with the saved theme, a change made in one browser shows up in the other after a refresh, and the theme still matches after logging out and back in. The `theme` field also shows on the user document in Atlas.
+
 ---
 
 ## June 20, 2026
@@ -589,6 +613,12 @@ Fields: name, email, password
 
 - Added getDraftProjects.
 
+#### **userAPI.jsx**
+
+## November 20, 2026
+
+- Created userAPI with updateTheme.
+
 ---
 
 ## October 16, 2026
@@ -616,6 +646,11 @@ Fields: name, email, password
 - Created toPlainText, which strips the HTML tags from a rich-text description. It adds a space after each paragraph and list item so lists and paragraphs don't run together.
 - It also works on older plain-text descriptions, since text without tags comes through unchanged.
 
+## November 20, 2026
+
+- Created one place for theme names (`THEMES`) and one function, applyTheme, that sets `data-theme` on the page and saves it to `localStorage`.
+- applyTheme ignores anything that isn't one of the two theme names, which handles accounts that have no saved theme yet.
+
 ---
 
 ## October 18, 2026
@@ -636,6 +671,11 @@ Fields: name, email, password
 #### **AuthProvider**
 
 - Added logic of updateUser so that it updates the user state directly.
+
+## November 20, 2026
+
+- checkAuth and login now call applyTheme with the user's saved theme, so the right theme appears as soon as someone logs in or refreshes, with no flash of the wrong one.
+- `main.jsx` was not changed. It still applies the theme from `localStorage` before the first render.
 
 ---
 
