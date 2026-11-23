@@ -1,6 +1,12 @@
-const ImageCard = ({ imageUrl, title, description }) => {
+const ImageCard = ({ imageUrl, title, description, onClick }) => {
   return (
-    <div className="card w-36 rounded-lg border border-base-300 bg-base-100 shadow-md sm:w-56 lg:w-70">
+    <div
+      onClick={onClick}
+      title={onClick ? "Click to edit or delete" : undefined}
+      className={`card w-36 rounded-lg border border-base-300 bg-base-100 shadow-md sm:w-56 lg:w-70 ${
+        onClick ? "cursor-pointer transition-shadow hover:shadow-lg" : ""
+      }`}
+    >
       <figure>
         <img
           src={imageUrl || "https://images.pexels.com/photos/270404/pexels-photo-270404.jpeg"}

@@ -83,13 +83,13 @@ const Project = () => {
 
   const closeEditModal = () => document.getElementById("edit_modal").close();
 
-  const openEditModal = () => {
-    const firstImage = project.images?.[0];
+  const openEditModal = (imageId) => {
+    const selectedImage = project.images?.find((img) => img._id === imageId) || project.images?.[0];
     const firstNote = project.notes?.[0];
-    setSelectedImageId(firstImage?._id || "");
+    setSelectedImageId(selectedImage?._id || "");
     setEditImageData({
-      title: firstImage?.filename || "",
-      description: firstImage?.description || "",
+      title: selectedImage?.filename || "",
+      description: selectedImage?.description || "",
     });
     setReplaceFile(null);
     setFileInputKey((key) => key + 1);
@@ -143,7 +143,9 @@ const Project = () => {
 
   const handleDeleteImage = async () => {
     if (!selectedImageId) return;
-    if (!window.confirm("Delete this image card? This can not be undone.")) return;
+    const image = project.images.find((img) => img._id === selectedImageId);
+    if (!window.confirm(`Delete "${image?.filename || "this image card"}"? This cannot be undone.`))
+      return;
     setSaving(true);
     try {
       const response = await deleteProjectImage(id, selectedImageId);
@@ -252,12 +254,13 @@ const Project = () => {
 
           <div className="flex w-full flex-col gap-6 lg:flex-row lg:items-start lg:gap-4">
             <div className="hidden flex-col gap-4 overflow-visible lg:flex">
-              {project.images?.slice(0, 2).map((image, index) => (
+              {project.images?.slice(0, 2).map((image) => (
                 <ImageCard
-                  key={index}
+                  key={image._id}
                   imageUrl={image.url}
                   title={image.filename}
                   description={image.description}
+                  onClick={() => openEditModal(image._id)}
                 />
               ))}
             </div>
@@ -311,24 +314,37 @@ const Project = () => {
             </div>
 
             <div className="hidden flex-col gap-4 overflow-visible lg:flex">
-              {project.images?.slice(2, 4).map((image, index) => (
+              {project.images?.slice(2, 4).map((image) => (
                 <ImageCard
-                  key={index}
+                  key={image._id}
                   imageUrl={image.url}
                   title={image.filename}
                   description={image.description}
+                  onClick={() => openEditModal(image._id)}
                 />
               ))}
             </div>
           </div>
 
+          {/* View all images */}
+          {project.images?.length > 4 && (
+            <button
+              onClick={() => document.getElementById("images_modal").showModal()}
+              className="btn hidden btn-outline btn-sm btn-info lg:inline-flex"
+            >
+              View all images ({project.images.length})
+            </button>
+          )}
+
+          {/* Mobile design */}
           <div className="grid w-full grid-cols-2 gap-4 lg:hidden">
-            {project.images?.map((image, index) => (
+            {project.images?.map((image) => (
               <ImageCard
-                key={index}
+                key={image._id}
                 imageUrl={image.url}
                 title={image.filename}
                 description={image.description}
+                onClick={() => openEditModal(image._id)}
               />
             ))}
           </div>
@@ -362,7 +378,7 @@ const Project = () => {
             </Link>
             <button
               className="btn flex-1 btn-dash btn-sm btn-success lg:w-full lg:flex-none lg:short:btn-xs"
-              onClick={openEditModal}
+              onClick={() => openEditModal()}
             >
               Edit
             </button>
@@ -403,6 +419,16 @@ const Project = () => {
             (project.images?.length > 0 ? (
               <div className="flex flex-col gap-3 sm:gap-4">
                 <div className="flex flex-col gap-1">
+                  {(() => {
+                    const selected = project.images.find((img) => img._id === selectedImageId);
+                    return selected ? (
+                      <img
+                        src={selected.url}
+                        alt={selected.filename || "Selected image"}
+                        className="h-32 w-full rounded-lg object-cover"
+                      />
+                    ) : null;
+                  })()}
                   <label className="text-sm font-semibold">Choose Image Card</label>
                   <select
                     value={selectedImageId}
@@ -510,6 +536,43 @@ const Project = () => {
           </div>
         </div>
 
+        <form method="dialog" className="modal-backdrop">
+          <button>Close</button>
+        </form>
+      </dialog>
+
+      {/* All images modal */}
+      <dialog id="images_modal" className="modal">
+        <div className="modal-box h-5/6 w-11/12 max-w-5xl rounded-lg p-4 sm:p-6">
+          <div className="mb-4 flex items-center justify-between sm:mb-6">
+            <div>
+              <h2 className="text-lg font-bold sm:text-2xl">
+                All Images ({project.images?.length || 0})
+              </h2>
+              <p className="text-xs text-gray-500 sm:text-sm">
+                Use Edit to change or delete an image card.
+              </p>
+            </div>
+            <form method="dialog">
+              <button className="btn btn-circle btn-ghost btn-sm">X</button>
+            </form>
+          </div>
+
+          <div className="grid grid-cols-2 justify-items-center gap-4 lg:grid-cols-3">
+            {project.images?.map((image) => (
+              <ImageCard
+                key={image._id}
+                imageUrl={image.url}
+                title={image.filename}
+                description={image.description}
+                onClick={() => {
+                  document.getElementById("images_modal").close();
+                  openEditModal(image._id);
+                }}
+              />
+            ))}
+          </div>
+        </div>
         <form method="dialog" className="modal-backdrop">
           <button>Close</button>
         </form>
