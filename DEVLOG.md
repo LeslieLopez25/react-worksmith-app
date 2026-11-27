@@ -269,6 +269,8 @@ Fields: name, email, password
 
 - Tested clicking a card from each place (side columns, mobile grid, View all images modal) and deleting a card other than the first one.
 
+- The delete X on each note is now a `btn-circle` so it is a real circle like the modal close buttons.
+
 ---
 
 ## August 23, 2026
@@ -374,6 +376,10 @@ Fields: name, email, password
 
 - Typo in the editor's class name (`rice-text` instead of `rich-text`). The lists were being created, but Tailwind removes bullets and numbers by default, and the list styles never applied.
 
+## November 26, 2026
+
+- Added `btn-info` to the Save as Draft button. An outline button with no color class falls back to the base text color, which is black in the light theme.
+
 ---
 
 ## September 03, 2026
@@ -445,6 +451,10 @@ Fields: name, email, password
 **Bugs fixed:**
 
 - After saving, the page redirected to the 404 page. `navigate("project/...")` had no leading slash, so React Router treated it as relative to the current URL. Changed it to `navigate("/project/...")`.
+
+## November 26, 2026
+
+- Added `btn-info` to the Preview and Go Back outline buttons, for the same reason.
 
 #### **Drafts.jsx**
 
@@ -736,3 +746,25 @@ Fields: name, email, password
 - Added `.rich-text` styles for the editor and the project description: bullets, numbers, and indentation for lists, which Tailwind removes by default, plus styling for the editor's placeholder text.
 - Spacing between blocks uses one rule (`.rich-text > * + *`, 12px) so a paragraph, bulleted list, and numbered list are all spaced evenly. Before, each element had its own margin and a bulleted list and numbered list were squished together.
 - After editing `index.css` the lists disappeared even though the CSS was valid. Restarting the Vite dev server fixed it, so a stale build was the cause.
+
+## November 26, 2026
+
+- Rewrote the theme setup. The light theme is now declared with `@plugin "daisyui/theme"` like the dark theme, instead of only being an `@theme` color block, and both themes set their corner radius, sizes, border width, depth, and noise explicitly.
+- Buttons get their 5px corners from `--radius-field: 5px` in each theme. `--depth: 0` and `--noise: 0` turn off the 3D gradient and grain on buttons.
+- Deleted every `.btn` override for borders and corner radius from both themes.
+
+**Bugs fixed:**
+
+- The X close buttons looked square, and the note delete X too. My `.btn { border-radius: 5px }` rule sat outside any CSS layer, and CSS outside a layer beats DaisyUI's layered styles no matter how specific they are, so it overrode `btn-circle`.
+- Outline and dashed buttons showed a black border on hover. The overrides set `border-color: currentColor`, and on hover the text color becomes `info-content`, which is black in the light theme, so the border went black. Removing the overrides fixed it.
+- The X buttons had a grainy, semi-transparent look. The light theme was never a full DaisyUI theme, so depth and noise were never set.
+
+**Lesson:**
+
+- Custom CSS that overrides DaisyUI components wins over everything, so it's better to set theme variables than to override component classes.
+
+## November 27, 2026
+
+**Testing:**
+
+- Tested both themes: filled, outline, and dashed buttons at rest and on hover, the modal X buttons, and the note X buttons. No black borders, no grain, and the X buttons are circles.
