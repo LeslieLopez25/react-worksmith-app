@@ -6,7 +6,10 @@
     worksmithDark;
 }
 
-@theme {
+@plugin "daisyui/theme" {
+  name: "worksmithLight";
+  default: true;
+  color-scheme: light;
   --color-base-100: #dbeafe;
   --color-base-200: #bfdbfe;
   --color-base-300: #93c5fd;
@@ -27,35 +30,14 @@
   --color-warning-content: #000000;
   --color-error: #dc2626;
   --color-error-content: #ffffff;
-}
-
-[data-theme="worksmithLight"] .btn {
-  border-color: transparent;
-}
-
-[data-theme="worksmithLight"] .btn:hover {
-  border-color: transparent;
-}
-
-[data-theme="worksmithLight"] .btn-outline {
-  border-color: currentColor;
-}
-
-[data-theme="worksmithLight"] .btn-outline:hover {
-  border-color: currentColor;
-}
-
-[data-theme="worksmithLight"] .btn-dash {
-  border-color: currentColor;
-}
-
-[data-theme="worksmithLight"] .btn:not(.btn-outline):not(.btn-dash):not(.btn-ghost) {
-  border-color: transparent;
-  border-width: 0;
-}
-
-.btn {
-  border-radius: 5px;
+  --radius-selector: 0.5rem;
+  --radius-field: 5px;
+  --radius-box: 0.5rem;
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 1px;
+  --depth: 0;
+  --noise: 0;
 }
 
 @plugin "daisyui/theme" {
@@ -82,31 +64,14 @@
   --color-warning-content: #000000;
   --color-error: #dc2626;
   --color-error-content: #ffffff;
-}
-
-[data-theme="worksmithDark"] .btn {
-  border-color: transparent;
-}
-
-[data-theme="worksmithDark"] .btn:hover {
-  border-color: transparent;
-}
-
-[data-theme="worksmithDark"] .btn-outline {
-  border-color: currentColor;
-}
-
-[data-theme="worksmithDark"] .btn-outline:hover {
-  border-color: currentColor;
-}
-
-[data-theme="worksmithDark"] .btn-dash {
-  border-color: currentColor;
-}
-
-[data-theme="worksmithDark"] .btn:not(.btn-outline):not(.btn-dash):not(.btn-ghost) {
-  border-color: transparent;
-  border-width: 0;
+  --radius-selector: 0.5rem;
+  --radius-field: 5px;
+  --radius-box: 0.5rem;
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 1px;
+  --depth: 0;
+  --noise: 0;
 }
 
 .rich-text > * + * {

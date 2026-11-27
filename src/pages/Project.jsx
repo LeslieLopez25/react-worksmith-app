@@ -286,7 +286,7 @@ const Project = () => {
                         {/* Delete note button */}
                         <button
                           onClick={() => handleDeleteNote(note._id)}
-                          className="btn text-error btn-ghost btn-xs"
+                          className="btn btn-circle text-error btn-ghost btn-xs"
                         >
                           X
                         </button>
