@@ -241,6 +241,34 @@ Fields: name, email, password
 
 - Chose a modal over scrolling side columns or a grid below the notes, because it keeps the desktop layout that was already tuned and shows every image in one place.
 
+**Bugs fixed (View all images):**
+
+- The button never showed because the condition used `project.image` instead of `project.images`.
+- The button had been placed after the whole page layout, so it would have rendered below everything. Moved it into the left column, between the three-column row and the mobile image grid.
+- Restored the helper text under "All Images" in the modal header, which had been left empty.
+
+## November 23, 2026
+
+- Image cards are now clickable. Clicking a card opens the Edit modal already set on that card, so a specific card can be updated or deleted without finding it in the dropdown.
+- openEditModal takes an optional image ID and falls back to the first card. The Edit button in the right column still opens on the first card.
+- Clicking works from the side columns, the mobile grid, and the View all images modal (which closes first, then opens the Edit modal).
+- The Edit modal shows a thumbnail of the selected card, and the delete confirmation names the card.
+- The image card lists now use the image `_id` as the key instead of the array index.
+
+**Why:**
+
+- The Edit modal always opened on the first card, so deleting a specific card meant picking it from a list of similar titles and it was easy to choose the wrong one.
+
+**Decision:**
+
+- Notes keep their own X button, but image cards are deleted through the Edit modal. That way someone who only wants to update a card isn't looking at a delete button on every one.
+
+## November 26, 2026
+
+**Testing:**
+
+- Tested clicking a card from each place (side columns, mobile grid, View all images modal) and deleting a card other than the first one.
+
 ---
 
 ## August 23, 2026
@@ -565,6 +593,10 @@ Fields: name, email, password
 ## October 07, 2026
 
 - Added mobile design to image card component.
+
+## November 23, 2026
+
+- Added an optional `onClick` prop. When it is passed the card gets a pointer cursor, a hover shadow, and a "Click to edit or delete" tooltip. Without it the card looks and behaves as before.
 
 ## October 16, 2026
 
