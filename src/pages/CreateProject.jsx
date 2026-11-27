@@ -154,7 +154,10 @@ const CreateProject = () => {
               </p>
             </div>
             <div className="flex justify-between gap-2">
-              <button onClick={() => handleSubmit(true)} className="btn btn-outline btn-sm">
+              <button
+                onClick={() => handleSubmit(true)}
+                className="btn btn-outline btn-sm btn-info"
+              >
                 Save as Draft
               </button>
               <button onClick={() => handleSubmit(false)} className="btn btn-sm btn-info">

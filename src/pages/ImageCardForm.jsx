@@ -82,7 +82,7 @@ const ImageCardForm = () => {
           <h1 className="text-xl font-bold sm:text-2xl">Add Image</h1>
           <div className="flex gap-2">
             <button
-              className="btn btn-outline btn-xs sm:btn-sm"
+              className="btn btn-outline btn-xs btn-info sm:btn-sm"
               onClick={() => document.getElementById("preview_modal").showModal()}
             >
               Preview
@@ -194,7 +194,7 @@ const ImageCardForm = () => {
           <div className="modal-action">
             <div className="flex w-full items-center justify-end gap-2">
               <form method="dialog" className="flex items-center">
-                <button className="btn btn-outline btn-xs sm:btn-sm">Go Back</button>
+                <button className="btn btn-outline btn-xs btn-info sm:btn-sm">Go Back</button>
               </form>
               <button
                 onClick={handleSave}
